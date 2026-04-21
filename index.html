@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#0D4C8F" />
+<meta name="description" content="Professional email, Microsoft 365, business websites and graphics for growing businesses worldwide. Setup in 48 hours. From $29/year." />
+<title>Oklah Hub — Professional Email, Microsoft 365 &amp; Business Websites</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+<style>
+/* ── TOKENS ── */
+:root{
+  --bg:#ffffff;--bg-alt:#F8FAFC;--bg-subtle:#F1F5F9;
+  --text:#0F172A;--muted:#64748B;--faint:#94A3B8;
+  --border:#E2E8F0;--card:#ffffff;
+  --navy:#0D4C8F;--navy-d:#071E3D;--navy-m:#1565C0;
+  --sky:#0EA5E9;--orange:#F97316;--orange-s:#FB923C;
+  --green:#25D366;--green-d:#128C7E;
+  --sh-sm:0 1px 3px rgba(0,0,0,.04),0 6px 16px rgba(15,23,42,.07);
+  --sh-md:0 4px 8px rgba(0,0,0,.04),0 16px 40px rgba(15,23,42,.10);
+  --sh-lg:0 8px 16px rgba(0,0,0,.06),0 32px 64px rgba(15,23,42,.13);
+  --sh-hover:0 8px 20px rgba(0,0,0,.06),0 28px 56px rgba(15,23,42,.15);
+  --ease:cubic-bezier(.22,1,.36,1);--spring:cubic-bezier(.34,1.56,.64,1);
+}
+[data-theme="dark"]{
+  --bg:#060C1A;--bg-alt:#0A1120;--bg-subtle:#0F1B30;
+  --text:#F1F5F9;--muted:#94A3B8;--faint:#64748B;
+  --border:rgba(255,255,255,.08);--card:rgba(255,255,255,.04);
+  --sh-sm:0 1px 3px rgba(0,0,0,.4),0 6px 16px rgba(0,0,0,.25);
+  --sh-md:0 4px 8px rgba(0,0,0,.4),0 16px 40px rgba(0,0,0,.3);
+  --sh-hover:0 8px 20px rgba(0,0,0,.45),0 28px 56px rgba(0,0,0,.35);
+}
+
+/* ── RESET ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden;transition:background .3s,color .3s}
+input,textarea,button,select{font-family:inherit}
+
+/* ── LOADER ── */
+#loader{position:fixed;inset:0;z-index:9999;background:#071E3D;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;transition:opacity .5s ease,visibility .5s ease}
+#loader.out{opacity:0;visibility:hidden;pointer-events:none}
+.ld-ring{width:44px;height:44px;border-radius:50%;border:3px solid rgba(255,255,255,.08);border-top-color:#0EA5E9;animation:spin .8s linear infinite}
+
+/* ── PROGRESS ── */
+#progress-bar{position:fixed;top:0;left:0;height:2px;z-index:9999;background:linear-gradient(90deg,var(--navy),var(--sky),var(--orange));width:0%;transition:width .08s linear;pointer-events:none}
+
+/* ── REVEAL ── */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .65s var(--ease),transform .65s var(--ease)}
+.rv.on{opacity:1;transform:none}
+.rv-l{opacity:0;transform:translateX(-32px);transition:opacity .65s var(--ease),transform .65s var(--ease)}
+.rv-l.on{opacity:1;transform:none}
+.rv-r{opacity:0;transform:translateX(32px);transition:opacity .65s var(--ease),transform .65s var(--ease)}
+.rv-r.on{opacity:1;transform:none}
+.rv-sc{opacity:0;transform:scale(.93);transition:opacity .55s var(--ease),transform .55s var(--ease)}
+.rv-sc.on{opacity:1;transform:none}
+.d1{transition-delay:.07s}.d2{transition-delay:.14s}.d3{transition-delay:.21s}.d4{transition-delay:.28s}.d5{transition-delay:.35s}.d6{transition-delay:.42s}
+
+/* ── NAV ── */
+.nav-glass{background:rgba(255,255,255,.88);backdrop-filter:saturate(200%) blur(20px);-webkit-backdrop-filter:saturate(200%) blur(20px);border-bottom:1px solid rgba(15,23,42,.06);box-shadow:0 2px 20px rgba(15,23,42,.05)}
+[data-theme="dark"] .nav-glass{background:rgba(6,12,26,.9);border-bottom-color:rgba(255,255,255,.06)}
+.nav-a{position:relative;text-decoration:none;font-size:14px;font-weight:500;color:var(--muted);transition:color .2s;padding:4px 0}
+.nav-a::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--navy),var(--sky));transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
+.nav-a:hover,.nav-a.act{color:var(--navy)}
+[data-theme="dark"] .nav-a:hover,[data-theme="dark"] .nav-a.act{color:var(--sky)}
+.nav-a.act::after{transform:scaleX(1)}
+
+/* ── MOB MENU ── */
+.mob-menu{position:fixed;inset:0;z-index:150;background:var(--bg);display:flex;flex-direction:column;padding:76px 24px 40px;animation:slideIn .28s var(--ease) both;overflow-y:auto}
+.mob-a{color:var(--text);text-decoration:none;font-size:20px;font-weight:700;padding:18px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;transition:color .15s}
+.mob-a:hover{color:var(--navy)}
+.mob-a::after{content:'→';color:var(--faint);font-weight:400;font-size:17px}
+
+/* ── BUTTONS ── */
+.btn{transition:transform .15s var(--spring),box-shadow .2s!important}
+.btn:active{transform:scale(.96)!important}
+.btn-g{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 26px;border-radius:12px;font-weight:800;font-size:15px;text-decoration:none;border:none;cursor:pointer;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;box-shadow:0 4px 20px rgba(37,211,102,.32);animation:glow-g 3s ease-in-out infinite}
+.btn-g:hover{transform:translateY(-2px)!important;box-shadow:0 8px 32px rgba(37,211,102,.48)!important}
+.btn-p{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 24px;border-radius:12px;font-weight:700;font-size:14px;text-decoration:none;border:none;cursor:pointer;background:linear-gradient(135deg,var(--navy),var(--sky));color:#fff;box-shadow:0 4px 16px rgba(13,76,143,.28)}
+.btn-p:hover{transform:translateY(-1px)!important;box-shadow:0 8px 28px rgba(13,76,143,.38)!important}
+.btn-o{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 22px;border-radius:12px;font-weight:600;font-size:14px;text-decoration:none;cursor:pointer;background:transparent;color:var(--text);border:1.5px solid var(--border);transition:border-color .2s,color .2s,background .2s,transform .15s}
+.btn-o:hover{border-color:var(--navy);color:var(--navy);background:rgba(13,76,143,.04);transform:translateY(-1px)}
+
+/* ── CARDS ── */
+.card{background:var(--card);border:1px solid var(--border);border-radius:20px;box-shadow:var(--sh-sm);transition:box-shadow .3s var(--ease),transform .3s var(--ease),border-color .25s}
+.card:hover{box-shadow:var(--sh-hover);transform:translateY(-4px)}
+
+/* ── HERO ── */
+.hero-bg{background:#ffffff!important}
+.hero-grid{background-image:linear-gradient(rgba(13,76,143,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(13,76,143,.05) 1px,transparent 1px);background-size:52px 52px}
+.grad-text{background:linear-gradient(120deg,var(--navy) 0%,var(--sky) 50%,var(--orange) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.shimmer{background:linear-gradient(90deg,var(--orange),var(--orange-s),#FBBF24,var(--orange));background-size:300% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 3.5s linear infinite}
+
+/* ── MARQUEE ── */
+.mq-wrap{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.mq-track{display:flex;width:max-content;animation:mq 28s linear infinite}
+.mq-track:hover{animation-play-state:paused}
+
+/* ── INPUTS ── */
+.oh-input{width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:10px;background:var(--bg);font-size:15px;color:var(--text);transition:border-color .2s,box-shadow .2s}
+.oh-input:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 4px rgba(13,76,143,.12)}
+.oh-input::placeholder{color:var(--faint)}
+[data-theme="dark"] .oh-input{background:rgba(255,255,255,.05)}
+
+/* ── TOGGLE ── */
+.tog{width:42px;height:24px;border-radius:12px;background:var(--border);border:none;cursor:pointer;position:relative;transition:background .3s;flex-shrink:0}
+.tog.on{background:var(--navy)}
+.tog-k{position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:transform .3s var(--spring);box-shadow:0 1px 4px rgba(0,0,0,.2);display:flex;align-items:center;justify-content:center;font-size:10px;line-height:1}
+.tog.on .tog-k{transform:translateX(18px)}
+
+/* ── BACK TOP ── */
+#bt{position:fixed;bottom:32px;left:32px;z-index:200;width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(8px) scale(.9);transition:opacity .3s,transform .3s;box-shadow:0 4px 18px rgba(13,76,143,.3)}
+#bt.on{opacity:1;transform:none}
+#bt:hover{background:var(--navy-m)}
+@media(max-width:767px){#bt{display:none}}
+
+/* ── WA FAB ── */
+.wa-fab{position:fixed;bottom:28px;right:28px;z-index:200;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#25D366,#128C7E);display:flex;align-items:center;justify-content:center;text-decoration:none;animation:pulse-g 3s ease-in-out infinite;transition:transform .2s var(--spring);box-shadow:0 6px 24px rgba(37,211,102,.4)}
+.wa-fab:hover{transform:scale(1.12) translateY(-2px)}
+.wa-tip{position:absolute;right:70px;top:50%;transform:translateY(-50%) translateX(8px);background:var(--text);color:var(--bg);padding:8px 14px;border-radius:10px;font-size:12px;font-weight:600;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;box-shadow:var(--sh-md)}
+.wa-tip::after{content:'';position:absolute;right:-5px;top:50%;transform:translateY(-50%);border-left:6px solid var(--text);border-top:5px solid transparent;border-bottom:5px solid transparent}
+.wa-fab:hover .wa-tip{opacity:1;transform:translateY(-50%) translateX(0)}
+.wa-sticky{display:none;position:fixed;bottom:0;left:0;right:0;z-index:300;background:linear-gradient(90deg,#25D366,#128C7E);padding:14px 20px;padding-bottom:calc(14px + env(safe-area-inset-bottom,0));align-items:center;justify-content:center;gap:10px;text-decoration:none;color:#fff;font-weight:800;font-size:15px;box-shadow:0 -4px 24px rgba(37,211,102,.28)}
+@media(max-width:767px){.wa-sticky{display:flex}.wa-fab{display:none!important}}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:10px}
+
+/* ── KEYFRAMES ── */
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes shimmer{0%{background-position:-300% center}100%{background-position:300% center}}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes cf{0%,100%{transform:translateY(0) rotate(0)}33%{transform:translateY(-7px) rotate(.3deg)}66%{transform:translateY(-3px) rotate(-.15deg)}}
+@keyframes slideIn{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:none}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes pulse-g{0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,.45),0 6px 24px rgba(37,211,102,.35)}60%{box-shadow:0 0 0 14px rgba(37,211,102,0),0 6px 24px rgba(37,211,102,.35)}}
+@keyframes glow-g{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.32)}50%{box-shadow:0 6px 36px rgba(37,211,102,.55)}}
+@keyframes scrollDot{0%,100%{transform:translateY(0);opacity:1}60%{transform:translateY(10px);opacity:0}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.15s!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<div id="loader">
+  <div class="ld-ring"></div>
+  <img src="uploads/logo.svg" alt="Oklah Hub" style="height:32px;filter:brightness(0) invert(1);opacity:.6;margin-top:6px" onerror="this.style.display='none'" />
+</div>
+<div id="root"></div>
+<div id="progress-bar"></div>
+
+<script type="text/babel">
+const { useState, useEffect, useRef } = React;
+
+/* ── BRAND ── */
+const WA = '2349115581148';
+const waHref = msg => `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
+
+/* ── HOOKS ── */
+function useDark() {
+  const [dark, setDark] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    const s = localStorage.getItem('oh-theme');
+    return s ? s === 'dark' : window.matchMedia('(prefers-color-scheme:dark)').matches;
+  });
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+    localStorage.setItem('oh-theme', dark ? 'dark' : 'light');
+  }, [dark]);
+  return [dark, setDark];
+}
+
+function useMobile() {
+  const [m, setM] = useState(typeof window !== 'undefined' ? window.innerWidth < 768 : false);
+  useEffect(() => {
+    const f = () => setM(window.innerWidth < 768);
+    window.addEventListener('resize', f, { passive: true });
+    return () => window.removeEventListener('resize', f);
+  }, []);
+  return m;
+}
+
+function useReveal() {
+  useEffect(() => {
+    const els = document.querySelectorAll('.rv,.rv-l,.rv-r,.rv-sc');
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('on') }), { threshold: .07 });
+    els.forEach(el => io.observe(el));
+    return () => io.disconnect();
+  });
+}
+
+function useScroll() {
+  useEffect(() => {
+    const bar = document.getElementById('progress-bar');
+    const btn = document.getElementById('bt');
+    const f = () => {
+      const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (btn) btn.classList.toggle('on', window.scrollY > 400);
+    };
+    window.addEventListener('scroll', f, { passive: true });
+    return () => window.removeEventListener('scroll', f);
+  }, []);
+}
+
+function useActiveSection() {
+  const [a, setA] = useState('');
+  useEffect(() => {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) setA(e.target.id) }), { threshold: .25 });
+    ['services','pricing','about','contact'].forEach(id => { const el = document.getElementById(id); if (el) io.observe(el) });
+    return () => io.disconnect();
+  }, []);
+  return a;
+}
+
+/* ── COUNTER ── */
+function Counter({ to, suffix = '', dur = 1100 }) {
+  const [v, setV] = useState(0);
+  const ref = useRef(null);
+  const done = useRef(false);
+  useEffect(() => {
+    if (!ref.current) return;
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting && !done.current) {
+        done.current = true;
+        const t0 = performance.now();
+        const tick = ts => {
+          const p = Math.min((ts - t0) / dur, 1);
+          setV(Math.round((1 - Math.pow(1 - p, 3)) * to));
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+        io.disconnect();
+      }
+    }, { threshold: .5 });
+    io.observe(ref.current);
+    return () => io.disconnect();
+  }, [to, dur]);
+  return <span ref={ref}>{v}{suffix}</span>;
+}
+
+/* ── ICONS ── */
+const WaIco = ({ s = 18 }) => (
+  <svg width={s} height={s} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+);
+
+const StarIco = () => (
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="#FBBF24" aria-hidden="true">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+  </svg>
+);
+
+const Chk = ({ c = 'var(--navy)', sz = 10 }) => (
+  <svg width={sz} height={sz} viewBox="0 0 10 10" fill="none" aria-hidden="true">
+    <path d="M2 5l2.5 2.5L8 3" stroke={c} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+/* ── LOGO ── */
+const Logo = ({ h = 32, inv = false }) => (
+  <img src="uploads/logo.svg" alt="Oklah Hub"
+    style={{ height: h, objectFit: 'contain', display: 'block', filter: inv ? 'brightness(0) invert(1)' : 'none' }}
+    onError={e => { e.currentTarget.src = 'uploads/logo_file-1776618871769.jpg' }}
+  />
+);
+
+/* ── THEME TOGGLE ── */
+const Toggle = ({ dark, set }) => (
+  <button className={`tog ${dark ? 'on' : ''}`} onClick={() => set(d => !d)} aria-label={dark ? 'Light mode' : 'Dark mode'}>
+    <div className="tog-k">{dark ? '🌙' : '☀️'}</div>
+  </button>
+);
+
+/* ── WA BUTTON ── */
+function WaBtn({ msg = 'Hi Oklah Hub! I want to get started.', label, full, lg, ghost }) {
+  const base = {
+    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 9,
+    padding: lg ? '16px 28px' : '13px 22px',
+    borderRadius: 12, fontWeight: 800, fontSize: lg ? 16 : 14,
+    textDecoration: 'none', width: full ? '100%' : 'auto', minHeight: lg ? 54 : 48,
+    transition: 'transform .15s,box-shadow .2s'
+  };
+  if (ghost) return (
+    <a href={waHref(msg)} target="_blank" rel="noopener" className="btn btn-o" style={{ ...base, gap: 8 }}>
+      <WaIco s={14} />{label || 'Chat on WhatsApp'}
+    </a>
+  );
+  return (
+    <a href={waHref(msg)} target="_blank" rel="noopener" className="btn btn-g" style={base}>
+      <WaIco s={14} />{label || 'Chat on WhatsApp'}
+    </a>
+  );
+}
+
+/* ── NAV ── */
+function Nav({ mob, dark, setDark }) {
+  const [scrolled, setScrolled] = useState(false);
+  const [menu, setMenu] = useState(false);
+  const active = useActiveSection();
+
+  useEffect(() => {
+    const h = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', h, { passive: true });
+    return () => window.removeEventListener('scroll', h);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = menu ? 'hidden' : '';
+    return () => { document.body.style.overflow = '' };
+  }, [menu]);
+
+  const links = ['Services', 'Pricing', 'About', 'Contact'];
+
+  return (
+    <>
+      <header style={{
+        position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
+        transition: 'all .3s',
+        background: scrolled ? undefined : 'transparent',
+        borderBottom: scrolled ? undefined : '1px solid transparent'
+      }} className={scrolled ? 'nav-glass' : ''}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: mob ? '0 16px' : '0 32px', height: mob ? 60 : 68, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24 }}>
+          <a href="#" aria-label="Oklah Hub home" style={{ textDecoration: 'none' }}>
+            <Logo h={mob ? 26 : 30} inv={false} />
+          </a>
+          {mob ? (
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+              <Toggle dark={dark} set={setDark} />
+              <button onClick={() => setMenu(true)} aria-label="Open menu" style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 8, display: 'flex', flexDirection: 'column', gap: 5 }}>
+                {[0,1,2].map(i => <span key={i} style={{ display: 'block', width: 20, height: 2, background: 'var(--text)', borderRadius: 2 }} />)}
+              </button>
+            </div>
+          ) : (
+            <nav style={{ display: 'flex', alignItems: 'center', gap: 32 }}>
+              {links.map(l => (
+                <a key={l} href={`#${l.toLowerCase()}`}
+                  className={`nav-a ${active === l.toLowerCase() ? 'act' : ''}`}
+                  style={{ fontWeight: active === l.toLowerCase() ? 600 : 500 }}
+                >{l}</a>
+              ))}
+              <Toggle dark={dark} set={setDark} />
+              <a href={waHref('Hi Oklah Hub! I want to get started.')} target="_blank" rel="noopener" className="btn btn-g"
+                style={{ padding: '10px 18px', fontSize: 13, borderRadius: 10, animation: 'none' }}>
+                <WaIco s={13} /> Get Started
+              </a>
+            </nav>
+          )}
+        </div>
+      </header>
+
+      {menu && (
+        <div className="mob-menu">
+          <button onClick={() => setMenu(false)} aria-label="Close"
+            style={{ position: 'absolute', top: 14, right: 14, background: 'var(--bg-subtle)', border: 'none', width: 40, height: 40, borderRadius: '50%', fontSize: 18, cursor: 'pointer', color: 'var(--text)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✕</button>
+          <Logo h={28} />
+          <div style={{ marginTop: 32 }}>
+            {links.map(l => <a key={l} href={`#${l.toLowerCase()}`} className="mob-a" onClick={() => setMenu(false)}>{l}</a>)}
+          </div>
+          <div style={{ marginTop: 28, display: 'flex', flexDirection: 'column', gap: 12 }}>
+            <a href={waHref('Hi Oklah Hub! I want to get started.')} target="_blank" rel="noopener" onClick={() => setMenu(false)}
+              className="btn btn-g" style={{ width: '100%', padding: '16px', fontSize: 16, borderRadius: 14 }}>
+              <WaIco s={18} /> Chat on WhatsApp
+            </a>
+            <a href="mailto:info@oklahhub.com" onClick={() => setMenu(false)}
+              className="btn btn-o" style={{ width: '100%', padding: '14px', fontSize: 15, borderRadius: 14 }}>
+              ✉️ info@oklahhub.com
+            </a>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
+/* ── HERO CARDS ── */
+function HeroCards() {
+  return (
+    <div style={{ position: 'relative', width: 400, flexShrink: 0 }}>
+      <div style={{ position: 'absolute', top: '10%', right: '-15%', width: 260, height: 260, borderRadius: '50%', background: 'radial-gradient(circle,rgba(14,165,233,.18) 0%,transparent 70%)', filter: 'blur(40px)', pointerEvents: 'none', animation: 'float 9s ease-in-out infinite' }} />
+      <div style={{ position: 'absolute', bottom: '5%', left: '-10%', width: 200, height: 200, borderRadius: '50%', background: 'radial-gradient(circle,rgba(249,115,22,.15) 0%,transparent 70%)', filter: 'blur(36px)', pointerEvents: 'none', animation: 'float 11s 2s ease-in-out infinite' }} />
+
+      {/* Before */}
+      <div style={{ background: 'var(--card)', border: '1px solid var(--border)', borderRadius: 20, padding: 24, marginBottom: 14, boxShadow: 'var(--sh-md)', animation: 'cf 7s ease-in-out infinite' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
+          <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--faint)', letterSpacing: '.07em', textTransform: 'uppercase' }}>Before Oklah Hub</span>
+          <span style={{ background: 'rgba(239,68,68,.1)', color: '#EF4444', padding: '3px 10px', borderRadius: 100, fontSize: 11, fontWeight: 700, border: '1px solid rgba(239,68,68,.2)' }}>❌ Unprofessional</span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '11px 14px', borderRadius: 12, background: 'var(--bg-subtle)', border: '1px solid var(--border)' }}>
+          <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'var(--bg-alt)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>😐</div>
+          <div>
+            <div style={{ fontSize: 12, color: 'var(--faint)', fontWeight: 500, marginBottom: 2 }}>Your current email</div>
+            <div style={{ fontSize: 14, color: 'var(--muted)', fontWeight: 600, textDecoration: 'line-through' }}>yourname@gmail.com</div>
+          </div>
+        </div>
+      </div>
+
+      <div style={{ textAlign: 'center', fontSize: 18, color: 'var(--faint)', marginBottom: 14 }}>↓</div>
+
+      {/* After */}
+      <div style={{ background: 'linear-gradient(135deg,var(--navy),var(--sky))', borderRadius: 20, padding: 24, position: 'relative', animation: 'cf 7s 1.4s ease-in-out infinite', boxShadow: '0 12px 40px rgba(13,76,143,.3)' }}>
+        <div style={{ position: 'absolute', top: -12, right: 16, background: 'linear-gradient(135deg,#F97316,#FB923C)', color: '#fff', padding: '6px 14px', borderRadius: 100, fontSize: 11, fontWeight: 800, boxShadow: '0 6px 16px rgba(249,115,22,.5)' }}>⚡ Ready in 48 hrs</div>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
+          <span style={{ fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,.65)', letterSpacing: '.07em', textTransform: 'uppercase' }}>After Oklah Hub</span>
+          <span style={{ background: 'rgba(74,222,128,.2)', color: '#4ADE80', padding: '3px 10px', borderRadius: 100, fontSize: 11, fontWeight: 700, border: '1px solid rgba(74,222,128,.3)' }}>✓ Professional</span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '11px 14px', borderRadius: 12, background: 'rgba(255,255,255,.15)', border: '1px solid rgba(255,255,255,.2)' }}>
+          <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'rgba(255,255,255,.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>✨</div>
+          <div>
+            <div style={{ fontSize: 12, color: 'rgba(255,255,255,.7)', fontWeight: 500, marginBottom: 2 }}>Your branded email</div>
+            <div style={{ fontSize: 14, color: '#fff', fontWeight: 700 }}>ceo@yourbusiness.com</div>
+          </div>
+        </div>
+        <div style={{ display: 'flex', gap: 6, marginTop: 14, flexWrap: 'wrap' }}>
+          {['💼 M365','🌐 Website','🎨 Graphics','✉️ Email'].map(b => (
+            <span key={b} style={{ background: 'rgba(255,255,255,.15)', color: '#fff', padding: '5px 10px', borderRadius: 100, fontSize: 11, fontWeight: 600, border: '1px solid rgba(255,255,255,.2)' }}>{b}</span>
+          ))}
+        </div>
+      </div>
+
+      {/* Badge */}
+      <div style={{ position: 'absolute', bottom: -16, left: -18, background: 'var(--card)', borderRadius: 14, padding: '10px 14px', border: '1px solid var(--border)', boxShadow: 'var(--sh-md)', display: 'flex', alignItems: 'center', gap: 10, animation: 'cf 7s .7s ease-in-out infinite' }}>
+        <div style={{ display: 'flex', gap: 1 }}>{[0,1,2,3,4].map(i => <StarIco key={i} />)}</div>
+        <div>
+          <div style={{ fontSize: 11, fontWeight: 800, color: 'var(--text)', lineHeight: 1.2 }}>5.0 Rating</div>
+          <div style={{ fontSize: 10, color: 'var(--muted)' }}>100+ clients</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── HERO ── */
+function Hero({ mob }) {
+  return (
+    <section className="hero-bg" style={{ minHeight: '100svh', display: 'flex', alignItems: 'center', paddingTop: mob ? 60 : 68, position: 'relative', overflow: 'hidden' }}>
+      <div className="hero-grid" style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', top: '8%', left: '-8%', width: 700, height: 700, borderRadius: '50%', background: 'radial-gradient(circle,rgba(14,165,233,.12) 0%,transparent 65%)', filter: 'blur(60px)', pointerEvents: 'none', animation: 'float 12s ease-in-out infinite' }} />
+      <div style={{ position: 'absolute', bottom: '2%', right: '-8%', width: 560, height: 560, borderRadius: '50%', background: 'radial-gradient(circle,rgba(249,115,22,.1) 0%,transparent 65%)', filter: 'blur(60px)', pointerEvents: 'none', animation: 'float 15s 3s ease-in-out infinite' }} />
+
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: mob ? '44px 20px 120px' : '0 32px', width: '100%', position: 'relative' }}>
+        <div style={{ display: 'flex', flexDirection: mob ? 'column' : 'row', alignItems: mob ? 'flex-start' : 'center', gap: mob ? 48 : 80, justifyContent: 'space-between' }}>
+
+          {/* LEFT */}
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ animation: 'fadeUp .5s ease both', marginBottom: 22 }}>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(74,222,128,.1)', border: '1px solid rgba(74,222,128,.22)', color: '#4ADE80', padding: '7px 16px', borderRadius: 100, fontSize: 13, fontWeight: 600 }}>
+                <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#4ADE80', boxShadow: '0 0 10px #4ADE80', flexShrink: 0 }} />
+                Trusted by 100+ businesses worldwide
+              </span>
+            </div>
+
+            <h1 style={{ fontSize: mob ? 38 : 'clamp(46px,5.5vw,72px)', fontWeight: 900, lineHeight: 1.02, letterSpacing: '-.04em', marginBottom: 22, maxWidth: 680, animation: 'fadeUp .6s .06s ease both' }}>
+              <span style={{ color: 'var(--text)' }}>You're losing customers because your business</span>{' '}
+              <span className="grad-text">looks unprofessional.</span>
+            </h1>
+
+            <p style={{ color: 'var(--muted)', fontSize: mob ? 16 : 18, lineHeight: 1.72, maxWidth: 520, marginBottom: 8, animation: 'fadeUp .6s .12s ease both', fontWeight: 400 }}>
+              A Gmail address, no website, or outdated branding costs you deals every day. We fix that in <strong style={{ color: 'var(--navy)', fontWeight: 700 }}>48 hours</strong>. From <strong style={{ color: 'var(--orange)', fontWeight: 700 }}>$29/year.</strong>
+            </p>
+            <p style={{ color: 'var(--faint)', fontSize: 13, fontStyle: 'italic', marginBottom: 32, animation: 'fadeUp .6s .16s ease both' }}>"More than a product — it's your security."</p>
+
+            <div style={{ display: 'flex', flexDirection: mob ? 'column' : 'row', gap: 12, animation: 'fadeUp .6s .22s ease both', marginBottom: 14 }}>
+              <a href={waHref('Hi Oklah Hub! I want to get started for my business.')} target="_blank" rel="noopener" className="btn btn-g"
+                style={{ padding: '16px 28px', fontSize: mob ? 16 : 17, minHeight: 56, borderRadius: 14, justifyContent: 'center' }}>
+                <WaIco s={20} /> Chat on WhatsApp — Free
+              </a>
+              <a href="#services" className="btn btn-o"
+                style={{ padding: '16px 26px', fontSize: 15, minHeight: 56, borderRadius: 14, justifyContent: 'center' }}>
+                Explore Services ↓
+              </a>
+            </div>
+            <p style={{ color: 'var(--faint)', fontSize: 12, animation: 'fadeUp .6s .28s ease both' }}>
+              ✓ No contract &nbsp;·&nbsp; ✓ Setup in 48 hrs &nbsp;·&nbsp; ✓ Real human support
+            </p>
+          </div>
+
+          {!mob && <HeroCards />}
+        </div>
+
+        {/* STATS */}
+        <div className="rv" style={{ marginTop: mob ? 48 : 64, display: 'grid', gridTemplateColumns: mob ? '1fr 1fr' : 'repeat(4,1fr)', gap: '1px', background: 'var(--border)', borderRadius: 16, overflow: 'hidden', border: '1px solid var(--border)', maxWidth: mob ? '100%' : 680, boxShadow: 'var(--sh-sm)' }}>
+          {[
+            { l: 'Businesses Served', to: 100, suf: '+' },
+            { l: 'Setup Time', to: 48, suf: ' hrs' },
+            { l: 'Response Time', to: 1, suf: ' hr' },
+            { l: 'Client Rating', to: 5, suf: '/5 ⭐' }
+          ].map((s, i) => (
+            <div key={i} style={{ padding: '20px 16px', textAlign: 'center', background: 'var(--card)' }}>
+              <div style={{ fontSize: mob ? 22 : 26, fontWeight: 900, color: 'var(--navy)', letterSpacing: '-.03em', lineHeight: 1, marginBottom: 6 }}>
+                <Counter to={s.to} suffix={s.suf} />
+              </div>
+              <div style={{ color: 'var(--muted)', fontSize: 11, fontWeight: 500 }}>{s.l}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {!mob && (
+        <div style={{ position: 'absolute', bottom: 28, left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, animation: 'fadeUp .7s .9s ease both' }}>
+          <span style={{ color: 'var(--faint)', fontSize: 10, letterSpacing: '.12em', textTransform: 'uppercase', fontWeight: 600 }}>Scroll</span>
+          <div style={{ width: 22, height: 36, border: '2px solid var(--border)', borderRadius: 12, display: 'flex', justifyContent: 'center', paddingTop: 6 }}>
+            <div style={{ width: 3, height: 7, borderRadius: 2, background: 'var(--faint)', animation: 'scrollDot 1.8s ease-in-out infinite' }} />
+          </div>
+        </div>
+      )}
+    </section>
+  );
+}
+
+/* ── TRUST MARQUEE ── */
+function TrustBar() {
+  const items = [
+    '📧 Professional Email','💼 Microsoft 365',
+    '🌐 Business Websites','🎨 Logo & Brand Design','⚡ 48-Hour Setup',
+    '🔒 Enterprise Security','🤝 1-on-1 Support','🌍 Worldwide Service',
+    '💳 From $29/year','📱 Mobile-First','✅ No Contract'
+  ];
+  return (
+    <div style={{ background: 'var(--bg-alt)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)', padding: '13px 0' }}>
+      <div className="mq-wrap">
+        <div className="mq-track">
+          {[...items, ...items].map((item, i) => (
+            <span key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '0 28px', color: 'var(--muted)', fontSize: 13, fontWeight: 500, whiteSpace: 'nowrap' }}>
+              {item}
+              <span style={{ width: 4, height: 4, borderRadius: '50%', background: 'var(--border)', flexShrink: 0 }} />
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── WHO FOR ── */
+function WhoFor({ mob }) {
+  const items = [
+    { icon: '🏢', title: 'Small Business Owners', desc: 'Look established from day one.' },
+    { icon: '🚀', title: 'Startups & Founders', desc: 'Tools that scale with you.' },
+    { icon: '👔', title: 'Consultants & Pros', desc: 'Win deals with credibility.' },
+    { icon: '🛍️', title: 'Retailers & Traders', desc: 'A polished presence online.' },
+  ];
+  return (
+    <section style={{ background: 'var(--bg)', padding: mob ? '56px 20px' : '80px 32px', borderBottom: '1px solid var(--border)' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+        <div className="rv" style={{ textAlign: 'center', marginBottom: mob ? 32 : 48 }}>
+          <span style={{ display: 'inline-block', background: 'rgba(249,115,22,.08)', color: '#C2410C', padding: '5px 14px', borderRadius: 100, fontSize: 11, fontWeight: 700, letterSpacing: '.07em', textTransform: 'uppercase', marginBottom: 14, border: '1px solid rgba(249,115,22,.12)' }}>Built for you</span>
+          <h2 style={{ fontSize: mob ? 24 : 32, fontWeight: 800, color: 'var(--text)', letterSpacing: '-.03em', lineHeight: 1.15 }}>If you run a business, this is for you.</h2>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: mob ? '1fr 1fr' : 'repeat(4,1fr)', gap: mob ? 12 : 16 }}>
+          {items.map((it, i) => (
+            <div key={i} className={`rv d${i + 1}`}
+              style={{ background: 'var(--card)', border: '1px solid var(--border)', borderRadius: 18, padding: mob ? '20px 16px' : '28px 22px', textAlign: 'center', boxShadow: 'var(--sh-sm)', cursor: 'default', transition: 'all .3s var(--ease)' }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(249,115,22,.38)'; e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 12px 32px rgba(249,115,22,.1)' }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = 'var(--sh-sm)' }}
+            >
+              <div style={{ fontSize: 32, marginBottom: 12 }}>{it.icon}</div>
+              <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--text)', marginBottom: 6, letterSpacing: '-.01em' }}>{it.title}</div>
+              <div style={{ fontSize: 13, color: 'var(--muted)', lineHeight: 1.55 }}>{it.desc}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── HOW IT WORKS ── */
+function HowItWorks({ mob }) {
+  const steps = [
+    { num: '01', icon: '💬', title: 'Message us on WhatsApp', desc: 'Tell us what your business needs. No forms, no calls — just a quick chat. We respond within the hour.' },
+    { num: '02', icon: '⚙️', title: 'We set everything up', desc: 'Our team handles every technical detail. You get updates every step. Zero effort from you.' },
+    { num: '03', icon: '🚀', title: 'You look professional', desc: 'Within 48 hours, your business has branded email, Microsoft 365, or a live website — fully managed.' },
+  ];
+  return (
+    <section style={{ background: 'var(--bg-alt)', padding: mob ? '64px 20px' : '96px 32px', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+        <div className="rv" style={{ textAlign: 'center', marginBottom: mob ? 44 : 64 }}>
+          <span style={{ display: 'inline-block', background: 'rgba(13,76,143,.07)', color: 'var(--navy)', padding: '5px 14px', borderRadius: 100, fontSize: 11, fontWeight: 700, letterSpacing: '.07em', textTransform: 'uppercase', marginBottom: 14, border: '1px solid rgba(13,76,143,.1)' }}>How It Works</span>
+          <h2 style={{ fontSize: mob ? 26 : 'clamp(28px,3.5vw,42px)', fontWeight: 800, color: 'var(--text)', letterSpacing: '-.03em', lineHeight: 1.1 }}>
+            From WhatsApp to{' '}
+            <span style={{ background: 'linear-gradient(90deg,var(--navy),var(--sky))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>fully set up</span>
+            {' '}in 48 hours.
+          </h2>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: mob ? '1fr' : 'repeat(3,1fr)', position: 'relative', gap: mob ? 0 : 0 }}>
+          {!mob && (
+            <div style={{ position: 'absolute', top: 38, left: '16%', right: '16%', height: 2, background: 'linear-gradient(90deg,transparent,rgba(13,76,143,.2),rgba(14,165,233,.4),rgba(249,115,22,.3),transparent)', borderRadius: 2, zIndex: 0 }} />
+          )}
+          {steps.map((s, i) => (
+            <div key={i} className={`rv d${i + 1}`}
+              style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: mob ? 'row' : 'column', alignItems: mob ? 'flex-start' : 'center', textAlign: mob ? 'left' : 'center', gap: mob ? 20 : 0, padding: mob ? '24px 0' : '0 28px', borderBottom: mob && i < 2 ? '1px solid var(--border)' : 'none' }}>
+              <div style={{ width: 68, height: 68, borderRadius: '50%', background: i === 2 ? 'linear-gradient(135deg,#F97316,#FB923C)' : 'linear-gradient(135deg,var(--navy),var(--sky))', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginBottom: mob ? 0 : 24, boxShadow: i === 2 ? '0 8px 24px rgba(249,115,22,.4)' : '0 8px 24px rgba(13,76,143,.32)', fontSize: 28 }}>{s.icon}</div>
+              <div>
+                <div style={{ fontSize: 11, fontWeight: 800, color: i === 2 ? '#F97316' : 'var(--sky)', letterSpacing: '.07em', textTransform: 'uppercase', marginBottom: 8 }}>Step {s.num}</div>
+                <h3 style={{ fontSize: mob ? 16 : 19, fontWeight: 800, color: 'var(--text)', letterSpacing: '-.01em', marginBottom: 8 }}>{s.title}</h3>
+                <p style={{ fontSize: 14, color: 'var(--muted)', lineHeight: 1.68, maxWidth: mob ? '100%' : 260, margin: mob ? '0' : '0 auto' }}>{s.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="rv" style={{ textAlign: 'center', marginTop: mob ? 40 : 56 }}>
+          <a href={waHref('Hi Oklah Hub! I want to get started.')} target="_blank" rel="noopener" className="btn btn-g" style={{ padding: '14px 32px', fontSize: 15, borderRadius: 12 }}>
+            <WaIco s={17} /> Start on WhatsApp — Free
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── SERVICES ── */
+const SVCS = [
+  { icon: '💼', tag: '$29/user/year', title: 'Microsoft 365', desc: 'The same tools global companies use — now affordable for your business. Word, Excel, PowerPoint, Outlook and Teams all included.', features: ['Word, Excel, PowerPoint & Outlook', 'Microsoft Teams for collaboration', '1 TB secure OneDrive storage', 'Works on phone, tablet & PC'], msg: 'Hi Oklah Hub! I want Microsoft 365 for my business.', emailSubject: 'Microsoft 365 Inquiry', featured: true },
+  { icon: '✉️', tag: 'Custom pricing', title: 'Professional Business Email', desc: "Stop losing deals because you're emailing from Gmail or Yahoo. A branded email like you@yourbusiness.com builds instant trust.", features: ['you@yourbusiness.com address', 'Full setup done for you', 'Spam protection & security', 'Fully managed — worry-free'], msg: 'Hi Oklah Hub! I want a professional business email.', emailSubject: 'Business Email Inquiry' },
+  { icon: '🌐', tag: 'Custom pricing', title: 'Website Design & Management', desc: 'A website that works while you sleep. We design, build and fully manage your business site — you focus on customers, we handle the tech.', features: ['Mobile-first modern design', 'We manage all updates & upkeep', 'Optimised to get you found online', 'Fast, secure & always-on'], msg: 'Hi Oklah Hub! I want a professional website.', emailSubject: 'Website Design Inquiry' },
+  { icon: '🎨', tag: 'Custom pricing', title: 'Graphics & Logo Design', desc: 'A strong brand starts with great visuals. We create custom logos, brand identities and social-media graphics that make your business stand out.', features: ['Custom logo design', 'Full brand identity kit', 'Social media graphics & assets', 'Consistent style across platforms'], msg: 'Hi Oklah Hub! I want graphics and logo design.', emailSubject: 'Graphics & Logo Design Inquiry' },
+];
+
+function Services({ mob }) {
+  return (
+    <section id="services" style={{ background: 'var(--bg)', padding: mob ? '64px 20px' : '112px 32px' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+        <div className="rv" style={{ textAlign: 'center', marginBottom: mob ? 40 : 56 }}>
+          <span style={{ display: 'inline-block', background: 'rgba(13,76,143,.07)', color: 'var(--navy)', padding: '5px 14px', borderRadius: 100, fontSize: 11, fontWeight: 700, letterSpacing: '.07em', textTransform: 'uppercase', marginBottom: 14, border: '1px solid rgba(13,76,143,.1)' }}>Services</span>
+          <h2 style={{ fontSize: mob ? 26 : 'clamp(28px,3.5vw,44px)', fontWeight: 800, color: 'var(--text)', letterSpacing: '-.03em', lineHeight: 1.1, marginBottom: 14, maxWidth: 560, margin: '0 auto 14px' }}>Everything your business needs to look professional.</h2>
+          <p style={{ color: 'var(--muted)', fontSize: mob ? 15 : 17, maxWidth: 500, margin: '0 auto' }}>Four services. One trusted partner. No tech knowledge required.</p>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: mob ? '1fr' : 'repeat(2,1fr)', gap: mob ? 16 : 20 }}>
+          {SVCS.map((s, i) => (
+            <div key={i} className={`rv d${(i % 2) + 1}`}
+              style={{ background: 'var(--card)', borderRadius: 22, padding: mob ? 24 : 32, border: s.featured ? '1px solid rgba(13,76,143,.25)' : '1px solid var(--border)', boxShadow: s.featured ? '0 6px 28px rgba(13,76,143,.1)' : 'var(--sh-sm)', display: 'flex', flexDirection: 'column', transition: 'box-shadow .3s var(--ease),transform .3s var(--ease),border-color .2s', position: 'relative', overflow: 'hidden', cursor: 'default' }}
+              onMouseEnter={e => { e.currentTarget.style.boxShadow = 'var(--sh-hover)'; e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.borderColor = 'rgba(13,76,143,.45)' }}
+              onMouseLeave={e => { e.currentTarget.style.boxShadow = s.featured ? '0 6px 28px rgba(13,76,143,.1)' : 'var(--sh-sm)'; e.currentTarget.style.transform = ''; e.currentTarget.style.borderColor = s.featured ? 'rgba(13,76,143,.25)' : 'var(--border)' }}
+            >
+              {s.featured && <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: 'linear-gradient(90deg,var(--navy),var(--sky),var(--orange))' }} />}
+              {s.featured && <span style={{ position: 'absolute', top: 18, right: 18, background: 'linear-gradient(135deg,#F97316,#FB923C)', color: '#fff', padding: '4px 10px', borderRadius: 100, fontSize: 10, fontWeight: 800, letterSpacing: '.04em', textTransform: 'uppercase', boxShadow: '0 4px 12px rgba(249,115,22,.35)' }}>⭐ Most Popular</span>}
+              <div style={{ fontSize: 38, marginBottom: 14 }}>{s.icon}</div>
+              <span style={{ display: 'inline-block', background: 'rgba(13,76,143,.07)', color: 'var(--navy)', padding: '4px 11px', borderRadius: 100, fontSize: 11, fontWeight: 700, marginBottom: 14, width: 'fit-content', border: '1px solid rgba(13,76,143,.1)' }}>{s.tag}</span>
+              <h3 style={{ fontSize: mob ? 18 : 20, fontWeight: 800, color: 'var(--text)', letterSpacing: '-.02em', marginBottom: 10 }}>{s.title}</h3>
+              <p style={{ color: 'var(--muted)', fontSize: 14, lineHeight: 1.72, marginBottom: 20, flexGrow: 1 }}>{s.desc}</p>
+              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 24 }}>
+                {s.features.map((f, j) => (
+                  <li key={j} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontSize: 14, color: 'var(--text)' }}>
+                    <span style={{ width: 18, height: 18, borderRadius: '50%', background: 'rgba(13,76,143,.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 1 }}><Chk /></span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <WaBtn msg={s.msg} label="Get Started — WhatsApp" full />
+              <a href={`mailto:info@oklahhub.com?subject=${encodeURIComponent(s.emailSubject)}`}
+                className="btn btn-o" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '11px', borderRadius: 12, textDecoration: 'none', marginTop: 8, width: '100%', fontSize: 14, fontWeight: 600 }}>
+                ✉️ Email Us — info@oklahhub.com
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── PRICING ── */
+function Pricing({ mob }) {
+  return (
+    <section id="pricing" style={{ background: 'var(--bg-alt)', padding: mob ? '64px 20px' : '112px 32px', borderTop: '1px solid var(--border)' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+        <div className="rv" style={{ textAlign: 'center', marginBottom: mob ? 40 : 56 }}>
+          <span style={{ display: 'inline-block', background: 'rgba(249,115,22,.08)', color: '#C2410C', padding: '5px 14px', borderRadius: 100, fontSize: 11, fontWeight: 700, letterSpacing: '.07em', textTransform: 'uppercase', marginBottom: 14, border: '1px solid rgba(249,115,22,.12)' }}>Pricing</span>
+          <h2 style={{ fontSize: mob ? 26 : 'clamp(28px,3.5vw,44px)', fontWeight: 800, color: 'var(--text)', letterSpacing: '-.03em', lineHeight: 1.1, marginBottom: 14 }}>Affordable pricing. Real results.</h2>
+          <p style={{ color: 'var(--muted)', fontSize: mob ? 15 : 17, maxWidth: 460, margin: '0 auto' }}>Less than $3/month to look like an established company. No setup fee, no contract.</p>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: mob ? '1fr' : '1fr 1fr', gap: mob ? 16 : 24, maxWidth: 960, margin: '0 auto' }}>
+
+          {/* M365 */}
+          <div className="rv-sc" style={{ background: 'linear-gradient(145deg,#071E3D 0%,#0D4C8F 45%,#1565C0 100%)', borderRadius: 24, padding: mob ? 28 : 44, position: 'relative', overflow: 'hidden', boxShadow: '0 20px 60px rgba(13,76,143,.35)', border: '1px solid rgba(249,115,22,.22)' }}>
+            <div style={{ position: 'absolute', top: -60, right: -60, width: 280, height: 280, borderRadius: '50%', background: 'rgba(14,165,233,.22)', filter: 'blur(50px)', pointerEvents: 'none' }} />
+            <div style={{ position: 'absolute', bottom: -60, left: -60, width: 220, height: 220, borderRadius: '50%', background: 'rgba(249,115,22,.28)', filter: 'blur(50px)', pointerEvents: 'none' }} />
+            <div style={{ position: 'relative' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 22, flexWrap: 'wrap', gap: 8 }}>
+                <span style={{ background: 'linear-gradient(135deg,#F97316,#FB923C)', color: '#fff', padding: '6px 14px', borderRadius: 100, fontSize: 12, fontWeight: 800, boxShadow: '0 4px 14px rgba(249,115,22,.5)' }}>⭐ Most Popular</span>
+                <span style={{ color: 'rgba(255,255,255,.4)', fontSize: 12 }}>Per user / year</span>
+              </div>
+              <h3 style={{ fontSize: 22, fontWeight: 800, color: '#fff', marginBottom: 8, letterSpacing: '-.02em' }}>Microsoft 365</h3>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 4 }}>
+                <span style={{ fontSize: mob ? 52 : 60, fontWeight: 900, color: '#fff', letterSpacing: '-.04em', lineHeight: 1 }}>$29</span>
+                <span style={{ color: 'rgba(255,255,255,.5)', fontSize: 14 }}>/year</span>
+              </div>
+              <p style={{ color: 'rgba(255,255,255,.45)', fontSize: 12, marginBottom: 28 }}>Billed annually · less than $3/month</p>
+              <div style={{ borderTop: '1px solid rgba(255,255,255,.1)', paddingTop: 22, marginBottom: 26 }}>
+                {['Word, Excel, PowerPoint & Outlook','Microsoft Teams for collaboration','1 TB OneDrive cloud storage','Works across all your devices','Full setup & onboarding included'].map(f => (
+                  <div key={f} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
+                    <div style={{ width: 20, height: 20, borderRadius: '50%', background: 'rgba(74,222,128,.18)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <Chk c="#4ADE80" />
+                    </div>
+                    <span style={{ color: 'rgba(255,255,255,.82)', fontSize: 14 }}>{f}</span>
+                  </div>
+                ))}
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                <a href="https://paystack.shop/pay/oklahhubm365" target="_blank" rel="noopener" className="btn"
+                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, background: 'linear-gradient(135deg,#F97316,#FB923C)', color: '#fff', padding: '15px', borderRadius: 12, fontWeight: 800, textDecoration: 'none', fontSize: 15, minHeight: 52, boxShadow: '0 6px 20px rgba(249,115,22,.4)' }}>
+                  💳 Pay Now — $29/user/year
+                </a>
+                <a href={waHref('Hi Oklah Hub! I want Microsoft 365.')} target="_blank" rel="noopener" className="btn"
+                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, background: 'rgba(255,255,255,.08)', border: '1px solid rgba(255,255,255,.18)', color: '#fff', padding: '12px', borderRadius: 12, fontWeight: 700, textDecoration: 'none', fontSize: 14, minHeight: 46 }}>
+                  <WaIco s={15} /> Chat on WhatsApp first
+                </a>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'center', gap: 16, marginTop: 14, flexWrap: 'wrap' }}>
+                {['No setup fee','Setup in 48 hrs','Cancel anytime'].map(b => (
+                  <span key={b} style={{ color: 'rgba(255,255,255,.32)', fontSize: 11 }}>✓ {b}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Custom */}
+          <div className="rv d1" style={{ background: 'var(--card)', borderRadius: 24, padding: mob ? 28 : 44, border: '1px solid var(--border)', boxShadow: 'var(--sh-sm)', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden', transition: 'box-shadow .3s,transform .3s,border-color .2s', cursor: 'default' }}
+            onMouseEnter={e => { e.currentTarget.style.boxShadow = 'var(--sh-hover)'; e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.borderColor = 'rgba(249,115,22,.3)' }}
+            onMouseLeave={e => { e.currentTarget.style.boxShadow = 'var(--sh-sm)'; e.currentTarget.style.transform = ''; e.currentTarget.style.borderColor = 'var(--border)' }}
+          >
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 7, background: 'rgba(249,115,22,.08)', color: '#C2410C', padding: '5px 12px', borderRadius: 100, fontSize: 11, fontWeight: 700, letterSpacing: '.06em', textTransform: 'uppercase', marginBottom: 16, width: 'fit-content', border: '1px solid rgba(249,115,22,.12)' }}>Custom Services</span>
+            <h3 style={{ fontSize: 22, fontWeight: 800, color: 'var(--text)', marginBottom: 8, letterSpacing: '-.02em' }}>Business Services</h3>
+            <div style={{ fontSize: 28, fontWeight: 800, color: 'var(--navy)', marginBottom: 4 }}>Custom Pricing</div>
+            <p style={{ color: 'var(--muted)', fontSize: 13, marginBottom: 26 }}>Tailored to your business size & needs</p>
+            <div style={{ borderTop: '1px solid var(--border)', paddingTop: 22, marginBottom: 26, flexGrow: 1 }}>
+              {['Professional branded email setup','Domain registration & management','Website design & development','Graphics & logo design','Ongoing technical management','Priority WhatsApp support'].map(f => (
+                <div key={f} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
+                  <div style={{ width: 20, height: 20, borderRadius: '50%', background: 'rgba(13,76,143,.07)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <Chk />
+                  </div>
+                  <span style={{ color: 'var(--text)', fontSize: 14 }}>{f}</span>
+                </div>
+              ))}
+            </div>
+            <WaBtn msg="Hi Oklah Hub! I'd like a custom quote for your services." label="💬 Get a Custom Quote" full />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── WHY US ── */
+function WhyUs({ mob }) {
+  const pts = [
+    { icon: '⚡', title: 'Setup in 48 hours', desc: 'From sign-up to fully operational in under 2 business days.', c: '#F97316' },
+    { icon: '🔒', title: 'Enterprise security', desc: 'Industry-grade protection for your data and communications.', c: 'var(--navy)' },
+    { icon: '🤝', title: 'Human support', desc: 'Real people, fast responses — every time you reach out.', c: '#25D366' },
+    { icon: '🧘', title: 'Zero tech stress', desc: 'We handle every technical detail so you never have to.', c: 'var(--sky)' },
+    { icon: '🌍', title: 'Built for entrepreneurs', desc: 'Enterprise-grade tools at prices made for growing businesses.', c: '#F97316' },
+    { icon: '📱', title: 'Mobile-first always', desc: 'Everything we build works beautifully on any device.', c: 'var(--sky)' },
+  ];
+  return (
+    <section style={{ background: 'var(--bg)', padding: mob ? '64px 20px' : '112px 32px', borderTop: '1px solid var(--border)' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: mob ? '1fr' : '1fr 1fr', gap: mob ? 40 : 80, alignItems: 'start' }}>
+        <div className="rv-l">
+          <span style={{ display: 'inline-block', background: 'rgba(13,76,143,.07)', color: 'var(--navy)', padding: '5px 14px', borderRadius: 100, fontSize: 11, fontWeight: 700, letterSpacing: '.07em', textTransform: 'uppercase', marginBottom: 16, border: '1px solid rgba(13,76,143,.1)' }}>Why Oklah Hub</span>
+          <h2 style={{ fontSize: mob ? 26 : 'clamp(26px,3vw,42px)', fontWeight: 800, color: 'var(--text)', letterSpacing: '-.03em', lineHeight: 1.1, marginBottom: 18, maxWidth: 380 }}>Why businesses choose us.</h2>
+          <p style={{ color: 'var(--muted)', fontSize: mob ? 15 : 16, lineHeight: 1.78, maxWidth: 380, marginBottom: 28 }}>We're not just a vendor — we're your dedicated tech team. Every service saves you time, makes you look better and grows your business.</p>
+          <WaBtn msg="Hi Oklah Hub! I want to learn more." label="💬 Ask Us Anything" />
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+          {pts.map((p, i) => (
+            <div key={i} className={`rv d${Math.min(i + 1, 4)}`}
+              style={{ background: 'var(--card)', borderRadius: 16, padding: 20, border: '1px solid var(--border)', boxShadow: 'var(--sh-sm)', transition: 'border-color .2s,box-shadow .2s,transform .2s', cursor: 'default' }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = p.c.includes('var') ? 'rgba(13,76,143,.4)' : p.c + '55'; e.currentTarget.style.boxShadow = 'var(--sh-md)'; e.currentTarget.style.transform = 'translateY(-3px)' }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.boxShadow = 'var(--sh-sm)'; e.currentTarget.style.transform = '' }}
+            >
+              <div style={{ fontSize: 26, marginBottom: 10 }}>{p.icon}</div>
+              <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--text)', marginBottom: 6, letterSpacing: '-.01em' }}>{p.title}</div>
+              <div style={{ fontSize: 13, color: 'var(--muted)', lineHeight: 1.6 }}>{p.desc}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── STATS BAND ── */
+function StatsBand({ mob }) {
+  const stats = [
+    { to: 100, suf: '+', label: 'Businesses Served' },
+    { to: 48, suf: ' hrs', label: 'Average Setup Time' },
+    { to: 1, suf: ' hr', label: 'Support Response' },
+    { to: 4, suf: '', label: 'Core Services' },
+  ];
+  return (
+    <section style={{ background: 'linear-gradient(135deg,var(--navy-d),var(--navy) 50%,#1565C0)', padding: mob ? '48px 20px' : '64px 32px', borderTop: '1px solid rgba(255,255,255,.04)' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: mob ? '1fr 1fr' : 'repeat(4,1fr)', gap: mob ? '24px 16px' : 0 }}>
+        {stats.map((s, i) => (
+          <div key={i} className={`rv d${i + 1}`} style={{ textAlign: 'center', padding: mob ? '0' : '0 24px', borderRight: !mob && i < 3 ? '1px solid rgba(255,255,255,.08)' : 'none' }}>
+            <div style={{ fontSize: mob ? 36 : 44, fontWeight: 900, color: '#fff', letterSpacing: '-.04em', lineHeight: 1, marginBottom: 8 }}>
+              <Counter to={s.to} suffix={s.suf} />
+            </div>
+            <div style={{ color: 'rgba(255,255,255,.45)', fontSize: 13, fontWeight: 500 }}>{s.label}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ── TESTIMONIALS ── */
+const REVIEWS = [
+  { name: 'Sarah Martinez', role: 'CEO, Martinez & Co.', body: 'I was embarrassed to share my Gmail with big clients. Within 48 hours, Oklah Hub gave me a proper branded email. The difference was immediate.', stars: 5 },
+  { name: 'James Chen', role: 'Founder, ChenTech Solutions', body: '$29 a year for Microsoft 365 with Copilot AI? One of the best business decisions I\'ve made. The AI alone saves me hours every week.', stars: 5 },
+  { name: 'Amara Williams', role: 'Director, Bright Futures Academy', body: 'Our old website was embarrassing us. Oklah Hub redesigned it and now handles everything. We\'ve enrolled more students since the relaunch.', stars: 5 },
+];
+
+function Testimonials({ mob }) {
+  return (
+    <section style={{ background: 'var(--bg-alt)', padding: mob ? '64px 20px' : '112px 32px', borderTop: '1px solid var(--border)' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+        <div className="rv" style={{ textAlign: 'center', marginBottom: mob ? 40 : 56 }}>
+          <span style={{ display: 'inline-block', background: 'rgba(13,76,143,.07)', color: 'var(--navy)', padding: '5px 14px', borderRadius: 100, fontSize: 11, fontWeight: 700, letterSpacing: '.07em', textTransform: 'uppercase', marginBottom: 14, border: '1px solid rgba(13,76,143,.1)' }}>Testimonials</span>
+          <h2 style={{ fontSize: mob ? 26 : 'clamp(28px,3.5vw,42px)', fontWeight: 800, color: 'var(--text)', letterSpacing: '-.03em', lineHeight: 1.1, marginBottom: 8 }}>Real businesses. Real results.</h2>
+          <p style={{ color: 'var(--muted)', fontSize: mob ? 15 : 17 }}>Don't take our word for it — hear from our clients.</p>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: mob ? '1fr' : 'repeat(3,1fr)', gap: mob ? 14 : 20 }}>
+          {REVIEWS.map((r, i) => (
+            <div key={i} className={`rv d${i + 1}`}
+              style={{ background: 'var(--card)', borderRadius: 20, padding: mob ? 24 : 32, border: '1px solid var(--border)', boxShadow: 'var(--sh-sm)', display: 'flex', flexDirection: 'column', position: 'relative', transition: 'box-shadow .3s,transform .3s,border-color .2s', cursor: 'default' }}
+              onMouseEnter={e => { e.currentTarget.style.boxShadow = 'var(--sh-hover)'; e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.borderColor = 'rgba(249,115,22,.3)' }}
+              onMouseLeave={e => { e.currentTarget.style.boxShadow = 'var(--sh-sm)'; e.currentTarget.style.transform = ''; e.currentTarget.style.borderColor = 'var(--border)' }}
+            >
+              <div style={{ position: 'absolute', top: 16, right: 20, fontSize: 52, color: 'rgba(13,76,143,.06)', fontFamily: 'Georgia,serif', lineHeight: 1, fontWeight: 700, userSelect: 'none' }}>"</div>
+              <div style={{ display: 'flex', gap: 2, marginBottom: 16 }}>
+                {Array(r.stars).fill(0).map((_, j) => <StarIco key={j} />)}
+              </div>
+              <p style={{ color: 'var(--text)', fontSize: mob ? 14 : 15, lineHeight: 1.76, marginBottom: 24, flexGrow: 1, position: 'relative' }}>"{r.body}"</p>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12, borderTop: '1px solid var(--border)', paddingTop: 16 }}>
+                <div style={{ width: 40, height: 40, borderRadius: '50%', background: 'linear-gradient(135deg,var(--navy),var(--sky))', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 800, fontSize: 15, flexShrink: 0 }}>{r.name[0]}</div>
+                <div>
+                  <div style={{ fontWeight: 700, color: 'var(--text)', fontSize: 13 }}>{r.name}</div>
+                  <div style={{ color: 'var(--muted)', fontSize: 11, marginTop: 2 }}>{r.role}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── ABOUT ── */
+function About({ mob }) {
+  return (
+    <section id="about" style={{ background: 'var(--bg)', padding: mob ? '64px 20px' : '112px 32px', borderTop: '1px solid var(--border)' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: mob ? '1fr' : '1fr 1fr', gap: mob ? 40 : 80, alignItems: 'center' }}>
+        <div className="rv-sc" style={{ background: 'linear-gradient(145deg,#071E3D,#0D4C8F 60%,#1565C0)', borderRadius: 24, padding: mob ? 32 : 52, position: 'relative', overflow: 'hidden', boxShadow: '0 24px 80px rgba(13,76,143,.3)', order: mob ? 2 : 1, border: '1px solid rgba(249,115,22,.2)' }}>
+          <div style={{ position: 'absolute', top: -80, right: -80, width: 280, height: 280, borderRadius: '50%', background: 'rgba(14,165,233,.2)', filter: 'blur(50px)', pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', bottom: -80, left: -80, width: 240, height: 240, borderRadius: '50%', background: 'rgba(249,115,22,.22)', filter: 'blur(50px)', pointerEvents: 'none' }} />
+          <div style={{ position: 'relative', textAlign: 'center' }}>
+            <Logo h={mob ? 90 : 110} inv />
+            <p style={{ fontSize: mob ? 17 : 19, fontStyle: 'italic', color: 'rgba(255,255,255,.82)', lineHeight: 1.65, margin: '28px 0 32px', fontWeight: 500 }}>"More than a product,<br />it's your security."</p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'center' }}>
+              {[
+                { icon: '✉️', v: 'info@oklahhub.com', href: 'mailto:info@oklahhub.com' },
+                { icon: '💬', v: '+234 911 558 1148', href: `https://wa.me/${WA}` },
+                { icon: '📸', v: '@oklahhub_ng', href: 'https://www.instagram.com/oklahhub_ng' }
+              ].map(c => (
+                <a key={c.v} href={c.href} target="_blank" rel="noopener"
+                  style={{ color: 'rgba(255,255,255,.55)', fontSize: 14, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 8, transition: 'color .2s' }}
+                  onMouseEnter={e => e.currentTarget.style.color = '#fff'}
+                  onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,.55)'}
+                >{c.icon} {c.v}</a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="rv-r" style={{ order: mob ? 1 : 2 }}>
+          <span style={{ display: 'inline-block', background: 'rgba(13,76,143,.07)', color: 'var(--navy)', padding: '5px 14px', borderRadius: 100, fontSize: 11, fontWeight: 700, letterSpacing: '.07em', textTransform: 'uppercase', marginBottom: 16, border: '1px solid rgba(13,76,143,.1)' }}>About Us</span>
+          <h2 style={{ fontSize: mob ? 26 : 'clamp(26px,3vw,40px)', fontWeight: 800, color: 'var(--text)', letterSpacing: '-.03em', lineHeight: 1.1, marginBottom: 20 }}>
+            Business-in-a-box for{' '}
+            <span className="shimmer">growing entrepreneurs.</span>
+          </h2>
+          <p style={{ color: 'var(--muted)', fontSize: mob ? 15 : 16, lineHeight: 1.8, marginBottom: 16 }}>Oklah Hub is a technical service provider helping businesses and startups look professional, stay secure and maintain a modern online presence — without the complexity or cost.</p>
+          <p style={{ color: 'var(--muted)', fontSize: mob ? 15 : 16, lineHeight: 1.8, marginBottom: 36 }}>Every business deserves enterprise-grade infrastructure. We make that possible — affordably.</p>
+          <div style={{ display: 'flex', gap: mob ? 28 : 44 }}>
+            {[{ v: '100+', l: 'Businesses served', c: 'var(--navy)' }, { v: '4', l: 'Core services', c: 'var(--sky)' }, { v: '48h', l: 'Average setup', c: 'var(--orange)' }].map(s => (
+              <div key={s.l}>
+                <div style={{ fontSize: mob ? 30 : 36, fontWeight: 900, color: s.c, letterSpacing: '-.03em', lineHeight: 1 }}>{s.v}</div>
+                <div style={{ fontSize: 12, color: 'var(--muted)', marginTop: 5 }}>{s.l}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── FAQ ── */
+const FAQS = [
+  { q: 'How quickly can I get started?', a: 'Very fast. Send us a WhatsApp message, tell us what you need, and we can have most services set up within 24–48 hours. No long forms, no waiting weeks.' },
+  { q: "I'm not tech-savvy. Will this be complicated?", a: "Not at all — that's exactly why we exist. You don't touch any technical settings. We handle everything from A to Z. You just use the finished product." },
+  { q: "Why can't I just keep using Gmail for business?", a: "You can, but it costs you clients. Customers trust businesses far less when they see a Gmail address. A branded email signals that you're serious and established." },
+  { q: 'Is the Microsoft 365 $29 price per person?', a: "Yes, it's per user per year — less than $3/month. For team pricing, message us on WhatsApp and we'll work out the best deal for you." },
+  { q: 'Do I need to sign a long-term contract?', a: 'No contracts, no lock-ins. We earn your business every month. You can cancel anytime — no questions asked.' },
+  { q: 'How do I pay?', a: 'Pay directly online via our secure payment link for Microsoft 365, or via bank transfer. Message us on WhatsApp to get started with any service.' },
+];
+
+function FAQ({ mob }) {
+  const [open, setOpen] = useState(0);
+  return (
+    <section style={{ background: 'var(--bg-alt)', padding: mob ? '64px 20px' : '112px 32px', borderTop: '1px solid var(--border)' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+        <div className="rv" style={{ textAlign: 'center', marginBottom: mob ? 40 : 56 }}>
+          <span style={{ display: 'inline-block', background: 'rgba(13,76,143,.07)', color: 'var(--navy)', padding: '5px 14px', borderRadius: 100, fontSize: 11, fontWeight: 700, letterSpacing: '.07em', textTransform: 'uppercase', marginBottom: 14, border: '1px solid rgba(13,76,143,.1)' }}>FAQ</span>
+          <h2 style={{ fontSize: mob ? 26 : 'clamp(28px,3.5vw,42px)', fontWeight: 800, color: 'var(--text)', letterSpacing: '-.03em', lineHeight: 1.1 }}>Common questions, honest answers.</h2>
+        </div>
+        <div className="rv" style={{ display: 'flex', flexDirection: 'column', gap: 8, maxWidth: 740, margin: '0 auto' }}>
+          {FAQS.map((f, i) => (
+            <div key={i} style={{ background: 'var(--card)', borderRadius: 14, overflow: 'hidden', border: open === i ? '1px solid rgba(13,76,143,.4)' : '1px solid var(--border)', transition: 'border-color .25s,box-shadow .25s', boxShadow: open === i ? '0 6px 24px rgba(13,76,143,.08)' : 'none' }}>
+              <button onClick={() => setOpen(open === i ? null : i)} aria-expanded={open === i}
+                style={{ width: '100%', padding: mob ? '17px 20px' : '19px 26px', background: 'none', border: 'none', display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer', textAlign: 'left', gap: 16 }}>
+                <span style={{ fontWeight: 700, color: 'var(--text)', fontSize: mob ? 14 : 15, letterSpacing: '-.01em', lineHeight: 1.4 }}>{f.q}</span>
+                <span style={{ width: 30, height: 30, borderRadius: '50%', background: open === i ? 'linear-gradient(135deg,var(--navy),var(--sky))' : 'var(--bg-subtle)', color: open === i ? '#fff' : 'var(--muted)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, flexShrink: 0, transition: 'all .25s', transform: open === i ? 'rotate(45deg)' : 'none', fontWeight: 300 }}>+</span>
+              </button>
+              <div style={{ maxHeight: open === i ? 300 : 0, overflow: 'hidden', transition: 'max-height .35s var(--ease)' }}>
+                <div style={{ padding: mob ? '0 20px 20px' : '0 26px 22px', color: 'var(--muted)', fontSize: mob ? 14 : 15, lineHeight: 1.75 }}>{f.a}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── CONTACT ── */
+function Contact({ mob }) {
+  const [form, setForm] = useState({ name: '', email: '', business: '', service: 'Microsoft 365', message: '' });
+  const [sent, setSent] = useState(false);
+  const up = (k, v) => setForm(f => ({ ...f, [k]: v }));
+  const submit = e => {
+    e.preventDefault();
+    const text = `Hi Oklah Hub!%0A%0AName: ${form.name}%0ABusiness: ${form.business}%0AEmail: ${form.email}%0AService: ${form.service}%0A%0A${form.message}`;
+    window.open(`https://wa.me/${WA}?text=${text}`, '_blank');
+    setSent(true);
+    setTimeout(() => setSent(false), 5000);
+  };
+  return (
+    <section id="contact" style={{ background: 'var(--bg)', padding: mob ? '64px 20px' : '96px 32px', borderTop: '1px solid var(--border)' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: mob ? '1fr' : '1.05fr .95fr', gap: mob ? 20 : 28, alignItems: 'stretch' }}>
+
+        {/* Left */}
+        <div className="rv-l" style={{ background: 'linear-gradient(145deg,#071E3D 0%,#0D4C8F 55%,#1565C0 100%)', borderRadius: mob ? 20 : 28, padding: mob ? '40px 24px' : '52px 48px', position: 'relative', overflow: 'hidden', boxShadow: '0 24px 80px rgba(13,76,143,.28)', border: '1px solid rgba(249,115,22,.2)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <div style={{ position: 'absolute', top: -100, right: -100, width: 360, height: 360, borderRadius: '50%', background: 'rgba(14,165,233,.16)', filter: 'blur(60px)', pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', bottom: -80, left: -80, width: 280, height: 280, borderRadius: '50%', background: 'rgba(249,115,22,.2)', filter: 'blur(60px)', pointerEvents: 'none' }} />
+          <div style={{ position: 'relative' }}>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 7, background: 'rgba(255,255,255,.1)', color: 'rgba(255,255,255,.85)', padding: '5px 14px', borderRadius: 100, fontSize: 11, fontWeight: 700, letterSpacing: '.07em', textTransform: 'uppercase', marginBottom: 20 }}>Ready to get started?</span>
+            <h2 style={{ fontSize: mob ? 26 : 'clamp(28px,3.4vw,42px)', fontWeight: 800, color: '#fff', letterSpacing: '-.03em', marginBottom: 16, lineHeight: 1.06 }}>
+              Your competitors already<br />look more professional.<br />
+              <span className="shimmer">Fix that today.</span>
+            </h2>
+            <p style={{ color: 'rgba(255,255,255,.6)', fontSize: mob ? 15 : 16, marginBottom: 28, maxWidth: 420, lineHeight: 1.7 }}>WhatsApp is fastest — we reply within the hour. Prefer the form? It also sends straight to WhatsApp.</p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 24 }}>
+              <a href={waHref('Hi Oklah Hub! I want to get started.')} target="_blank" rel="noopener" className="btn btn-g" style={{ justifyContent: 'center', padding: '15px 28px', fontSize: mob ? 15 : 16, minHeight: 52, borderRadius: 12 }}>
+                <WaIco s={18} /> Chat on WhatsApp Now
+              </a>
+              <a href="mailto:info@oklahhub.com" className="btn btn-o" style={{ justifyContent: 'center', padding: '12px 24px', fontSize: 14, color: 'rgba(255,255,255,.75)', borderColor: 'rgba(255,255,255,.18)', background: 'rgba(255,255,255,.07)' }}>
+                ✉️ info@oklahhub.com
+              </a>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8, borderTop: '1px solid rgba(255,255,255,.1)', paddingTop: 20 }}>
+              {['✉️ info@oklahhub.com', '📸 @oklahhub_ng', '🌍 Remote — serving businesses worldwide'].map(c => (
+                <span key={c} style={{ color: 'rgba(255,255,255,.4)', fontSize: 13 }}>{c}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Right: form */}
+        <div className="rv-r" style={{ background: 'var(--card)', borderRadius: mob ? 20 : 28, padding: mob ? 24 : 36, border: '1px solid var(--border)', boxShadow: 'var(--sh-sm)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <div style={{ marginBottom: 22 }}>
+            <h3 style={{ fontSize: mob ? 20 : 22, fontWeight: 800, color: 'var(--text)', letterSpacing: '-.02em', marginBottom: 6 }}>Tell us about your business.</h3>
+            <p style={{ color: 'var(--muted)', fontSize: 14, lineHeight: 1.6 }}>Fill in a few details — we'll reply on WhatsApp within the hour.</p>
+          </div>
+          {sent ? (
+            <div style={{ textAlign: 'center', padding: '32px 16px', background: 'rgba(37,211,102,.06)', borderRadius: 16, border: '1px solid rgba(37,211,102,.25)' }}>
+              <div style={{ fontSize: 44, marginBottom: 8 }}>✅</div>
+              <div style={{ fontSize: 16, fontWeight: 800, color: 'var(--text)', marginBottom: 6 }}>Message ready on WhatsApp</div>
+              <div style={{ fontSize: 13, color: 'var(--muted)', lineHeight: 1.6 }}>We opened WhatsApp with your details — just hit send.</div>
+            </div>
+          ) : (
+            <form onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              <div style={{ display: 'grid', gridTemplateColumns: mob ? '1fr' : '1fr 1fr', gap: 12 }}>
+                <input className="oh-input" required placeholder="Your name" value={form.name} onChange={e => up('name', e.target.value)} />
+                <input className="oh-input" required type="email" placeholder="Email address" value={form.email} onChange={e => up('email', e.target.value)} />
+              </div>
+              <input className="oh-input" placeholder="Business name" value={form.business} onChange={e => up('business', e.target.value)} />
+              <select className="oh-input" value={form.service} onChange={e => up('service', e.target.value)}
+                style={{ appearance: 'none', WebkitAppearance: 'none', backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%2364748B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\")", backgroundRepeat: 'no-repeat', backgroundPosition: 'right 16px center', paddingRight: 40 }}>
+                <option>Microsoft 365 + Copilot</option>
+                <option>Professional Business Email</option>
+                <option>Website Design & Management</option>
+                <option>Graphics & Logo Design</option>
+                <option>I'm not sure — help me choose</option>
+              </select>
+              <textarea className="oh-input" rows="4" placeholder="What do you need? (optional)" value={form.message} onChange={e => up('message', e.target.value)} />
+              <button type="submit" className="btn btn-g" style={{ padding: '15px', fontSize: 15, minHeight: 52, borderRadius: 12, width: '100%' }}>
+                <WaIco s={16} /> Send via WhatsApp
+              </button>
+              <p style={{ color: 'var(--faint)', fontSize: 11, textAlign: 'center', marginTop: 2 }}>We'll never spam you. Your details stay private.</p>
+            </form>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── FOOTER ── */
+function Footer({ mob }) {
+  return (
+    <footer style={{ background: '#071E3D', padding: mob ? '40px 20px 96px' : '60px 32px', position: 'relative', overflow: 'hidden' }}>
+      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 2, background: 'linear-gradient(90deg,var(--navy),var(--sky),var(--orange))' }} />
+      <div style={{ position: 'absolute', top: -120, right: -80, width: 360, height: 360, borderRadius: '50%', background: 'rgba(14,165,233,.06)', filter: 'blur(60px)', pointerEvents: 'none' }} />
+      <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+        <div style={{ display: 'flex', flexDirection: mob ? 'column' : 'row', justifyContent: 'space-between', alignItems: mob ? 'flex-start' : 'center', gap: 24, marginBottom: 32, paddingBottom: 32, borderBottom: '1px solid rgba(255,255,255,.07)' }}>
+          <div>
+            <Logo h={26} inv />
+            <p style={{ color: 'rgba(255,255,255,.3)', fontSize: 13, marginTop: 10, maxWidth: 300 }}>Professional tools & presence for growing businesses worldwide.</p>
+          </div>
+          <div style={{ display: 'flex', gap: mob ? 20 : 32, flexWrap: 'wrap' }}>
+            {[
+              { l: 'Services', h: '#services' },
+              { l: 'Pricing', h: '#pricing' },
+              { l: 'About', h: '#about' },
+              { l: 'Contact', h: '#contact' },
+            ].map(x => (
+              <a key={x.l} href={x.h} style={{ color: 'rgba(255,255,255,.38)', textDecoration: 'none', fontSize: 14, fontWeight: 500, transition: 'color .2s' }}
+                onMouseEnter={e => e.currentTarget.style.color = '#fff'}
+                onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,.38)'}
+              >{x.l}</a>
+            ))}
+          </div>
+        </div>
+        <div style={{ display: 'flex', flexDirection: mob ? 'column' : 'row', justifyContent: 'space-between', alignItems: mob ? 'flex-start' : 'center', gap: 14 }}>
+          <span style={{ color: 'rgba(255,255,255,.22)', fontSize: 12 }}>© 2026 Oklah Hub · All rights reserved</span>
+          <div style={{ display: 'flex', gap: 24 }}>
+            {[
+              { l: 'Instagram', h: 'https://www.instagram.com/oklahhub_ng' },
+              { l: 'Email', h: 'mailto:info@oklahhub.com' },
+              { l: 'WhatsApp', h: `https://wa.me/${WA}` },
+            ].map(x => (
+              <a key={x.l} href={x.h} target="_blank" rel="noopener"
+                style={{ color: 'rgba(255,255,255,.35)', textDecoration: 'none', fontSize: 13, fontWeight: 600, transition: 'color .2s' }}
+                onMouseEnter={e => e.currentTarget.style.color = '#fff'}
+                onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,.35)'}
+              >{x.l}</a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+/* ── APP ── */
+function App() {
+  const mob = useMobile();
+  const [dark, setDark] = useDark();
+  useReveal();
+  useScroll();
+
+  // Hide loader
+  useEffect(() => {
+    const l = document.getElementById('loader');
+    if (l) setTimeout(() => l.classList.add('out'), 600);
+  }, []);
+
+  return (
+    <div>
+      <Nav mob={mob} dark={dark} setDark={setDark} />
+      <Hero mob={mob} />
+      <TrustBar />
+      <Services mob={mob} />
+      <WhoFor mob={mob} />
+      <HowItWorks mob={mob} />
+      <Pricing mob={mob} />
+      <StatsBand mob={mob} />
+      <WhyUs mob={mob} />
+      <Testimonials mob={mob} />
+      <About mob={mob} />
+      <FAQ mob={mob} />
+      <Contact mob={mob} />
+      <Footer mob={mob} />
+
+      {/* WA FAB */}
+      <a href={waHref('Hi Oklah Hub! I want to get started.')} target="_blank" rel="noopener" className="wa-fab" aria-label="Chat on WhatsApp">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <span className="wa-tip">Chat on WhatsApp — replies in 1 hr</span>
+      </a>
+
+      {/* WA sticky (mobile) */}
+      <a href={waHref('Hi Oklah Hub! I want to get started.')} target="_blank" rel="noopener" className="wa-sticky">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Chat on WhatsApp — Get Started Free
+      </a>
+
+      
+      <button id="bt" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} aria-label="Back to top">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+      </button>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
