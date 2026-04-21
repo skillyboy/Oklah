@@ -16,24 +16,27 @@
 /* ── TOKENS ── */
 :root{
   --bg:#ffffff;--bg-alt:#F8FAFC;--bg-subtle:#F1F5F9;
-  --text:#0F172A;--muted:#64748B;--faint:#94A3B8;
+  /* WCAG AA: --muted 4.66:1, --faint 4.5:1 on white (bumped from #94A3B8) */
+  --text:#0F172A;--muted:#475569;--faint:#64748B;
   --border:#E2E8F0;--card:#ffffff;
   --navy:#0D4C8F;--navy-d:#071E3D;--navy-m:#1565C0;
   --sky:#0EA5E9;--orange:#F97316;--orange-s:#FB923C;
-  --green:#25D366;--green-d:#128C7E;
+  --green:#25D366;--green-d:#128C7E;--danger:#DC2626;
   --sh-sm:0 1px 3px rgba(0,0,0,.04),0 6px 16px rgba(15,23,42,.07);
   --sh-md:0 4px 8px rgba(0,0,0,.04),0 16px 40px rgba(15,23,42,.10);
   --sh-lg:0 8px 16px rgba(0,0,0,.06),0 32px 64px rgba(15,23,42,.13);
   --sh-hover:0 8px 20px rgba(0,0,0,.06),0 28px 56px rgba(15,23,42,.15);
+  --ring:0 0 0 3px rgba(13,76,143,.35);
   --ease:cubic-bezier(.22,1,.36,1);--spring:cubic-bezier(.34,1.56,.64,1);
 }
 [data-theme="dark"]{
   --bg:#060C1A;--bg-alt:#0A1120;--bg-subtle:#0F1B30;
-  --text:#F1F5F9;--muted:#94A3B8;--faint:#64748B;
-  --border:rgba(255,255,255,.08);--card:rgba(255,255,255,.04);
+  --text:#F1F5F9;--muted:#CBD5E1;--faint:#94A3B8;
+  --border:rgba(255,255,255,.10);--card:rgba(255,255,255,.04);
   --sh-sm:0 1px 3px rgba(0,0,0,.4),0 6px 16px rgba(0,0,0,.25);
   --sh-md:0 4px 8px rgba(0,0,0,.4),0 16px 40px rgba(0,0,0,.3);
   --sh-hover:0 8px 20px rgba(0,0,0,.45),0 28px 56px rgba(0,0,0,.35);
+  --ring:0 0 0 3px rgba(14,165,233,.45);
 }
 
 /* ── RESET ── */
@@ -41,6 +44,14 @@
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden;transition:background .3s,color .3s}
 input,textarea,button,select{font-family:inherit}
+
+/* ── A11Y ── */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip{position:fixed;top:8px;left:8px;z-index:10000;background:var(--navy);color:#fff;padding:10px 16px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none;transform:translateY(-200%);transition:transform .2s var(--ease);box-shadow:var(--sh-md)}
+.skip:focus{transform:none;outline:2px solid #fff;outline-offset:2px}
+:focus{outline:none}
+a:focus-visible,button:focus-visible,[role="button"]:focus-visible,summary:focus-visible{outline:none;box-shadow:var(--ring);border-radius:10px}
+.oh-input:focus-visible{box-shadow:0 0 0 4px rgba(13,76,143,.18);border-color:var(--navy)}
 
 /* ── LOADER ── */
 #loader{position:fixed;inset:0;z-index:9999;background:#071E3D;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;transition:opacity .5s ease,visibility .5s ease}
@@ -79,7 +90,8 @@ input,textarea,button,select{font-family:inherit}
 /* ── BUTTONS ── */
 .btn{transition:transform .15s var(--spring),box-shadow .2s!important}
 .btn:active{transform:scale(.96)!important}
-.btn-g{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 26px;border-radius:12px;font-weight:800;font-size:15px;text-decoration:none;border:none;cursor:pointer;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;box-shadow:0 4px 20px rgba(37,211,102,.32);animation:glow-g 3s ease-in-out infinite}
+.btn-g{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 26px;border-radius:12px;font-weight:800;font-size:15px;text-decoration:none;border:none;cursor:pointer;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;box-shadow:0 4px 20px rgba(37,211,102,.32)}
+.btn-g.glow{animation:glow-g 3s ease-in-out infinite}
 .btn-g:hover{transform:translateY(-2px)!important;box-shadow:0 8px 32px rgba(37,211,102,.48)!important}
 .btn-p{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 24px;border-radius:12px;font-weight:700;font-size:14px;text-decoration:none;border:none;cursor:pointer;background:linear-gradient(135deg,var(--navy),var(--sky));color:#fff;box-shadow:0 4px 16px rgba(13,76,143,.28)}
 .btn-p:hover{transform:translateY(-1px)!important;box-shadow:0 8px 28px rgba(13,76,143,.38)!important}
@@ -89,9 +101,15 @@ input,textarea,button,select{font-family:inherit}
 /* ── CARDS ── */
 .card{background:var(--card);border:1px solid var(--border);border-radius:20px;box-shadow:var(--sh-sm);transition:box-shadow .3s var(--ease),transform .3s var(--ease),border-color .25s}
 .card:hover{box-shadow:var(--sh-hover);transform:translateY(-4px)}
+/* reusable hoverable surface — replaces inline onMouseEnter/Leave handlers */
+.hov{transition:box-shadow .3s var(--ease),transform .3s var(--ease),border-color .2s}
+.hov:hover{box-shadow:var(--sh-hover);transform:translateY(-4px);border-color:rgba(13,76,143,.45)}
+.hov-orange:hover{border-color:rgba(249,115,22,.4);box-shadow:0 12px 32px rgba(249,115,22,.1)}
+.hov-sky:hover{border-color:rgba(14,165,233,.45);box-shadow:0 12px 32px rgba(14,165,233,.12)}
+@media(hover:none){.hov:hover,.hov-orange:hover,.hov-sky:hover{transform:none;box-shadow:var(--sh-sm)}}
 
 /* ── HERO ── */
-.hero-bg{background:#ffffff!important}
+.hero-bg{background:var(--bg)}
 .hero-grid{background-image:linear-gradient(rgba(13,76,143,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(13,76,143,.05) 1px,transparent 1px);background-size:52px 52px}
 .grad-text{background:linear-gradient(120deg,var(--navy) 0%,var(--sky) 50%,var(--orange) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .shimmer{background:linear-gradient(90deg,var(--orange),var(--orange-s),#FBBF24,var(--orange));background-size:300% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 3.5s linear infinite}
@@ -128,6 +146,9 @@ input,textarea,button,select{font-family:inherit}
 .wa-sticky{display:none;position:fixed;bottom:0;left:0;right:0;z-index:300;background:linear-gradient(90deg,#25D366,#128C7E);padding:14px 20px;padding-bottom:calc(14px + env(safe-area-inset-bottom,0));align-items:center;justify-content:center;gap:10px;text-decoration:none;color:#fff;font-weight:800;font-size:15px;box-shadow:0 -4px 24px rgba(37,211,102,.28)}
 @media(max-width:767px){.wa-sticky{display:flex}.wa-fab{display:none!important}}
 
+/* ── COUNTER ── */
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+
 /* ── SCROLLBAR ── */
 ::-webkit-scrollbar{width:5px;height:5px}
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:10px}
@@ -148,12 +169,15 @@ input,textarea,button,select{font-family:inherit}
 </head>
 <body>
 
-<div id="loader">
+<a href="#main" class="skip">Skip to content</a>
+
+<div id="loader" role="status" aria-label="Loading Oklah Hub">
   <div class="ld-ring"></div>
-  <img src="uploads/logo.svg" alt="Oklah Hub" style="height:32px;filter:brightness(0) invert(1);opacity:.6;margin-top:6px" onerror="this.style.display='none'" />
+  <img src="uploads/logo.svg" alt="" style="height:32px;filter:brightness(0) invert(1);opacity:.6;margin-top:6px" onerror="this.style.display='none'" />
+  <span class="sr-only">Loading…</span>
 </div>
 <div id="root"></div>
-<div id="progress-bar"></div>
+<div id="progress-bar" aria-hidden="true"></div>
 
 <script type="text/babel">
 const { useState, useEffect, useRef } = React;
@@ -242,7 +266,7 @@ function Counter({ to, suffix = '', dur = 1100 }) {
     io.observe(ref.current);
     return () => io.disconnect();
   }, [to, dur]);
-  return <span ref={ref}>{v}{suffix}</span>;
+  return <span ref={ref} className="num" aria-label={`${to}${suffix}`}>{v}{suffix}</span>;
 }
 
 /* ── ICONS ── */
@@ -261,6 +285,21 @@ const StarIco = () => (
 const Chk = ({ c = 'var(--navy)', sz = 10 }) => (
   <svg width={sz} height={sz} viewBox="0 0 10 10" fill="none" aria-hidden="true">
     <path d="M2 5l2.5 2.5L8 3" stroke={c} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+const IgIco = ({ s = 18 }) => (
+  <svg width={s} height={s} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <rect x="2.5" y="2.5" width="19" height="19" rx="5" stroke="currentColor" strokeWidth="1.8"/>
+    <circle cx="12" cy="12" r="4.2" stroke="currentColor" strokeWidth="1.8"/>
+    <circle cx="17.6" cy="6.4" r="1.1" fill="currentColor"/>
+  </svg>
+);
+
+const MailIco = ({ s = 18 }) => (
+  <svg width={s} height={s} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <rect x="2.5" y="4.5" width="19" height="15" rx="2.5" stroke="currentColor" strokeWidth="1.8"/>
+    <path d="M3 6l9 7 9-7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 );
 
@@ -305,6 +344,8 @@ function Nav({ mob, dark, setDark }) {
   const [scrolled, setScrolled] = useState(false);
   const [menu, setMenu] = useState(false);
   const active = useActiveSection();
+  const openerRef = useRef(null);
+  const closeRef = useRef(null);
 
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 20);
@@ -312,9 +353,20 @@ function Nav({ mob, dark, setDark }) {
     return () => window.removeEventListener('scroll', h);
   }, []);
 
+  // Body scroll lock + Escape-to-close + focus management for mobile menu
   useEffect(() => {
-    document.body.style.overflow = menu ? 'hidden' : '';
-    return () => { document.body.style.overflow = '' };
+    if (menu) {
+      document.body.style.overflow = 'hidden';
+      const prev = document.activeElement;
+      setTimeout(() => closeRef.current && closeRef.current.focus(), 20);
+      const onKey = e => { if (e.key === 'Escape') setMenu(false) };
+      window.addEventListener('keydown', onKey);
+      return () => {
+        window.removeEventListener('keydown', onKey);
+        document.body.style.overflow = '';
+        if (prev && prev.focus) prev.focus();
+      };
+    }
   }, [menu]);
 
   const links = ['Services', 'Pricing', 'About', 'Contact'];
@@ -332,23 +384,31 @@ function Nav({ mob, dark, setDark }) {
             <Logo h={mob ? 26 : 30} inv={false} />
           </a>
           {mob ? (
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <Toggle dark={dark} set={setDark} />
-              <button onClick={() => setMenu(true)} aria-label="Open menu" style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 8, display: 'flex', flexDirection: 'column', gap: 5 }}>
-                {[0,1,2].map(i => <span key={i} style={{ display: 'block', width: 20, height: 2, background: 'var(--text)', borderRadius: 2 }} />)}
+              <button
+                ref={openerRef}
+                onClick={() => setMenu(true)}
+                aria-label="Open menu"
+                aria-expanded={menu}
+                aria-controls="mob-menu"
+                style={{ background: 'none', border: 'none', cursor: 'pointer', width: 44, height: 44, display: 'flex', flexDirection: 'column', gap: 5, alignItems: 'center', justifyContent: 'center', borderRadius: 10 }}
+              >
+                {[0,1,2].map(i => <span key={i} style={{ display: 'block', width: 22, height: 2, background: 'var(--text)', borderRadius: 2 }} />)}
               </button>
             </div>
           ) : (
-            <nav style={{ display: 'flex', alignItems: 'center', gap: 32 }}>
+            <nav aria-label="Primary" style={{ display: 'flex', alignItems: 'center', gap: 32 }}>
               {links.map(l => (
                 <a key={l} href={`#${l.toLowerCase()}`}
                   className={`nav-a ${active === l.toLowerCase() ? 'act' : ''}`}
                   style={{ fontWeight: active === l.toLowerCase() ? 600 : 500 }}
+                  aria-current={active === l.toLowerCase() ? 'page' : undefined}
                 >{l}</a>
               ))}
               <Toggle dark={dark} set={setDark} />
               <a href={waHref('Hi Oklah Hub! I want to get started.')} target="_blank" rel="noopener" className="btn btn-g"
-                style={{ padding: '10px 18px', fontSize: 13, borderRadius: 10, animation: 'none' }}>
+                style={{ padding: '10px 18px', fontSize: 13, borderRadius: 10 }}>
                 <WaIco s={13} /> Get Started
               </a>
             </nav>
@@ -357,9 +417,9 @@ function Nav({ mob, dark, setDark }) {
       </header>
 
       {menu && (
-        <div className="mob-menu">
-          <button onClick={() => setMenu(false)} aria-label="Close"
-            style={{ position: 'absolute', top: 14, right: 14, background: 'var(--bg-subtle)', border: 'none', width: 40, height: 40, borderRadius: '50%', fontSize: 18, cursor: 'pointer', color: 'var(--text)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✕</button>
+        <div id="mob-menu" className="mob-menu" role="dialog" aria-modal="true" aria-label="Site navigation">
+          <button ref={closeRef} onClick={() => setMenu(false)} aria-label="Close menu"
+            style={{ position: 'absolute', top: 14, right: 14, background: 'var(--bg-subtle)', border: 'none', width: 44, height: 44, borderRadius: '50%', fontSize: 18, cursor: 'pointer', color: 'var(--text)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✕</button>
           <Logo h={28} />
           <div style={{ marginTop: 32 }}>
             {links.map(l => <a key={l} href={`#${l.toLowerCase()}`} className="mob-a" onClick={() => setMenu(false)}>{l}</a>)}
@@ -468,7 +528,7 @@ function Hero({ mob }) {
             <p style={{ color: 'var(--faint)', fontSize: 13, fontStyle: 'italic', marginBottom: 32, animation: 'fadeUp .6s .16s ease both' }}>"More than a product — it's your security."</p>
 
             <div style={{ display: 'flex', flexDirection: mob ? 'column' : 'row', gap: 12, animation: 'fadeUp .6s .22s ease both', marginBottom: 14 }}>
-              <a href={waHref('Hi Oklah Hub! I want to get started for my business.')} target="_blank" rel="noopener" className="btn btn-g"
+              <a href={waHref('Hi Oklah Hub! I want to get started for my business.')} target="_blank" rel="noopener" className="btn btn-g glow"
                 style={{ padding: '16px 28px', fontSize: mob ? 16 : 17, minHeight: 56, borderRadius: 14, justifyContent: 'center' }}>
                 <WaIco s={20} /> Chat on WhatsApp — Free
               </a>
@@ -556,12 +616,10 @@ function WhoFor({ mob }) {
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: mob ? '1fr 1fr' : 'repeat(4,1fr)', gap: mob ? 12 : 16 }}>
           {items.map((it, i) => (
-            <div key={i} className={`rv d${i + 1}`}
-              style={{ background: 'var(--card)', border: '1px solid var(--border)', borderRadius: 18, padding: mob ? '20px 16px' : '28px 22px', textAlign: 'center', boxShadow: 'var(--sh-sm)', cursor: 'default', transition: 'all .3s var(--ease)' }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(249,115,22,.38)'; e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 12px 32px rgba(249,115,22,.1)' }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = 'var(--sh-sm)' }}
+            <div key={i} className={`rv d${i + 1} hov hov-orange`}
+              style={{ background: 'var(--card)', border: '1px solid var(--border)', borderRadius: 18, padding: mob ? '20px 16px' : '28px 22px', textAlign: 'center', boxShadow: 'var(--sh-sm)' }}
             >
-              <div style={{ fontSize: 32, marginBottom: 12 }}>{it.icon}</div>
+              <div style={{ fontSize: 32, marginBottom: 12 }} aria-hidden="true">{it.icon}</div>
               <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--text)', marginBottom: 6, letterSpacing: '-.01em' }}>{it.title}</div>
               <div style={{ fontSize: 13, color: 'var(--muted)', lineHeight: 1.55 }}>{it.desc}</div>
             </div>
@@ -575,7 +633,7 @@ function WhoFor({ mob }) {
 /* ── HOW IT WORKS ── */
 function HowItWorks({ mob }) {
   const steps = [
-    { num: '01', icon: '💬', title: 'Message us on WhatsApp', desc: 'Tell us what your business needs. No forms, no calls — just a quick chat. We respond within the hour.' },
+    { num: '01', icon: '💬', title: 'Contact Us', desc: 'Tell us what your business needs. No forms, no calls — just a quick message. We respond within the hour.', contact: true },
     { num: '02', icon: '⚙️', title: 'We set everything up', desc: 'Our team handles every technical detail. You get updates every step. Zero effort from you.' },
     { num: '03', icon: '🚀', title: 'You look professional', desc: 'Within 48 hours, your business has branded email, Microsoft 365, or a live website — fully managed.' },
   ];
@@ -585,7 +643,7 @@ function HowItWorks({ mob }) {
         <div className="rv" style={{ textAlign: 'center', marginBottom: mob ? 44 : 64 }}>
           <span style={{ display: 'inline-block', background: 'rgba(13,76,143,.07)', color: 'var(--navy)', padding: '5px 14px', borderRadius: 100, fontSize: 11, fontWeight: 700, letterSpacing: '.07em', textTransform: 'uppercase', marginBottom: 14, border: '1px solid rgba(13,76,143,.1)' }}>How It Works</span>
           <h2 style={{ fontSize: mob ? 26 : 'clamp(28px,3.5vw,42px)', fontWeight: 800, color: 'var(--text)', letterSpacing: '-.03em', lineHeight: 1.1 }}>
-            From WhatsApp to{' '}
+            From first message to{' '}
             <span style={{ background: 'linear-gradient(90deg,var(--navy),var(--sky))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>fully set up</span>
             {' '}in 48 hours.
           </h2>
@@ -601,8 +659,27 @@ function HowItWorks({ mob }) {
               <div style={{ width: 68, height: 68, borderRadius: '50%', background: i === 2 ? 'linear-gradient(135deg,#F97316,#FB923C)' : 'linear-gradient(135deg,var(--navy),var(--sky))', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginBottom: mob ? 0 : 24, boxShadow: i === 2 ? '0 8px 24px rgba(249,115,22,.4)' : '0 8px 24px rgba(13,76,143,.32)', fontSize: 28 }}>{s.icon}</div>
               <div>
                 <div style={{ fontSize: 11, fontWeight: 800, color: i === 2 ? '#F97316' : 'var(--sky)', letterSpacing: '.07em', textTransform: 'uppercase', marginBottom: 8 }}>Step {s.num}</div>
-                <h3 style={{ fontSize: mob ? 16 : 19, fontWeight: 800, color: 'var(--text)', letterSpacing: '-.01em', marginBottom: 8 }}>{s.title}</h3>
+                <h3 style={{ fontSize: mob ? 18 : 22, fontWeight: s.contact ? 900 : 800, color: 'var(--text)', letterSpacing: '-.02em', marginBottom: 10 }}>{s.title}</h3>
                 <p style={{ fontSize: 14, color: 'var(--muted)', lineHeight: 1.68, maxWidth: mob ? '100%' : 260, margin: mob ? '0' : '0 auto' }}>{s.desc}</p>
+                {s.contact && (
+                  <div style={{ display: 'flex', gap: 10, marginTop: 16, flexWrap: 'wrap', justifyContent: mob ? 'flex-start' : 'center' }}>
+                    <a href={waHref('Hi Oklah Hub! I want to get started.')} target="_blank" rel="noopener"
+                      aria-label="Contact us on WhatsApp"
+                      style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '10px 14px', borderRadius: 10, background: 'linear-gradient(135deg,#25D366,#128C7E)', color: '#fff', textDecoration: 'none', fontWeight: 700, fontSize: 13, boxShadow: '0 4px 14px rgba(37,211,102,.32)' }}>
+                      <WaIco s={16} /> WhatsApp
+                    </a>
+                    <a href="https://www.instagram.com/oklahhub_ng" target="_blank" rel="noopener"
+                      aria-label="Follow us on Instagram"
+                      style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '10px 14px', borderRadius: 10, background: 'linear-gradient(135deg,#E1306C,#F77737)', color: '#fff', textDecoration: 'none', fontWeight: 700, fontSize: 13, boxShadow: '0 4px 14px rgba(225,48,108,.32)' }}>
+                      <IgIco s={16} /> Instagram
+                    </a>
+                    <a href="mailto:info@oklahhub.com"
+                      aria-label="Email info@oklahhub.com"
+                      style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '10px 14px', borderRadius: 10, background: 'linear-gradient(135deg,var(--navy),var(--sky))', color: '#fff', textDecoration: 'none', fontWeight: 700, fontSize: 13, boxShadow: '0 4px 14px rgba(13,76,143,.3)' }}>
+                      <MailIco s={16} /> Email
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
           ))}
@@ -660,7 +737,7 @@ function Services({ mob }) {
               <WaBtn msg={s.msg} label="Get Started — WhatsApp" full />
               <a href={`mailto:info@oklahhub.com?subject=${encodeURIComponent(s.emailSubject)}`}
                 className="btn btn-o" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '11px', borderRadius: 12, textDecoration: 'none', marginTop: 8, width: '100%', fontSize: 14, fontWeight: 600 }}>
-                ✉️ Email Us — info@oklahhub.com
+                <MailIco s={15} /> Email Us
               </a>
             </div>
           ))}
@@ -736,7 +813,7 @@ function Pricing({ mob }) {
             <div style={{ fontSize: 28, fontWeight: 800, color: 'var(--navy)', marginBottom: 4 }}>Custom Pricing</div>
             <p style={{ color: 'var(--muted)', fontSize: 13, marginBottom: 26 }}>Tailored to your business size & needs</p>
             <div style={{ borderTop: '1px solid var(--border)', paddingTop: 22, marginBottom: 26, flexGrow: 1 }}>
-              {['Professional branded email setup','Domain registration & management','Website design & development','Graphics & logo design','Ongoing technical management','Priority WhatsApp support'].map(f => (
+              {['Professional branded email setup','Domain registration & management','Website design & development','Graphics & logo design','Ongoing technical management','Priority support'].map(f => (
                 <div key={f} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
                   <div style={{ width: 20, height: 20, borderRadius: '50%', background: 'rgba(13,76,143,.07)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                     <Chk />
@@ -774,12 +851,10 @@ function WhyUs({ mob }) {
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
           {pts.map((p, i) => (
-            <div key={i} className={`rv d${Math.min(i + 1, 4)}`}
-              style={{ background: 'var(--card)', borderRadius: 16, padding: 20, border: '1px solid var(--border)', boxShadow: 'var(--sh-sm)', transition: 'border-color .2s,box-shadow .2s,transform .2s', cursor: 'default' }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = p.c.includes('var') ? 'rgba(13,76,143,.4)' : p.c + '55'; e.currentTarget.style.boxShadow = 'var(--sh-md)'; e.currentTarget.style.transform = 'translateY(-3px)' }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.boxShadow = 'var(--sh-sm)'; e.currentTarget.style.transform = '' }}
+            <div key={i} className={`rv d${Math.min(i + 1, 4)} hov`}
+              style={{ background: 'var(--card)', borderRadius: 16, padding: 20, border: '1px solid var(--border)', boxShadow: 'var(--sh-sm)' }}
             >
-              <div style={{ fontSize: 26, marginBottom: 10 }}>{p.icon}</div>
+              <div style={{ fontSize: 26, marginBottom: 10 }} aria-hidden="true">{p.icon}</div>
               <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--text)', marginBottom: 6, letterSpacing: '-.01em' }}>{p.title}</div>
               <div style={{ fontSize: 13, color: 'var(--muted)', lineHeight: 1.6 }}>{p.desc}</div>
             </div>
@@ -832,10 +907,8 @@ function Testimonials({ mob }) {
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: mob ? '1fr' : 'repeat(3,1fr)', gap: mob ? 14 : 20 }}>
           {REVIEWS.map((r, i) => (
-            <div key={i} className={`rv d${i + 1}`}
-              style={{ background: 'var(--card)', borderRadius: 20, padding: mob ? 24 : 32, border: '1px solid var(--border)', boxShadow: 'var(--sh-sm)', display: 'flex', flexDirection: 'column', position: 'relative', transition: 'box-shadow .3s,transform .3s,border-color .2s', cursor: 'default' }}
-              onMouseEnter={e => { e.currentTarget.style.boxShadow = 'var(--sh-hover)'; e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.borderColor = 'rgba(249,115,22,.3)' }}
-              onMouseLeave={e => { e.currentTarget.style.boxShadow = 'var(--sh-sm)'; e.currentTarget.style.transform = ''; e.currentTarget.style.borderColor = 'var(--border)' }}
+            <div key={i} className={`rv d${i + 1} hov hov-orange`}
+              style={{ background: 'var(--card)', borderRadius: 20, padding: mob ? 24 : 32, border: '1px solid var(--border)', boxShadow: 'var(--sh-sm)', display: 'flex', flexDirection: 'column', position: 'relative' }}
             >
               <div style={{ position: 'absolute', top: 16, right: 20, fontSize: 52, color: 'rgba(13,76,143,.06)', fontFamily: 'Georgia,serif', lineHeight: 1, fontWeight: 700, userSelect: 'none' }}>"</div>
               <div style={{ display: 'flex', gap: 2, marginBottom: 16 }}>
@@ -910,7 +983,7 @@ function About({ mob }) {
 const FAQS = [
   { q: 'How quickly can I get started?', a: 'Very fast. Send us a WhatsApp message, tell us what you need, and we can have most services set up within 24–48 hours. No long forms, no waiting weeks.' },
   { q: "I'm not tech-savvy. Will this be complicated?", a: "Not at all — that's exactly why we exist. You don't touch any technical settings. We handle everything from A to Z. You just use the finished product." },
-  { q: "Why can't I just keep using Gmail for business?", a: "You can, but it costs you clients. Customers trust businesses far less when they see a Gmail address. A branded email signals that you're serious and established." },
+  { q: "Why can't I just keep using Email Service Providers (ESPs)?", a: "You can, but it costs you clients. Customers trust businesses far less when they see a generic address from a free ESP like Gmail or Yahoo. A branded email signals that you're serious and established." },
   { q: 'Is the Microsoft 365 $29 price per person?', a: "Yes, it's per user per year — less than $3/month. For team pricing, message us on WhatsApp and we'll work out the best deal for you." },
   { q: 'Do I need to sign a long-term contract?', a: 'No contracts, no lock-ins. We earn your business every month. You can cancel anytime — no questions asked.' },
   { q: 'How do I pay?', a: 'Pay directly online via our secure payment link for Microsoft 365, or via bank transfer. Message us on WhatsApp to get started with any service.' },
@@ -925,19 +998,26 @@ function FAQ({ mob }) {
           <span style={{ display: 'inline-block', background: 'rgba(13,76,143,.07)', color: 'var(--navy)', padding: '5px 14px', borderRadius: 100, fontSize: 11, fontWeight: 700, letterSpacing: '.07em', textTransform: 'uppercase', marginBottom: 14, border: '1px solid rgba(13,76,143,.1)' }}>FAQ</span>
           <h2 style={{ fontSize: mob ? 26 : 'clamp(28px,3.5vw,42px)', fontWeight: 800, color: 'var(--text)', letterSpacing: '-.03em', lineHeight: 1.1 }}>Common questions, honest answers.</h2>
         </div>
-        <div className="rv" style={{ display: 'flex', flexDirection: 'column', gap: 8, maxWidth: 740, margin: '0 auto' }}>
-          {FAQS.map((f, i) => (
-            <div key={i} style={{ background: 'var(--card)', borderRadius: 14, overflow: 'hidden', border: open === i ? '1px solid rgba(13,76,143,.4)' : '1px solid var(--border)', transition: 'border-color .25s,box-shadow .25s', boxShadow: open === i ? '0 6px 24px rgba(13,76,143,.08)' : 'none' }}>
-              <button onClick={() => setOpen(open === i ? null : i)} aria-expanded={open === i}
-                style={{ width: '100%', padding: mob ? '17px 20px' : '19px 26px', background: 'none', border: 'none', display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer', textAlign: 'left', gap: 16 }}>
-                <span style={{ fontWeight: 700, color: 'var(--text)', fontSize: mob ? 14 : 15, letterSpacing: '-.01em', lineHeight: 1.4 }}>{f.q}</span>
-                <span style={{ width: 30, height: 30, borderRadius: '50%', background: open === i ? 'linear-gradient(135deg,var(--navy),var(--sky))' : 'var(--bg-subtle)', color: open === i ? '#fff' : 'var(--muted)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, flexShrink: 0, transition: 'all .25s', transform: open === i ? 'rotate(45deg)' : 'none', fontWeight: 300 }}>+</span>
-              </button>
-              <div style={{ maxHeight: open === i ? 300 : 0, overflow: 'hidden', transition: 'max-height .35s var(--ease)' }}>
-                <div style={{ padding: mob ? '0 20px 20px' : '0 26px 22px', color: 'var(--muted)', fontSize: mob ? 14 : 15, lineHeight: 1.75 }}>{f.a}</div>
+        <div className="rv" role="list" style={{ display: 'flex', flexDirection: 'column', gap: 8, maxWidth: 740, margin: '0 auto' }}>
+          {FAQS.map((f, i) => {
+            const isOpen = open === i;
+            const btnId = `faq-b-${i}`;
+            const panelId = `faq-p-${i}`;
+            return (
+              <div key={i} role="listitem" style={{ background: 'var(--card)', borderRadius: 14, overflow: 'hidden', border: isOpen ? '1px solid rgba(13,76,143,.4)' : '1px solid var(--border)', transition: 'border-color .25s,box-shadow .25s', boxShadow: isOpen ? '0 6px 24px rgba(13,76,143,.08)' : 'none' }}>
+                <button id={btnId} onClick={() => setOpen(isOpen ? null : i)}
+                  aria-expanded={isOpen} aria-controls={panelId}
+                  style={{ width: '100%', padding: mob ? '17px 20px' : '19px 26px', background: 'none', border: 'none', display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer', textAlign: 'left', gap: 16, color: 'var(--text)' }}>
+                  <span style={{ fontWeight: 700, color: 'var(--text)', fontSize: mob ? 14 : 15, letterSpacing: '-.01em', lineHeight: 1.4 }}>{f.q}</span>
+                  <span aria-hidden="true" style={{ width: 30, height: 30, borderRadius: '50%', background: isOpen ? 'linear-gradient(135deg,var(--navy),var(--sky))' : 'var(--bg-subtle)', color: isOpen ? '#fff' : 'var(--muted)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, flexShrink: 0, transition: 'all .25s', transform: isOpen ? 'rotate(45deg)' : 'none', fontWeight: 300 }}>+</span>
+                </button>
+                <div id={panelId} role="region" aria-labelledby={btnId} aria-hidden={!isOpen}
+                  style={{ maxHeight: isOpen ? 640 : 0, overflow: 'hidden', transition: 'max-height .35s var(--ease)' }}>
+                  <div style={{ padding: mob ? '0 20px 20px' : '0 26px 22px', color: 'var(--muted)', fontSize: mob ? 14 : 15, lineHeight: 1.75 }}>{f.a}</div>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
@@ -948,13 +1028,24 @@ function FAQ({ mob }) {
 function Contact({ mob }) {
   const [form, setForm] = useState({ name: '', email: '', business: '', service: 'Microsoft 365', message: '' });
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
   const up = (k, v) => setForm(f => ({ ...f, [k]: v }));
   const submit = e => {
     e.preventDefault();
-    const text = `Hi Oklah Hub!%0A%0AName: ${form.name}%0ABusiness: ${form.business}%0AEmail: ${form.email}%0AService: ${form.service}%0A%0A${form.message}`;
-    window.open(`https://wa.me/${WA}?text=${text}`, '_blank');
-    setSent(true);
-    setTimeout(() => setSent(false), 5000);
+    if (sending) return;
+    setSending(true);
+    const parts = [
+      'Hi Oklah Hub!', '',
+      `Name: ${form.name}`,
+      `Business: ${form.business}`,
+      `Email: ${form.email}`,
+      `Service: ${form.service}`,
+      '', form.message
+    ];
+    const text = encodeURIComponent(parts.join('\n'));
+    window.open(`https://wa.me/${WA}?text=${text}`, '_blank', 'noopener');
+    setTimeout(() => { setSending(false); setSent(true); }, 250);
+    setTimeout(() => setSent(false), 6000);
   };
   return (
     <section id="contact" style={{ background: 'var(--bg)', padding: mob ? '64px 20px' : '96px 32px', borderTop: '1px solid var(--border)' }}>
@@ -993,20 +1084,23 @@ function Contact({ mob }) {
             <h3 style={{ fontSize: mob ? 20 : 22, fontWeight: 800, color: 'var(--text)', letterSpacing: '-.02em', marginBottom: 6 }}>Tell us about your business.</h3>
             <p style={{ color: 'var(--muted)', fontSize: 14, lineHeight: 1.6 }}>Fill in a few details — we'll reply on WhatsApp within the hour.</p>
           </div>
-          {sent ? (
-            <div style={{ textAlign: 'center', padding: '32px 16px', background: 'rgba(37,211,102,.06)', borderRadius: 16, border: '1px solid rgba(37,211,102,.25)' }}>
-              <div style={{ fontSize: 44, marginBottom: 8 }}>✅</div>
-              <div style={{ fontSize: 16, fontWeight: 800, color: 'var(--text)', marginBottom: 6 }}>Message ready on WhatsApp</div>
-              <div style={{ fontSize: 13, color: 'var(--muted)', lineHeight: 1.6 }}>We opened WhatsApp with your details — just hit send.</div>
-            </div>
-          ) : (
-            <form onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-              <div style={{ display: 'grid', gridTemplateColumns: mob ? '1fr' : '1fr 1fr', gap: 12 }}>
-                <input className="oh-input" required placeholder="Your name" value={form.name} onChange={e => up('name', e.target.value)} />
-                <input className="oh-input" required type="email" placeholder="Email address" value={form.email} onChange={e => up('email', e.target.value)} />
+          <div aria-live="polite" aria-atomic="true">
+            {sent && (
+              <div role="status" style={{ textAlign: 'center', padding: '32px 16px', background: 'rgba(37,211,102,.06)', borderRadius: 16, border: '1px solid rgba(37,211,102,.25)' }}>
+                <div style={{ fontSize: 44, marginBottom: 8 }} aria-hidden="true">✅</div>
+                <div style={{ fontSize: 16, fontWeight: 800, color: 'var(--text)', marginBottom: 6 }}>Message ready on WhatsApp</div>
+                <div style={{ fontSize: 13, color: 'var(--muted)', lineHeight: 1.6 }}>We opened WhatsApp with your details — just hit send.</div>
               </div>
-              <input className="oh-input" placeholder="Business name" value={form.business} onChange={e => up('business', e.target.value)} />
-              <select className="oh-input" value={form.service} onChange={e => up('service', e.target.value)}
+            )}
+          </div>
+          {!sent && (
+            <form onSubmit={submit} noValidate={false} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              <div style={{ display: 'grid', gridTemplateColumns: mob ? '1fr' : '1fr 1fr', gap: 12 }}>
+                <input className="oh-input" required placeholder="Your name" aria-label="Your name" value={form.name} onChange={e => up('name', e.target.value)} />
+                <input className="oh-input" required type="email" placeholder="Email address" aria-label="Email address" value={form.email} onChange={e => up('email', e.target.value)} />
+              </div>
+              <input className="oh-input" placeholder="Business name" aria-label="Business name" value={form.business} onChange={e => up('business', e.target.value)} />
+              <select className="oh-input" value={form.service} aria-label="Service" onChange={e => up('service', e.target.value)}
                 style={{ appearance: 'none', WebkitAppearance: 'none', backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%2364748B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\")", backgroundRepeat: 'no-repeat', backgroundPosition: 'right 16px center', paddingRight: 40 }}>
                 <option>Microsoft 365 + Copilot</option>
                 <option>Professional Business Email</option>
@@ -1014,11 +1108,12 @@ function Contact({ mob }) {
                 <option>Graphics & Logo Design</option>
                 <option>I'm not sure — help me choose</option>
               </select>
-              <textarea className="oh-input" rows="4" placeholder="What do you need? (optional)" value={form.message} onChange={e => up('message', e.target.value)} />
-              <button type="submit" className="btn btn-g" style={{ padding: '15px', fontSize: 15, minHeight: 52, borderRadius: 12, width: '100%' }}>
-                <WaIco s={16} /> Send via WhatsApp
+              <textarea className="oh-input" rows="4" placeholder="What do you need? (optional)" aria-label="Message" value={form.message} onChange={e => up('message', e.target.value)} />
+              <button type="submit" className="btn btn-g" disabled={sending} aria-busy={sending}
+                style={{ padding: '15px', fontSize: 15, minHeight: 52, borderRadius: 12, width: '100%', opacity: sending ? .7 : 1, cursor: sending ? 'wait' : 'pointer' }}>
+                {sending ? <><span className="ld-ring" style={{ width: 16, height: 16, borderWidth: 2 }} aria-hidden="true"/> Opening WhatsApp…</> : <><WaIco s={16} /> Send via WhatsApp</>}
               </button>
-              <p style={{ color: 'var(--faint)', fontSize: 11, textAlign: 'center', marginTop: 2 }}>We'll never spam you. Your details stay private.</p>
+              <p style={{ color: 'var(--muted)', fontSize: 11, textAlign: 'center', marginTop: 2 }}>We'll never spam you. Your details stay private.</p>
             </form>
           )}
         </div>
@@ -1090,18 +1185,20 @@ function App() {
   return (
     <div>
       <Nav mob={mob} dark={dark} setDark={setDark} />
-      <Hero mob={mob} />
-      <TrustBar />
-      <Services mob={mob} />
-      <WhoFor mob={mob} />
-      <HowItWorks mob={mob} />
-      <Pricing mob={mob} />
-      <StatsBand mob={mob} />
-      <WhyUs mob={mob} />
-      <Testimonials mob={mob} />
-      <About mob={mob} />
-      <FAQ mob={mob} />
-      <Contact mob={mob} />
+      <main id="main" tabIndex="-1">
+        <Hero mob={mob} />
+        <TrustBar />
+        <Services mob={mob} />
+        <WhoFor mob={mob} />
+        <HowItWorks mob={mob} />
+        <Pricing mob={mob} />
+        <StatsBand mob={mob} />
+        <WhyUs mob={mob} />
+        <Testimonials mob={mob} />
+        <About mob={mob} />
+        <FAQ mob={mob} />
+        <Contact mob={mob} />
+      </main>
       <Footer mob={mob} />
 
       {/* WA FAB */}
