@@ -106,7 +106,10 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible,summary:focus
 .hov:hover{box-shadow:var(--sh-hover);transform:translateY(-4px);border-color:rgba(13,76,143,.45)}
 .hov-orange:hover{border-color:rgba(249,115,22,.4);box-shadow:0 12px 32px rgba(249,115,22,.1)}
 .hov-sky:hover{border-color:rgba(14,165,233,.45);box-shadow:0 12px 32px rgba(14,165,233,.12)}
-@media(hover:none){.hov:hover,.hov-orange:hover,.hov-sky:hover{transform:none;box-shadow:var(--sh-sm)}}
+/* Featured service card keeps a soft navy rest-glow; upgrades on hover */
+.hov-featured{box-shadow:0 6px 28px rgba(13,76,143,.1);border-color:rgba(13,76,143,.25)}
+.hov-featured:hover{box-shadow:var(--sh-hover);border-color:rgba(13,76,143,.45);transform:translateY(-4px)}
+@media(hover:none){.hov:hover,.hov-orange:hover,.hov-sky:hover,.hov-featured:hover{transform:none;box-shadow:var(--sh-sm)}}
 
 /* ── HERO ── */
 .hero-bg{background:var(--bg)}
@@ -132,9 +135,10 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible,summary:focus
 .tog.on .tog-k{transform:translateX(18px)}
 
 /* ── BACK TOP ── */
-#bt{position:fixed;bottom:32px;left:32px;z-index:200;width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(8px) scale(.9);transition:opacity .3s,transform .3s;box-shadow:0 4px 18px rgba(13,76,143,.3)}
-#bt.on{opacity:1;transform:none}
+#bt{position:fixed;bottom:32px;left:32px;z-index:200;width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;visibility:hidden;transform:translateY(8px) scale(.9);transition:opacity .3s,transform .3s,visibility .3s,background .2s;box-shadow:0 4px 18px rgba(13,76,143,.3)}
+#bt.on{opacity:1;visibility:visible;transform:none}
 #bt:hover{background:var(--navy-m)}
+#bt:focus-visible{box-shadow:0 4px 18px rgba(13,76,143,.3),var(--ring)}
 @media(max-width:767px){#bt{display:none}}
 
 /* ── WA FAB ── */
@@ -148,6 +152,12 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible,summary:focus
 
 /* ── COUNTER ── */
 .num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+
+/* Link on dark surfaces — replaces inline onMouseEnter color toggles */
+.link-w{color:rgba(255,255,255,.72);transition:color .2s}
+.link-w:hover,.link-w:focus-visible{color:#fff}
+.link-f{color:rgba(255,255,255,.55);transition:color .2s}
+.link-f:hover,.link-f:focus-visible{color:#fff}
 
 /* ── SCROLLBAR ── */
 ::-webkit-scrollbar{width:5px;height:5px}
@@ -525,7 +535,7 @@ function Hero({ mob }) {
             <p style={{ color: 'var(--muted)', fontSize: mob ? 16 : 18, lineHeight: 1.72, maxWidth: 520, marginBottom: 8, animation: 'fadeUp .6s .12s ease both', fontWeight: 400 }}>
               A Gmail address, no website, or outdated branding costs you deals every day. We fix that in <strong style={{ color: 'var(--navy)', fontWeight: 700 }}>48 hours</strong>. From <strong style={{ color: 'var(--orange)', fontWeight: 700 }}>$29/year.</strong>
             </p>
-            <p style={{ color: 'var(--faint)', fontSize: 13, fontStyle: 'italic', marginBottom: 32, animation: 'fadeUp .6s .16s ease both' }}>"More than a product — it's your security."</p>
+            <p style={{ color: 'var(--muted)', fontSize: 13, fontStyle: 'italic', marginBottom: 32, animation: 'fadeUp .6s .16s ease both' }}>"More than a product — it's your security."</p>
 
             <div style={{ display: 'flex', flexDirection: mob ? 'column' : 'row', gap: 12, animation: 'fadeUp .6s .22s ease both', marginBottom: 14 }}>
               <a href={waHref('Hi Oklah Hub! I want to get started for my business.')} target="_blank" rel="noopener" className="btn btn-g glow"
@@ -537,7 +547,7 @@ function Hero({ mob }) {
                 Explore Services ↓
               </a>
             </div>
-            <p style={{ color: 'var(--faint)', fontSize: 12, animation: 'fadeUp .6s .28s ease both' }}>
+            <p style={{ color: 'var(--muted)', fontSize: 12, animation: 'fadeUp .6s .28s ease both' }}>
               ✓ No contract &nbsp;·&nbsp; ✓ Setup in 48 hrs &nbsp;·&nbsp; ✓ Real human support
             </p>
           </div>
@@ -715,10 +725,8 @@ function Services({ mob }) {
 
         <div style={{ display: 'grid', gridTemplateColumns: mob ? '1fr' : 'repeat(2,1fr)', gap: mob ? 16 : 20 }}>
           {SVCS.map((s, i) => (
-            <div key={i} className={`rv d${(i % 2) + 1}`}
-              style={{ background: 'var(--card)', borderRadius: 22, padding: mob ? 24 : 32, border: s.featured ? '1px solid rgba(13,76,143,.25)' : '1px solid var(--border)', boxShadow: s.featured ? '0 6px 28px rgba(13,76,143,.1)' : 'var(--sh-sm)', display: 'flex', flexDirection: 'column', transition: 'box-shadow .3s var(--ease),transform .3s var(--ease),border-color .2s', position: 'relative', overflow: 'hidden', cursor: 'default' }}
-              onMouseEnter={e => { e.currentTarget.style.boxShadow = 'var(--sh-hover)'; e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.borderColor = 'rgba(13,76,143,.45)' }}
-              onMouseLeave={e => { e.currentTarget.style.boxShadow = s.featured ? '0 6px 28px rgba(13,76,143,.1)' : 'var(--sh-sm)'; e.currentTarget.style.transform = ''; e.currentTarget.style.borderColor = s.featured ? 'rgba(13,76,143,.25)' : 'var(--border)' }}
+            <div key={i} className={`rv d${(i % 2) + 1} hov ${s.featured ? 'hov-featured' : ''}`}
+              style={{ background: 'var(--card)', borderRadius: 22, padding: mob ? 24 : 32, border: s.featured ? undefined : '1px solid var(--border)', boxShadow: s.featured ? undefined : 'var(--sh-sm)', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}
             >
               {s.featured && <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: 'linear-gradient(90deg,var(--navy),var(--sky),var(--orange))' }} />}
               {s.featured && <span style={{ position: 'absolute', top: 18, right: 18, background: 'linear-gradient(135deg,#F97316,#FB923C)', color: '#fff', padding: '4px 10px', borderRadius: 100, fontSize: 10, fontWeight: 800, letterSpacing: '.04em', textTransform: 'uppercase', boxShadow: '0 4px 12px rgba(249,115,22,.35)' }}>⭐ Most Popular</span>}
@@ -774,7 +782,7 @@ function Pricing({ mob }) {
                 <span style={{ fontSize: mob ? 52 : 60, fontWeight: 900, color: '#fff', letterSpacing: '-.04em', lineHeight: 1 }}>$29</span>
                 <span style={{ color: 'rgba(255,255,255,.5)', fontSize: 14 }}>/year</span>
               </div>
-              <p style={{ color: 'rgba(255,255,255,.45)', fontSize: 12, marginBottom: 28 }}>Billed annually · less than $3/month</p>
+              <p style={{ color: 'rgba(255,255,255,.72)', fontSize: 12, marginBottom: 28 }}>Billed annually · less than $3/month</p>
               <div style={{ borderTop: '1px solid rgba(255,255,255,.1)', paddingTop: 22, marginBottom: 26 }}>
                 {['Word, Excel, PowerPoint & Outlook','Microsoft Teams for collaboration','1 TB OneDrive cloud storage','Works across all your devices','Full setup & onboarding included'].map(f => (
                   <div key={f} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
@@ -797,17 +805,14 @@ function Pricing({ mob }) {
               </div>
               <div style={{ display: 'flex', justifyContent: 'center', gap: 16, marginTop: 14, flexWrap: 'wrap' }}>
                 {['No setup fee','Setup in 48 hrs','Cancel anytime'].map(b => (
-                  <span key={b} style={{ color: 'rgba(255,255,255,.32)', fontSize: 11 }}>✓ {b}</span>
+                  <span key={b} style={{ color: 'rgba(255,255,255,.7)', fontSize: 11 }}>✓ {b}</span>
                 ))}
               </div>
             </div>
           </div>
 
           {/* Custom */}
-          <div className="rv d1" style={{ background: 'var(--card)', borderRadius: 24, padding: mob ? 28 : 44, border: '1px solid var(--border)', boxShadow: 'var(--sh-sm)', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden', transition: 'box-shadow .3s,transform .3s,border-color .2s', cursor: 'default' }}
-            onMouseEnter={e => { e.currentTarget.style.boxShadow = 'var(--sh-hover)'; e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.borderColor = 'rgba(249,115,22,.3)' }}
-            onMouseLeave={e => { e.currentTarget.style.boxShadow = 'var(--sh-sm)'; e.currentTarget.style.transform = ''; e.currentTarget.style.borderColor = 'var(--border)' }}
-          >
+          <div className="rv d1 hov hov-orange" style={{ background: 'var(--card)', borderRadius: 24, padding: mob ? 28 : 44, border: '1px solid var(--border)', boxShadow: 'var(--sh-sm)', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
             <span style={{ display: 'inline-flex', alignItems: 'center', gap: 7, background: 'rgba(249,115,22,.08)', color: '#C2410C', padding: '5px 12px', borderRadius: 100, fontSize: 11, fontWeight: 700, letterSpacing: '.06em', textTransform: 'uppercase', marginBottom: 16, width: 'fit-content', border: '1px solid rgba(249,115,22,.12)' }}>Custom Services</span>
             <h3 style={{ fontSize: 22, fontWeight: 800, color: 'var(--text)', marginBottom: 8, letterSpacing: '-.02em' }}>Business Services</h3>
             <div style={{ fontSize: 28, fontWeight: 800, color: 'var(--navy)', marginBottom: 4 }}>Custom Pricing</div>
@@ -881,7 +886,7 @@ function StatsBand({ mob }) {
             <div style={{ fontSize: mob ? 36 : 44, fontWeight: 900, color: '#fff', letterSpacing: '-.04em', lineHeight: 1, marginBottom: 8 }}>
               <Counter to={s.to} suffix={s.suf} />
             </div>
-            <div style={{ color: 'rgba(255,255,255,.45)', fontSize: 13, fontWeight: 500 }}>{s.label}</div>
+            <div style={{ color: 'rgba(255,255,255,.72)', fontSize: 13, fontWeight: 500 }}>{s.label}</div>
           </div>
         ))}
       </div>
@@ -948,10 +953,9 @@ function About({ mob }) {
                 { icon: '📸', v: '@oklahhub_ng', href: 'https://www.instagram.com/oklahhub_ng' }
               ].map(c => (
                 <a key={c.v} href={c.href} target="_blank" rel="noopener"
-                  style={{ color: 'rgba(255,255,255,.55)', fontSize: 14, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 8, transition: 'color .2s' }}
-                  onMouseEnter={e => e.currentTarget.style.color = '#fff'}
-                  onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,.55)'}
-                >{c.icon} {c.v}</a>
+                  className="link-f"
+                  style={{ fontSize: 14, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 8 }}
+                ><span aria-hidden="true">{c.icon}</span>{c.v}</a>
               ))}
             </div>
           </div>
@@ -1134,22 +1138,19 @@ function Footer({ mob }) {
             <Logo h={26} inv />
             <p style={{ color: 'rgba(255,255,255,.3)', fontSize: 13, marginTop: 10, maxWidth: 300 }}>Professional tools & presence for growing businesses worldwide.</p>
           </div>
-          <div style={{ display: 'flex', gap: mob ? 20 : 32, flexWrap: 'wrap' }}>
+          <nav aria-label="Footer" style={{ display: 'flex', gap: mob ? 20 : 32, flexWrap: 'wrap' }}>
             {[
               { l: 'Services', h: '#services' },
               { l: 'Pricing', h: '#pricing' },
               { l: 'About', h: '#about' },
               { l: 'Contact', h: '#contact' },
             ].map(x => (
-              <a key={x.l} href={x.h} style={{ color: 'rgba(255,255,255,.38)', textDecoration: 'none', fontSize: 14, fontWeight: 500, transition: 'color .2s' }}
-                onMouseEnter={e => e.currentTarget.style.color = '#fff'}
-                onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,.38)'}
-              >{x.l}</a>
+              <a key={x.l} href={x.h} className="link-f" style={{ textDecoration: 'none', fontSize: 14, fontWeight: 500 }}>{x.l}</a>
             ))}
-          </div>
+          </nav>
         </div>
         <div style={{ display: 'flex', flexDirection: mob ? 'column' : 'row', justifyContent: 'space-between', alignItems: mob ? 'flex-start' : 'center', gap: 14 }}>
-          <span style={{ color: 'rgba(255,255,255,.22)', fontSize: 12 }}>© 2026 Oklah Hub · All rights reserved</span>
+          <span style={{ color: 'rgba(255,255,255,.55)', fontSize: 12 }}>© 2026 Oklah Hub · All rights reserved</span>
           <div style={{ display: 'flex', gap: 24 }}>
             {[
               { l: 'Instagram', h: 'https://www.instagram.com/oklahhub_ng' },
@@ -1157,9 +1158,8 @@ function Footer({ mob }) {
               { l: 'WhatsApp', h: `https://wa.me/${WA}` },
             ].map(x => (
               <a key={x.l} href={x.h} target="_blank" rel="noopener"
-                style={{ color: 'rgba(255,255,255,.35)', textDecoration: 'none', fontSize: 13, fontWeight: 600, transition: 'color .2s' }}
-                onMouseEnter={e => e.currentTarget.style.color = '#fff'}
-                onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,.35)'}
+                className="link-f"
+                style={{ textDecoration: 'none', fontSize: 13, fontWeight: 600 }}
               >{x.l}</a>
             ))}
           </div>
@@ -1202,15 +1202,15 @@ function App() {
       <Footer mob={mob} />
 
       {/* WA FAB */}
-      <a href={waHref('Hi Oklah Hub! I want to get started.')} target="_blank" rel="noopener" className="wa-fab" aria-label="Chat on WhatsApp">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        <span className="wa-tip">Chat on WhatsApp — replies in 1 hr</span>
+      <a href={waHref('Hi Oklah Hub! I want to get started.')} target="_blank" rel="noopener" className="wa-fab" aria-label="Chat on WhatsApp — replies in 1 hour">
+        <WaIco s={28} />
+        <span className="wa-tip" aria-hidden="true">Chat on WhatsApp — replies in 1 hr</span>
       </a>
 
       {/* WA sticky (mobile) */}
-      <a href={waHref('Hi Oklah Hub! I want to get started.')} target="_blank" rel="noopener" className="wa-sticky">
-        <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Chat on WhatsApp — Get Started Free
+      <a href={waHref('Hi Oklah Hub! I want to get started.')} target="_blank" rel="noopener" className="wa-sticky" aria-label="Chat on WhatsApp — get started free">
+        <WaIco s={19} />
+        <span aria-hidden="true">Chat on WhatsApp — Get Started Free</span>
       </a>
 
       
