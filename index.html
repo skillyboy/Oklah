@@ -115,10 +115,10 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible,summary:focus
 /* background-color only (not shorthand) so the inline background-image wins */
 .hero-bg{background-color:var(--bg)}
 /* Photo overlay — light fade on light theme, darker on dark — so body text stays readable */
-.hero-veil{position:absolute;inset:0;pointer-events:none;background:linear-gradient(100deg,rgba(255,255,255,.94) 0%,rgba(255,255,255,.82) 42%,rgba(255,255,255,.55) 68%,rgba(255,255,255,.2) 100%)}
-[data-theme="dark"] .hero-veil{background:linear-gradient(100deg,rgba(6,12,26,.94) 0%,rgba(6,12,26,.82) 42%,rgba(6,12,26,.55) 68%,rgba(6,12,26,.2) 100%)}
-@media(max-width:767px){.hero-veil{background:linear-gradient(180deg,rgba(255,255,255,.92) 0%,rgba(255,255,255,.86) 55%,rgba(255,255,255,.75) 100%)}
-  [data-theme="dark"] .hero-veil{background:linear-gradient(180deg,rgba(6,12,26,.92) 0%,rgba(6,12,26,.86) 55%,rgba(6,12,26,.75) 100%)}}
+.hero-veil{position:absolute;inset:0;pointer-events:none;background:linear-gradient(100deg,rgba(255,255,255,.75) 0%,rgba(255,255,255,.55) 42%,rgba(255,255,255,.25) 68%,rgba(255,255,255,.05) 100%)}
+[data-theme="dark"] .hero-veil{background:linear-gradient(100deg,rgba(6,12,26,.75) 0%,rgba(6,12,26,.55) 42%,rgba(6,12,26,.25) 68%,rgba(6,12,26,.05) 100%)}
+@media(max-width:767px){.hero-veil{background:linear-gradient(180deg,rgba(255,255,255,.78) 0%,rgba(255,255,255,.60) 55%,rgba(255,255,255,.42) 100%)}
+  [data-theme="dark"] .hero-veil{background:linear-gradient(180deg,rgba(6,12,26,.78) 0%,rgba(6,12,26,.60) 55%,rgba(6,12,26,.42) 100%)}}
 .grad-text{background:linear-gradient(120deg,var(--navy) 0%,var(--sky) 50%,var(--orange) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .shimmer{background:linear-gradient(90deg,var(--orange),var(--orange-s),#FBBF24,var(--orange));background-size:300% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 3.5s linear infinite}
 
@@ -318,6 +318,37 @@ const MailIco = ({ s = 18 }) => (
   </svg>
 );
 
+/* ── LUCIDE-STYLE ICON SET (stroke, 24x24) ── */
+const _s = { width: 24, height: 24, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.8, strokeLinecap: 'round', strokeLinejoin: 'round' };
+const Icon = ({ s = 20, c, children }) => (
+  <svg {..._s} width={s} height={s} stroke={c || 'currentColor'} aria-hidden="true">{children}</svg>
+);
+const IcBriefcase = p => <Icon {...p}><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></Icon>;
+const IcGlobe = p => <Icon {...p}><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18"/><path d="M12 3a14 14 0 0 0 0 18"/></Icon>;
+const IcPalette = p => <Icon {...p}><path d="M12 3a9 9 0 1 0 0 18c1.5 0 2-1 2-2a2 2 0 0 1 2-2h2a3 3 0 0 0 3-3 9 9 0 0 0-9-9z"/><circle cx="7.5" cy="10.5" r="1.2"/><circle cx="12" cy="7.5" r="1.2"/><circle cx="16.5" cy="10.5" r="1.2"/></Icon>;
+const IcBuilding = p => <Icon {...p}><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M8 7h2M14 7h2M8 11h2M14 11h2M8 15h2M14 15h2"/><path d="M10 21v-3h4v3"/></Icon>;
+const IcRocket = p => <Icon {...p}><path d="M13.5 3.5c3 0 6 1 7 7-.5 2-2 3-4.5 4l-5.5-5.5c1-2.5 2-4 3-5.5z"/><path d="M9.5 14.5L7 17l-1 4 4-1 2.5-2.5"/><path d="M5 14a3 3 0 0 0-2 4c1 1 4-1 5-2"/><circle cx="15" cy="9" r="1.2"/></Icon>;
+const IcBadgeCheck = p => <Icon {...p}><path d="M12 3l2 2 3-.5 1 3 3 1-.5 3 2 2-2 2 .5 3-3 1-1 3-3-.5-2 2-2-2-3 .5-1-3-3-1 .5-3-2-2 2-2-.5-3 3-1 1-3 3 .5z"/><path d="M9 12l2 2 4-4"/></Icon>;
+const IcBag = p => <Icon {...p}><path d="M5 8h14l-1 12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></Icon>;
+const IcMessage = p => <Icon {...p}><path d="M4 5h16a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/></Icon>;
+const IcCog = p => <Icon {...p}><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3h0a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8v0a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></Icon>;
+const IcZap = p => <Icon {...p}><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></Icon>;
+const IcLock = p => <Icon {...p}><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></Icon>;
+const IcShield = p => <Icon {...p}><path d="M12 3l8 3v6c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></Icon>;
+const IcUsers = p => <Icon {...p}><path d="M17 20v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 20v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></Icon>;
+const IcSmile = p => <Icon {...p}><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01M15 9h.01"/></Icon>;
+const IcFrown = p => <Icon {...p}><circle cx="12" cy="12" r="9"/><path d="M8 16s1.5-2 4-2 4 2 4 2"/><path d="M9 9h.01M15 9h.01"/></Icon>;
+const IcPhone = p => <Icon {...p}><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></Icon>;
+const IcCard = p => <Icon {...p}><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 10h19"/><path d="M6 15h3"/></Icon>;
+const IcCheck = p => <Icon {...p}><path d="M5 12l4 4 10-10"/></Icon>;
+const IcCheckCircle = p => <Icon {...p}><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-5"/></Icon>;
+const IcX = p => <Icon {...p}><path d="M6 6l12 12M18 6L6 18"/></Icon>;
+const IcSparkles = p => <Icon {...p}><path d="M12 3l1.8 4.5L18 9l-4.2 1.5L12 15l-1.8-4.5L6 9l4.2-1.5z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/></Icon>;
+const IcPlus = p => <Icon {...p}><path d="M12 5v14M5 12h14"/></Icon>;
+const IcSun = p => <Icon {...p}><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"/></Icon>;
+const IcMoon = p => <Icon {...p}><path d="M21 13a8 8 0 1 1-10-10 7 7 0 0 0 10 10z"/></Icon>;
+const IcArrowDown = p => <Icon {...p}><path d="M12 5v14M5 12l7 7 7-7"/></Icon>;
+
 /* ── LOGO ── */
 const Logo = ({ h = 32, inv = false }) => (
   <img src="asset/logo.png" alt="Oklah Hub"
@@ -329,7 +360,7 @@ const Logo = ({ h = 32, inv = false }) => (
 /* ── THEME TOGGLE ── */
 const Toggle = ({ dark, set }) => (
   <button className={`tog ${dark ? 'on' : ''}`} onClick={() => set(d => !d)} aria-label={dark ? 'Light mode' : 'Dark mode'}>
-    <div className="tog-k">{dark ? '🌙' : '☀️'}</div>
+    <div className="tog-k">{dark ? <IcMoon s={11} c="#1E293B"/> : <IcSun s={11} c="#F59E0B"/>}</div>
   </button>
 );
 
@@ -434,7 +465,7 @@ function Nav({ mob, dark, setDark }) {
       {menu && (
         <div id="mob-menu" className="mob-menu" role="dialog" aria-modal="true" aria-label="Site navigation">
           <button ref={closeRef} onClick={() => setMenu(false)} aria-label="Close menu"
-            style={{ position: 'absolute', top: 14, right: 14, background: 'var(--bg-subtle)', border: 'none', width: 44, height: 44, borderRadius: '50%', fontSize: 18, cursor: 'pointer', color: 'var(--text)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✕</button>
+            style={{ position: 'absolute', top: 14, right: 14, background: 'var(--bg-subtle)', border: 'none', width: 44, height: 44, borderRadius: '50%', cursor: 'pointer', color: 'var(--text)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><IcX s={20} /></button>
           <Logo h={28} />
           <div style={{ marginTop: 32 }}>
             {links.map(l => <a key={l} href={`#${l.toLowerCase()}`} className="mob-a" onClick={() => setMenu(false)}>{l}</a>)}
@@ -442,7 +473,7 @@ function Nav({ mob, dark, setDark }) {
           <div style={{ marginTop: 28, display: 'flex', flexDirection: 'column', gap: 12 }}>
             <a href="mailto:info@oklahhub.com" onClick={() => setMenu(false)}
               className="btn btn-o" style={{ width: '100%', padding: '14px', fontSize: 15, borderRadius: 14 }}>
-              ✉️ info@oklahhub.com
+              <MailIco s={16} /> info@oklahhub.com
             </a>
             <a href={waHref('Hi Oklah Hub! I want to get started.')} target="_blank" rel="noopener" onClick={() => setMenu(false)}
               className="btn btn-g" style={{ width: '100%', padding: '16px', fontSize: 16, borderRadius: 14 }}>
@@ -466,10 +497,10 @@ function HeroCards() {
       <div style={{ background: 'var(--card)', border: '1px solid var(--border)', borderRadius: 20, padding: 24, marginBottom: 14, boxShadow: 'var(--sh-md)', animation: 'cf 7s ease-in-out infinite' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
           <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--faint)', letterSpacing: '.07em', textTransform: 'uppercase' }}>Before Oklah Hub</span>
-          <span style={{ background: 'rgba(239,68,68,.1)', color: '#EF4444', padding: '3px 10px', borderRadius: 100, fontSize: 11, fontWeight: 700, border: '1px solid rgba(239,68,68,.2)' }}>❌ Unprofessional</span>
+          <span style={{ background: 'rgba(239,68,68,.1)', color: '#EF4444', padding: '3px 10px', borderRadius: 100, fontSize: 11, fontWeight: 700, border: '1px solid rgba(239,68,68,.2)', display: 'inline-flex', alignItems: 'center', gap: 4 }}><IcX s={12} /> Unprofessional</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '11px 14px', borderRadius: 12, background: 'var(--bg-subtle)', border: '1px solid var(--border)' }}>
-          <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'var(--bg-alt)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>😐</div>
+          <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'var(--bg-alt)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--faint)' }}><IcFrown s={20} /></div>
           <div>
             <div style={{ fontSize: 12, color: 'var(--faint)', fontWeight: 500, marginBottom: 2 }}>Your current email</div>
             <div style={{ fontSize: 14, color: 'var(--muted)', fontWeight: 600, textDecoration: 'line-through' }}>yourname@gmail.com</div>
@@ -477,25 +508,25 @@ function HeroCards() {
         </div>
       </div>
 
-      <div style={{ textAlign: 'center', fontSize: 18, color: 'var(--faint)', marginBottom: 14 }}>↓</div>
+      <div style={{ textAlign: 'center', color: 'var(--faint)', marginBottom: 14 }} aria-hidden="true"><IcArrowDown s={20} /></div>
 
       {/* After */}
       <div style={{ background: 'linear-gradient(135deg,var(--navy),var(--sky))', borderRadius: 20, padding: 24, position: 'relative', animation: 'cf 7s 1.4s ease-in-out infinite', boxShadow: '0 12px 40px rgba(13,76,143,.3)' }}>
-        <div style={{ position: 'absolute', top: -12, right: 16, background: 'linear-gradient(135deg,#F97316,#FB923C)', color: '#fff', padding: '6px 14px', borderRadius: 100, fontSize: 11, fontWeight: 800, boxShadow: '0 6px 16px rgba(249,115,22,.5)' }}>⚡ Ready in 48 hrs</div>
+        <div style={{ position: 'absolute', top: -12, right: 16, background: 'linear-gradient(135deg,#F97316,#FB923C)', color: '#fff', padding: '6px 14px', borderRadius: 100, fontSize: 11, fontWeight: 800, boxShadow: '0 6px 16px rgba(249,115,22,.5)', display: 'inline-flex', alignItems: 'center', gap: 5 }}><IcZap s={12} /> Ready in 48 hrs</div>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
           <span style={{ fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,.65)', letterSpacing: '.07em', textTransform: 'uppercase' }}>After Oklah Hub</span>
-          <span style={{ background: 'rgba(74,222,128,.2)', color: '#4ADE80', padding: '3px 10px', borderRadius: 100, fontSize: 11, fontWeight: 700, border: '1px solid rgba(74,222,128,.3)' }}>✓ Professional</span>
+          <span style={{ background: 'rgba(74,222,128,.2)', color: '#4ADE80', padding: '3px 10px', borderRadius: 100, fontSize: 11, fontWeight: 700, border: '1px solid rgba(74,222,128,.3)', display: 'inline-flex', alignItems: 'center', gap: 4 }}><IcCheck s={12} /> Professional</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '11px 14px', borderRadius: 12, background: 'rgba(255,255,255,.15)', border: '1px solid rgba(255,255,255,.2)' }}>
-          <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'rgba(255,255,255,.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>✨</div>
+          <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'rgba(255,255,255,.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff' }}><IcSparkles s={20} /></div>
           <div>
             <div style={{ fontSize: 12, color: 'rgba(255,255,255,.7)', fontWeight: 500, marginBottom: 2 }}>Your branded email</div>
             <div style={{ fontSize: 14, color: '#fff', fontWeight: 700 }}>ceo@yourbusiness.com</div>
           </div>
         </div>
         <div style={{ display: 'flex', gap: 6, marginTop: 14, flexWrap: 'wrap' }}>
-          {['💼 M365','🌐 Website','🎨 Graphics','✉️ Email'].map(b => (
-            <span key={b} style={{ background: 'rgba(255,255,255,.15)', color: '#fff', padding: '5px 10px', borderRadius: 100, fontSize: 11, fontWeight: 600, border: '1px solid rgba(255,255,255,.2)' }}>{b}</span>
+          {[{ Icon: IcBriefcase, l: 'M365' },{ Icon: IcGlobe, l: 'Website' },{ Icon: IcPalette, l: 'Graphics' },{ Icon: MailIco, l: 'Email' }].map(b => (
+            <span key={b.l} style={{ background: 'rgba(255,255,255,.15)', color: '#fff', padding: '5px 10px', borderRadius: 100, fontSize: 11, fontWeight: 600, border: '1px solid rgba(255,255,255,.2)', display: 'inline-flex', alignItems: 'center', gap: 5 }}><b.Icon s={12} />{b.l}</span>
           ))}
         </div>
       </div>
@@ -539,18 +570,23 @@ function Hero({ mob }) {
             </h1>
 
             <p style={{ color: 'var(--muted)', fontSize: mob ? 16 : 18, lineHeight: 1.72, maxWidth: 520, marginBottom: 8, animation: 'fadeUp .6s .12s ease both', fontWeight: 400 }}>
-              A Gmail address, no website, or outdated branding costs you deals every day. We fix that in <strong style={{ color: 'var(--navy)', fontWeight: 700 }}>48 hours</strong>. </strong>
+              A Gmail address, no website, or outdated branding costs you deals every day. We fix that in <strong style={{ color: 'var(--navy)', fontWeight: 700 }}>48 hours</strong>. From <strong style={{ color: 'var(--orange)', fontWeight: 700 }}>&#x20A6;35,000/year.</strong>
             </p>
-            <p style={{ color: 'var(--muted)', fontSize: 13, fontStyle: 'italic', marginBottom: 32, animation: 'fadeUp .6s .16s ease both' }}>Trusted by 100+ businesses in Nigeria.</p>
+            <p style={{ color: 'var(--faint)', fontSize: 13, fontStyle: 'italic', marginBottom: 32, animation: 'fadeUp .6s .16s ease both' }}>"More than a product — it's your security."</p>
 
             <div style={{ display: 'flex', animation: 'fadeUp .6s .22s ease both', marginBottom: 14 }}>
               <a href="#services" className="btn btn-p"
-                style={{ padding: '16px 32px', fontSize: mob ? 16 : 17, minHeight: 56, borderRadius: 14, justifyContent: 'center' }}>
-                Explore Services ↓
+                style={{ padding: '16px 32px', fontSize: mob ? 16 : 17, minHeight: 56, borderRadius: 14, justifyContent: 'center', display: 'inline-flex', alignItems: 'center', gap: 10 }}>
+                Explore Services <IcArrowDown s={18} />
               </a>
             </div>
-            <p style={{ color: 'var(--muted)', fontSize: 12, animation: 'fadeUp .6s .28s ease both' }}>
-              ✓ No contract &nbsp;·&nbsp; ✓ Setup in 48 hrs &nbsp;·&nbsp; ✓ Real human support
+            <p style={{ color: 'var(--muted)', fontSize: 12, animation: 'fadeUp .6s .28s ease both', display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+              {['No contract','Setup in 48 hrs','Real human support'].map((t, i) => (
+                <span key={t} style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                  <span style={{ color: '#16A34A', display: 'inline-flex' }}><IcCheck s={12} /></span>{t}
+                  {i < 2 && <span aria-hidden="true" style={{ marginLeft: 6, color: 'var(--faint)' }}>·</span>}
+                </span>
+              ))}
             </p>
           </div>
 
@@ -563,11 +599,12 @@ function Hero({ mob }) {
             { l: 'Businesses Served', to: 100, suf: '+' },
             { l: 'Setup Time', to: 48, suf: ' hrs' },
             { l: 'Response Time', to: 1, suf: ' hr' },
-            { l: 'Client Rating', to: 5, suf: '/5 ⭐' }
+            { l: 'Client Rating', to: 5, suf: '/5', star: true }
           ].map((s, i) => (
             <div key={i} style={{ padding: '20px 16px', textAlign: 'center', background: 'var(--card)' }}>
-              <div style={{ fontSize: mob ? 22 : 26, fontWeight: 900, color: 'var(--navy)', letterSpacing: '-.03em', lineHeight: 1, marginBottom: 6 }}>
+              <div style={{ fontSize: mob ? 22 : 26, fontWeight: 900, color: 'var(--navy)', letterSpacing: '-.03em', lineHeight: 1, marginBottom: 6, display: 'inline-flex', alignItems: 'center', gap: 4, justifyContent: 'center' }}>
                 <Counter to={s.to} suffix={s.suf} />
+                {s.star && <StarIco />}
               </div>
               <div style={{ color: 'var(--muted)', fontSize: 11, fontWeight: 500 }}>{s.l}</div>
             </div>
@@ -590,10 +627,17 @@ function Hero({ mob }) {
 /* ── TRUST MARQUEE ── */
 function TrustBar() {
   const items = [
-    '📧 Professional Email','💼 Microsoft 365',
-    '🌐 Business Websites','🎨 Logo & Brand Design','⚡ 48-Hour Setup',
-    '🔒 Enterprise Security','🤝 1-on-1 Support','🌍 Worldwide Service',
-    '💳 From ₦35,000/year','📱 Mobile-First','✅ No Contract'
+    { Icon: MailIco, label: 'Professional Email' },
+    { Icon: IcBriefcase, label: 'Microsoft 365' },
+    { Icon: IcGlobe, label: 'Business Websites' },
+    { Icon: IcPalette, label: 'Logo & Brand Design' },
+    { Icon: IcZap, label: '48-Hour Setup' },
+    { Icon: IcLock, label: 'Enterprise Security' },
+    { Icon: IcUsers, label: '1-on-1 Support' },
+    { Icon: IcGlobe, label: 'Worldwide Service' },
+    { Icon: IcCard, label: 'From ₦35,000/year' },
+    { Icon: IcPhone, label: 'Mobile-First' },
+    { Icon: IcCheck, label: 'No Contract' },
   ];
   return (
     <div style={{ background: 'var(--bg-alt)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)', padding: '13px 0' }}>
@@ -601,8 +645,9 @@ function TrustBar() {
         <div className="mq-track">
           {[...items, ...items].map((item, i) => (
             <span key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '0 28px', color: 'var(--muted)', fontSize: 13, fontWeight: 500, whiteSpace: 'nowrap' }}>
-              {item}
-              <span style={{ width: 4, height: 4, borderRadius: '50%', background: 'var(--border)', flexShrink: 0 }} />
+              <span style={{ color: 'var(--navy)', display: 'inline-flex' }}><item.Icon s={16} /></span>
+              {item.label}
+              <span aria-hidden="true" style={{ width: 4, height: 4, borderRadius: '50%', background: 'var(--border)', flexShrink: 0, marginLeft: 8 }} />
             </span>
           ))}
         </div>
@@ -614,10 +659,10 @@ function TrustBar() {
 /* ── WHO FOR ── */
 function WhoFor({ mob }) {
   const items = [
-    { icon: '🏢', title: 'Small Business Owners', desc: 'Look established from day one.' },
-    { icon: '🚀', title: 'Startups & Founders', desc: 'Tools that scale with you.' },
-    { icon: '👔', title: 'Consultants & Pros', desc: 'Win deals with credibility.' },
-    { icon: '🛍️', title: 'Retailers & Traders', desc: 'A polished presence online.' },
+    { Icon: IcBuilding, title: 'Small Business Owners', desc: 'Look established from day one.' },
+    { Icon: IcRocket, title: 'Startups & Founders', desc: 'Tools that scale with you.' },
+    { Icon: IcBadgeCheck, title: 'Consultants & Pros', desc: 'Win deals with credibility.' },
+    { Icon: IcBag, title: 'Retailers & Traders', desc: 'A polished presence online.' },
   ];
   return (
     <section style={{ background: 'var(--bg)', padding: mob ? '56px 20px' : '80px 32px', borderBottom: '1px solid var(--border)' }}>
@@ -631,7 +676,7 @@ function WhoFor({ mob }) {
             <div key={i} className={`rv d${i + 1} hov hov-orange`}
               style={{ background: 'var(--card)', border: '1px solid var(--border)', borderRadius: 18, padding: mob ? '20px 16px' : '28px 22px', textAlign: 'center', boxShadow: 'var(--sh-sm)' }}
             >
-              <div style={{ fontSize: 32, marginBottom: 12 }} aria-hidden="true">{it.icon}</div>
+              <div style={{ width: 48, height: 48, borderRadius: 12, margin: '0 auto 12px', background: 'linear-gradient(135deg,rgba(249,115,22,.12),rgba(249,115,22,.04))', color: '#C2410C', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><it.Icon s={22} /></div>
               <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--text)', marginBottom: 6, letterSpacing: '-.01em' }}>{it.title}</div>
               <div style={{ fontSize: 13, color: 'var(--muted)', lineHeight: 1.55 }}>{it.desc}</div>
             </div>
@@ -645,9 +690,9 @@ function WhoFor({ mob }) {
 /* ── HOW IT WORKS ── */
 function HowItWorks({ mob }) {
   const steps = [
-    { num: '01', icon: '💬', title: 'Contact Us', desc: 'Tell us what your business needs. No forms, no calls — just a quick message. We respond within the hour.', contact: true },
-    { num: '02', icon: '⚙️', title: 'We set everything up', desc: 'Our team handles every technical detail. You get updates every step. Zero effort from you.' },
-    { num: '03', icon: '🚀', title: 'You look professional', desc: 'Within 48 hours, your business has branded email, Microsoft 365, or a live website — fully managed.' },
+    { num: '01', Icon: IcMessage, title: 'Contact Us', desc: 'Tell us what your business needs. No forms, no calls — just a quick message. We respond within the hour.', contact: true },
+    { num: '02', Icon: IcCog, title: 'We set everything up', desc: 'Our team handles every technical detail. You get updates every step. Zero effort from you.' },
+    { num: '03', Icon: IcRocket, title: 'You look professional', desc: 'Within 48 hours, your business has branded email, Microsoft 365, or a live website — fully managed.' },
   ];
   return (
     <section style={{ background: 'var(--bg-alt)', padding: mob ? '64px 20px' : '96px 32px', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
@@ -668,7 +713,7 @@ function HowItWorks({ mob }) {
           {steps.map((s, i) => (
             <div key={i} className={`rv d${i + 1}`}
               style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: mob ? 'row' : 'column', alignItems: mob ? 'flex-start' : 'center', textAlign: mob ? 'left' : 'center', gap: mob ? 20 : 0, padding: mob ? '24px 0' : '0 28px', borderBottom: mob && i < 2 ? '1px solid var(--border)' : 'none' }}>
-              <div style={{ width: 68, height: 68, borderRadius: '50%', background: i === 2 ? 'linear-gradient(135deg,#F97316,#FB923C)' : 'linear-gradient(135deg,var(--navy),var(--sky))', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginBottom: mob ? 0 : 24, boxShadow: i === 2 ? '0 8px 24px rgba(249,115,22,.4)' : '0 8px 24px rgba(13,76,143,.32)', fontSize: 28 }}>{s.icon}</div>
+              <div style={{ width: 68, height: 68, borderRadius: '50%', background: i === 2 ? 'linear-gradient(135deg,#F97316,#FB923C)' : 'linear-gradient(135deg,var(--navy),var(--sky))', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginBottom: mob ? 0 : 24, boxShadow: i === 2 ? '0 8px 24px rgba(249,115,22,.4)' : '0 8px 24px rgba(13,76,143,.32)', color: '#fff' }}><s.Icon s={28} /></div>
               <div>
                 <div style={{ fontSize: 11, fontWeight: 800, color: i === 2 ? '#F97316' : 'var(--sky)', letterSpacing: '.07em', textTransform: 'uppercase', marginBottom: 8 }}>Step {s.num}</div>
                 <h3 style={{ fontSize: mob ? 18 : 22, fontWeight: s.contact ? 900 : 800, color: 'var(--text)', letterSpacing: '-.02em', marginBottom: 10 }}>{s.title}</h3>
@@ -709,10 +754,10 @@ function HowItWorks({ mob }) {
 
 /* ── SERVICES ── */
 const SVCS = [
-  { icon: '💼', tag: '₦35,000/user/year', title: 'Microsoft 365', desc: 'Premium Office apps to unlock your creativity and achieve more. Word, Excel, PowerPoint, Outlook and OneNote — now enhanced with Microsoft Copilot and 1 TB secure OneDrive storage.', features: ['Word, Excel, PowerPoint, Outlook & OneNote', 'Microsoft Copilot AI built-in', '1 TB secure OneDrive cloud storage', 'Works on phone, tablet & PC'], msg: 'Hi Oklah Hub! I want Microsoft 365 for my business.', emailSubject: 'Microsoft 365 Inquiry', featured: true },
-  { icon: '✉️', tag: 'Custom pricing', title: 'Professional Business Email', desc: 'We specialize in deploying email infrastructure that aligns with your corporate identity. Transition from generic providers to a premium, branded domain to project a more established and trustworthy presence to clients and partners.', features: ['yourname@yourbusiness.com address', 'Full setup & migration done for you', 'Spam protection & security filters', 'Fully managed — worry-free'], msg: 'Hi Oklah Hub! I want a professional business email.', emailSubject: 'Business Email Inquiry' },
-  { icon: '🌐', tag: 'Custom pricing', title: 'Website Design & Management', desc: 'Oklah Hub offers a hands-off technical experience for entrepreneurs. We design, build, and manage your website end-to-end so you can focus on daily operations — not technology.', features: ['Modern & mobile-friendly design', 'End-to-end technical management', 'Optimised to get you found online', 'Fast, secure & always-on'], msg: 'Hi Oklah Hub! I want a professional website.', emailSubject: 'Website Design Inquiry' },
-  { icon: '🎨', tag: 'Custom pricing', title: 'Graphics & Logo Design', desc: 'We create a professional, unified look that builds trust and attracts your ideal customers — from standout logos to polished brand graphics and social media assets that stop the scroll.', features: ['Custom logo that stands out', 'Full brand identity kit', 'Social media graphics (IG, LinkedIn & more)', 'Consistent style across all platforms'], msg: 'Hi Oklah Hub! I want graphics and logo design.', emailSubject: 'Graphics & Logo Design Inquiry' },
+  { Icon: IcBriefcase, tag: '₦35,000/user/year', title: 'Microsoft 365', desc: 'Premium Office apps to unlock your creativity and achieve more. Word, Excel, PowerPoint, Outlook and OneNote — now enhanced with Microsoft Copilot and 1 TB secure OneDrive storage.', features: ['Word, Excel, PowerPoint, Outlook & OneNote', 'Microsoft Copilot AI built-in', '1 TB secure OneDrive cloud storage', 'Works on phone, tablet & PC'], msg: 'Hi Oklah Hub! I want Microsoft 365 for my business.', emailSubject: 'Microsoft 365 Inquiry', featured: true },
+  { Icon: MailIco, tag: 'Custom pricing', title: 'Professional Business Email', desc: "Stop losing deals because you're emailing from Gmail or Yahoo. A branded email like you@yourbusiness.com builds instant trust.", features: ['you@yourbusiness.com address', 'Full setup done for you', 'Spam protection & security', 'Fully managed — worry-free'], msg: 'Hi Oklah Hub! I want a professional business email.', emailSubject: 'Business Email Inquiry' },
+  { Icon: IcGlobe, tag: 'Custom pricing', title: 'Website Design & Management', desc: 'A website that works while you sleep. We design, build and fully manage your business site — you focus on customers, we handle the tech.', features: ['Mobile-first modern design', 'We manage all updates & upkeep', 'Optimised to get you found online', 'Fast, secure & always-on'], msg: 'Hi Oklah Hub! I want a professional website.', emailSubject: 'Website Design Inquiry' },
+  { Icon: IcPalette, tag: 'Custom pricing', title: 'Graphics & Logo Design', desc: 'A strong brand starts with great visuals. We create custom logos, brand identities and social-media graphics that make your business stand out.', features: ['Custom logo design', 'Full brand identity kit', 'Social media graphics & assets', 'Consistent style across platforms'], msg: 'Hi Oklah Hub! I want graphics and logo design.', emailSubject: 'Graphics & Logo Design Inquiry' },
 ];
 
 function Services({ mob }) {
@@ -731,8 +776,8 @@ function Services({ mob }) {
               style={{ background: 'var(--card)', borderRadius: 22, padding: mob ? 24 : 32, border: s.featured ? undefined : '1px solid var(--border)', boxShadow: s.featured ? undefined : 'var(--sh-sm)', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}
             >
               {s.featured && <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: 'linear-gradient(90deg,var(--navy),var(--sky),var(--orange))' }} />}
-              {s.featured && <span style={{ position: 'absolute', top: 18, right: 18, background: 'linear-gradient(135deg,#F97316,#FB923C)', color: '#fff', padding: '4px 10px', borderRadius: 100, fontSize: 10, fontWeight: 800, letterSpacing: '.04em', textTransform: 'uppercase', boxShadow: '0 4px 12px rgba(249,115,22,.35)' }}>⭐ Most Popular</span>}
-              <div style={{ fontSize: 38, marginBottom: 14 }}>{s.icon}</div>
+              {s.featured && <span style={{ position: 'absolute', top: 18, right: 18, background: 'linear-gradient(135deg,#F97316,#FB923C)', color: '#fff', padding: '4px 10px', borderRadius: 100, fontSize: 10, fontWeight: 800, letterSpacing: '.04em', textTransform: 'uppercase', boxShadow: '0 4px 12px rgba(249,115,22,.35)', display: 'inline-flex', alignItems: 'center', gap: 4 }}><StarIco /> Most Popular</span>}
+              <div style={{ width: 56, height: 56, borderRadius: 14, marginBottom: 14, background: s.featured ? 'linear-gradient(135deg,var(--navy),var(--sky))' : 'linear-gradient(135deg,rgba(13,76,143,.08),rgba(14,165,233,.04))', color: s.featured ? '#fff' : 'var(--navy)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><s.Icon s={26} /></div>
               <span style={{ display: 'inline-block', background: 'rgba(13,76,143,.07)', color: 'var(--navy)', padding: '4px 11px', borderRadius: 100, fontSize: 11, fontWeight: 700, marginBottom: 14, width: 'fit-content', border: '1px solid rgba(13,76,143,.1)' }}>{s.tag}</span>
               <h3 style={{ fontSize: mob ? 18 : 20, fontWeight: 800, color: 'var(--text)', letterSpacing: '-.02em', marginBottom: 10 }}>{s.title}</h3>
               <p style={{ color: 'var(--muted)', fontSize: 14, lineHeight: 1.72, marginBottom: 20, flexGrow: 1 }}>{s.desc}</p>
@@ -776,7 +821,7 @@ function Pricing({ mob }) {
             <div style={{ position: 'absolute', bottom: -60, left: -60, width: 220, height: 220, borderRadius: '50%', background: 'rgba(249,115,22,.28)', filter: 'blur(50px)', pointerEvents: 'none' }} />
             <div style={{ position: 'relative' }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 22, flexWrap: 'wrap', gap: 8 }}>
-                <span style={{ background: 'linear-gradient(135deg,#F97316,#FB923C)', color: '#fff', padding: '6px 14px', borderRadius: 100, fontSize: 12, fontWeight: 800, boxShadow: '0 4px 14px rgba(249,115,22,.5)' }}>⭐ Most Popular</span>
+                <span style={{ background: 'linear-gradient(135deg,#F97316,#FB923C)', color: '#fff', padding: '6px 14px', borderRadius: 100, fontSize: 12, fontWeight: 800, boxShadow: '0 4px 14px rgba(249,115,22,.5)', display: 'inline-flex', alignItems: 'center', gap: 6 }}><StarIco /> Most Popular</span>
                 <span style={{ color: 'rgba(255,255,255,.72)', fontSize: 12 }}>Per user / year</span>
               </div>
               <h3 style={{ fontSize: 22, fontWeight: 800, color: '#fff', marginBottom: 8, letterSpacing: '-.02em' }}>Microsoft 365</h3>
@@ -798,7 +843,7 @@ function Pricing({ mob }) {
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                 <a href="https://paystack.shop/pay/oklahhubm365" target="_blank" rel="noopener" className="btn"
                   style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, background: 'linear-gradient(135deg,#F97316,#FB923C)', color: '#fff', padding: '15px', borderRadius: 12, fontWeight: 800, textDecoration: 'none', fontSize: 15, minHeight: 52, boxShadow: '0 6px 20px rgba(249,115,22,.4)' }}>
-                  💳 Pay Now — ₦35,000/user/year
+                  <IcCard s={18} /> Pay Now — ₦35,000/user/year
                 </a>
                 <a href={waHref('Hi Oklah Hub! I want Microsoft 365.')} target="_blank" rel="noopener" className="btn"
                   style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, background: 'rgba(255,255,255,.08)', border: '1px solid rgba(255,255,255,.18)', color: '#fff', padding: '12px', borderRadius: 12, fontWeight: 700, textDecoration: 'none', fontSize: 14, minHeight: 46 }}>
@@ -807,7 +852,7 @@ function Pricing({ mob }) {
               </div>
               <div style={{ display: 'flex', justifyContent: 'center', gap: 16, marginTop: 14, flexWrap: 'wrap' }}>
                 {['No setup fee','Setup in 48 hrs','Cancel anytime'].map(b => (
-                  <span key={b} style={{ color: 'rgba(255,255,255,.7)', fontSize: 11 }}>✓ {b}</span>
+                  <span key={b} style={{ color: 'rgba(255,255,255,.7)', fontSize: 11, display: 'inline-flex', alignItems: 'center', gap: 4 }}><IcCheck s={11} c="#4ADE80" /> {b}</span>
                 ))}
               </div>
             </div>
@@ -829,7 +874,7 @@ function Pricing({ mob }) {
                 </div>
               ))}
             </div>
-            <WaBtn msg="Hi Oklah Hub! I'd like a custom quote for your services." label="💬 Get a Custom Quote" full />
+            <WaBtn msg="Hi Oklah Hub! I'd like a custom quote for your services." label="Get a Custom Quote" full />
           </div>
         </div>
       </div>
@@ -840,12 +885,12 @@ function Pricing({ mob }) {
 /* ── WHY US ── */
 function WhyUs({ mob }) {
   const pts = [
-    { icon: '⚡', title: 'Setup in 48 hours', desc: 'From sign-up to fully operational in under 2 business days.', c: '#F97316' },
-    { icon: '🔒', title: 'Enterprise security', desc: 'Industry-grade protection for your data and communications.', c: 'var(--navy)' },
-    { icon: '🤝', title: 'Human support', desc: 'Real people, fast responses — every time you reach out.', c: '#25D366' },
-    { icon: '🧘', title: 'Zero tech stress', desc: 'We handle every technical detail so you never have to.', c: 'var(--sky)' },
-    { icon: '🌍', title: 'Built for entrepreneurs', desc: 'Enterprise-grade tools at prices made for growing businesses.', c: '#F97316' },
-    { icon: '📱', title: 'Mobile-first always', desc: 'Everything we build works beautifully on any device.', c: 'var(--sky)' },
+    { Icon: IcZap, title: 'Setup in 48 hours', desc: 'From sign-up to fully operational in under 2 business days.', c: '#F97316' },
+    { Icon: IcLock, title: 'Enterprise security', desc: 'Industry-grade protection for your data and communications.', c: 'var(--navy)' },
+    { Icon: IcUsers, title: 'Human support', desc: 'Real people, fast responses — every time you reach out.', c: '#25D366' },
+    { Icon: IcSmile, title: 'Zero tech stress', desc: 'We handle every technical detail so you never have to.', c: 'var(--sky)' },
+    { Icon: IcGlobe, title: 'Built for entrepreneurs', desc: 'Enterprise-grade tools at prices made for growing businesses.', c: '#F97316' },
+    { Icon: IcPhone, title: 'Mobile-first always', desc: 'Everything we build works beautifully on any device.', c: 'var(--sky)' },
   ];
   return (
     <section style={{ background: 'var(--bg)', padding: mob ? '64px 20px' : '112px 32px', borderTop: '1px solid var(--border)' }}>
@@ -854,14 +899,14 @@ function WhyUs({ mob }) {
           <span style={{ display: 'inline-block', background: 'rgba(13,76,143,.07)', color: 'var(--navy)', padding: '5px 14px', borderRadius: 100, fontSize: 11, fontWeight: 700, letterSpacing: '.07em', textTransform: 'uppercase', marginBottom: 16, border: '1px solid rgba(13,76,143,.1)' }}>Why Oklah Hub</span>
           <h2 style={{ fontSize: mob ? 26 : 'clamp(26px,3vw,42px)', fontWeight: 800, color: 'var(--text)', letterSpacing: '-.03em', lineHeight: 1.1, marginBottom: 18, maxWidth: 380 }}>Why businesses choose us.</h2>
           <p style={{ color: 'var(--muted)', fontSize: mob ? 15 : 16, lineHeight: 1.78, maxWidth: 380, marginBottom: 28 }}>We're not just a vendor — we're your dedicated tech team. Every service saves you time, makes you look better and grows your business.</p>
-          <WaBtn msg="Hi Oklah Hub! I want to learn more." label="💬 Ask Us Anything" />
+          <WaBtn msg="Hi Oklah Hub! I want to learn more." label="Ask Us Anything" />
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
           {pts.map((p, i) => (
             <div key={i} className={`rv d${Math.min(i + 1, 4)} hov`}
               style={{ background: 'var(--card)', borderRadius: 16, padding: 20, border: '1px solid var(--border)', boxShadow: 'var(--sh-sm)' }}
             >
-              <div style={{ fontSize: 26, marginBottom: 10 }} aria-hidden="true">{p.icon}</div>
+              <div style={{ width: 42, height: 42, borderRadius: 11, marginBottom: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', background: p.c.startsWith('#') ? p.c + '18' : 'rgba(13,76,143,.1)', color: p.c }}><p.Icon s={22} /></div>
               <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--text)', marginBottom: 6, letterSpacing: '-.01em' }}>{p.title}</div>
               <div style={{ fontSize: 13, color: 'var(--muted)', lineHeight: 1.6 }}>{p.desc}</div>
             </div>
@@ -940,10 +985,10 @@ function Testimonials({ mob }) {
 /* ── ABOUT ── */
 function About({ mob }) {
   const values = [
-    { icon: '⚡', title: 'Speed', desc: 'Setup in 48 hours, every time.' },
-    { icon: '🔒', title: 'Security', desc: 'Enterprise-grade protection.' },
-    { icon: '🤝', title: 'Trust', desc: 'Real humans, fast responses.' },
-    { icon: '🌍', title: 'Access', desc: 'World-class tools, fair prices.' },
+    { Icon: IcZap, title: 'Speed', desc: 'Setup in 48 hours, every time.' },
+    { Icon: IcShield, title: 'Security', desc: 'Enterprise-grade protection.' },
+    { Icon: IcUsers, title: 'Trust', desc: 'Real humans, fast responses.' },
+    { Icon: IcGlobe, title: 'Access', desc: 'World-class tools, fair prices.' },
   ];
   return (
     <section id="about" style={{ background: 'var(--bg-alt)', padding: mob ? '64px 20px' : '112px 32px', borderTop: '1px solid var(--border)' }}>
@@ -970,23 +1015,23 @@ function About({ mob }) {
               Your dedicated tech team — without the overhead.
             </h3>
             <p style={{ color: 'var(--muted)', fontSize: mob ? 15 : 16, lineHeight: 1.85, marginBottom: 14 }}>
-              We help businesses and startups look professional, stay secure and maintain a modern online presence — without the complexity or cost.
+              Oklah Hub is a "business-in-a-box" technical provider that helps businesses and startups look professional, stay secure, and maintain a modern online presence — without the stress of managing the technology themselves.
             </p>
             <p style={{ color: 'var(--muted)', fontSize: mob ? 15 : 16, lineHeight: 1.85, marginBottom: 28 }}>
-              From day one, we've been committed to making the tools big companies use accessible to every entrepreneur, anywhere in the world.
+              We believe every business deserves enterprise-grade infrastructure — regardless of size or budget. Affordable, fully managed, and ready in 48 hours.
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
               {[
-                { icon: '✉️', label: 'Email', v: 'info@oklahhub.com', href: 'mailto:info@oklahhub.com' },
-                { icon: '💬', label: 'WhatsApp', v: '+234 911 558 1148', href: `https://wa.me/${WA}` },
-                { icon: '📸', label: 'Instagram', v: '@oklahhub_ng', href: 'https://www.instagram.com/oklahhub_ng' },
+                { Icon: MailIco, label: 'Email', v: 'info@oklahhub.com', href: 'mailto:info@oklahhub.com' },
+                { Icon: WaIco, label: 'WhatsApp', v: '+234 911 558 1148', href: `https://wa.me/${WA}` },
+                { Icon: IgIco, label: 'Instagram', v: '@oklahhub_ng', href: 'https://www.instagram.com/oklahhub_ng' },
               ].map(c => (
                 <a key={c.v} href={c.href} target="_blank" rel="noopener"
                   className="hov"
                   aria-label={`${c.label}: ${c.v}`}
                   style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '13px 16px', borderRadius: 14, background: 'var(--card)', border: '1px solid var(--border)', textDecoration: 'none', boxShadow: 'var(--sh-sm)' }}
                 >
-                  <span aria-hidden="true" style={{ width: 38, height: 38, borderRadius: 10, background: 'linear-gradient(135deg,var(--navy),var(--sky))', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, flexShrink: 0, color: '#fff' }}>{c.icon}</span>
+                  <span aria-hidden="true" style={{ width: 38, height: 38, borderRadius: 10, background: 'linear-gradient(135deg,var(--navy),var(--sky))', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, color: '#fff' }}><c.Icon s={18} /></span>
                   <div>
                     <div style={{ fontSize: 11, color: 'var(--muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 2 }}>{c.label}</div>
                     <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--text)' }}>{c.v}</div>
@@ -1009,7 +1054,7 @@ function About({ mob }) {
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 12 }}>
               {values.map((v, i) => (
                 <div key={i} className="hov" style={{ background: 'var(--card)', border: '1px solid var(--border)', borderRadius: 16, padding: '18px 16px', boxShadow: 'var(--sh-sm)' }}>
-                  <div style={{ fontSize: 22, marginBottom: 8 }} aria-hidden="true">{v.icon}</div>
+                  <div style={{ width: 36, height: 36, borderRadius: 10, marginBottom: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'linear-gradient(135deg,rgba(13,76,143,.1),rgba(14,165,233,.05))', color: 'var(--navy)' }}><v.Icon s={20} /></div>
                   <div style={{ fontSize: 14, fontWeight: 800, color: 'var(--text)', marginBottom: 4, letterSpacing: '-.01em' }}>{v.title}</div>
                   <div style={{ fontSize: 12, color: 'var(--muted)', lineHeight: 1.55 }}>{v.desc}</div>
                 </div>
@@ -1115,12 +1160,16 @@ function Contact({ mob }) {
                 <WaIco s={18} /> Chat on WhatsApp Now
               </a>
               <a href="mailto:info@oklahhub.com" className="btn btn-o" style={{ justifyContent: 'center', padding: '12px 24px', fontSize: 14, color: 'rgba(255,255,255,.75)', borderColor: 'rgba(255,255,255,.18)', background: 'rgba(255,255,255,.07)' }}>
-                ✉️ info@oklahhub.com
+                <MailIco s={15} /> info@oklahhub.com
               </a>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8, borderTop: '1px solid rgba(255,255,255,.1)', paddingTop: 20 }}>
-              {['✉️ info@oklahhub.com', '📸 @oklahhub_ng', '🌍 Remote — serving businesses worldwide'].map(c => (
-                <span key={c} style={{ color: 'rgba(255,255,255,.4)', fontSize: 13 }}>{c}</span>
+              {[
+                { Icon: MailIco, t: 'info@oklahhub.com' },
+                { Icon: IgIco, t: '@oklahhub_ng' },
+                { Icon: IcGlobe, t: 'Remote — serving businesses worldwide' },
+              ].map(c => (
+                <span key={c.t} style={{ color: 'rgba(255,255,255,.72)', fontSize: 13, display: 'inline-flex', alignItems: 'center', gap: 8 }}><c.Icon s={14} />{c.t}</span>
               ))}
             </div>
           </div>
@@ -1135,7 +1184,7 @@ function Contact({ mob }) {
           <div aria-live="polite" aria-atomic="true">
             {sent && (
               <div role="status" style={{ textAlign: 'center', padding: '32px 16px', background: 'rgba(37,211,102,.06)', borderRadius: 16, border: '1px solid rgba(37,211,102,.25)' }}>
-                <div style={{ fontSize: 44, marginBottom: 8 }} aria-hidden="true">✅</div>
+                <div style={{ width: 56, height: 56, borderRadius: '50%', background: 'rgba(37,211,102,.15)', color: '#16A34A', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginBottom: 12 }} aria-hidden="true"><IcCheckCircle s={32} /></div>
                 <div style={{ fontSize: 16, fontWeight: 800, color: 'var(--text)', marginBottom: 6 }}>Message ready on WhatsApp</div>
                 <div style={{ fontSize: 13, color: 'var(--muted)', lineHeight: 1.6 }}>We opened WhatsApp with your details — just hit send.</div>
               </div>
