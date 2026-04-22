@@ -112,8 +112,13 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible,summary:focus
 @media(hover:none){.hov:hover,.hov-orange:hover,.hov-sky:hover,.hov-featured:hover{transform:none;box-shadow:var(--sh-sm)}}
 
 /* ── HERO ── */
-.hero-bg{background:var(--bg)}
-.hero-grid{background-image:linear-gradient(rgba(13,76,143,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(13,76,143,.05) 1px,transparent 1px);background-size:52px 52px}
+/* background-color only (not shorthand) so the inline background-image wins */
+.hero-bg{background-color:var(--bg)}
+/* Photo overlay — light fade on light theme, darker on dark — so body text stays readable */
+.hero-veil{position:absolute;inset:0;pointer-events:none;background:linear-gradient(100deg,rgba(255,255,255,.94) 0%,rgba(255,255,255,.82) 42%,rgba(255,255,255,.55) 68%,rgba(255,255,255,.2) 100%)}
+[data-theme="dark"] .hero-veil{background:linear-gradient(100deg,rgba(6,12,26,.94) 0%,rgba(6,12,26,.82) 42%,rgba(6,12,26,.55) 68%,rgba(6,12,26,.2) 100%)}
+@media(max-width:767px){.hero-veil{background:linear-gradient(180deg,rgba(255,255,255,.92) 0%,rgba(255,255,255,.86) 55%,rgba(255,255,255,.75) 100%)}
+  [data-theme="dark"] .hero-veil{background:linear-gradient(180deg,rgba(6,12,26,.92) 0%,rgba(6,12,26,.86) 55%,rgba(6,12,26,.75) 100%)}}
 .grad-text{background:linear-gradient(120deg,var(--navy) 0%,var(--sky) 50%,var(--orange) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .shimmer{background:linear-gradient(90deg,var(--orange),var(--orange-s),#FBBF24,var(--orange));background-size:300% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 3.5s linear infinite}
 
@@ -510,10 +515,11 @@ function HeroCards() {
 /* ── HERO ── */
 function Hero({ mob }) {
   return (
-    <section className="hero-bg" style={{ minHeight: '100svh', display: 'flex', alignItems: 'center', paddingTop: mob ? 60 : 68, position: 'relative', overflow: 'hidden', backgroundImage: 'url(asset/hero-background.jpeg)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
-      <div className="hero-grid" style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }} />
-      <div style={{ position: 'absolute', top: '8%', left: '-8%', width: 700, height: 700, borderRadius: '50%', background: 'radial-gradient(circle,rgba(14,165,233,.12) 0%,transparent 65%)', filter: 'blur(60px)', pointerEvents: 'none', animation: 'float 12s ease-in-out infinite' }} />
-      <div style={{ position: 'absolute', bottom: '2%', right: '-8%', width: 560, height: 560, borderRadius: '50%', background: 'radial-gradient(circle,rgba(249,115,22,.1) 0%,transparent 65%)', filter: 'blur(60px)', pointerEvents: 'none', animation: 'float 15s 3s ease-in-out infinite' }} />
+    <section className="hero-bg" style={{ minHeight: '100svh', display: 'flex', alignItems: 'center', paddingTop: mob ? 60 : 68, position: 'relative', overflow: 'hidden', backgroundImage: 'url(asset/hero-background.jpeg)', backgroundSize: 'cover', backgroundPosition: mob ? 'center right' : 'center', backgroundRepeat: 'no-repeat', backgroundAttachment: mob ? 'scroll' : 'fixed' }}>
+      {/* light-fade overlay so body text stays readable over the photo */}
+      <div className="hero-veil" aria-hidden="true" />
+      <div aria-hidden="true" style={{ position: 'absolute', top: '8%', left: '-8%', width: 700, height: 700, borderRadius: '50%', background: 'radial-gradient(circle,rgba(14,165,233,.06) 0%,transparent 65%)', filter: 'blur(60px)', pointerEvents: 'none', animation: 'float 12s ease-in-out infinite' }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: '2%', right: '-8%', width: 560, height: 560, borderRadius: '50%', background: 'radial-gradient(circle,rgba(249,115,22,.05) 0%,transparent 65%)', filter: 'blur(60px)', pointerEvents: 'none', animation: 'float 15s 3s ease-in-out infinite' }} />
 
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: mob ? '44px 20px 120px' : '0 32px', width: '100%', position: 'relative' }}>
         <div style={{ display: 'flex', flexDirection: mob ? 'column' : 'row', alignItems: mob ? 'flex-start' : 'center', gap: mob ? 48 : 80, justifyContent: 'space-between' }}>
@@ -537,13 +543,9 @@ function Hero({ mob }) {
             </p>
             <p style={{ color: 'var(--muted)', fontSize: 13, fontStyle: 'italic', marginBottom: 32, animation: 'fadeUp .6s .16s ease both' }}>Trusted by 100+ businesses in Nigeria.</p>
 
-            <div style={{ display: 'flex', flexDirection: mob ? 'column' : 'row', gap: 12, animation: 'fadeUp .6s .22s ease both', marginBottom: 14 }}>
-              <a href={waHref('Hi Oklah Hub! I want to get started for my business.')} target="_blank" rel="noopener" className="btn btn-g glow"
-                style={{ padding: '16px 28px', fontSize: mob ? 16 : 17, minHeight: 56, borderRadius: 14, justifyContent: 'center' }}>
-                <WaIco s={20} /> Chat on WhatsApp — Free
-              </a>
-              <a href="#services" className="btn btn-o"
-                style={{ padding: '16px 26px', fontSize: 15, minHeight: 56, borderRadius: 14, justifyContent: 'center' }}>
+            <div style={{ display: 'flex', animation: 'fadeUp .6s .22s ease both', marginBottom: 14 }}>
+              <a href="#services" className="btn btn-p"
+                style={{ padding: '16px 32px', fontSize: mob ? 16 : 17, minHeight: 56, borderRadius: 14, justifyContent: 'center' }}>
                 Explore Services ↓
               </a>
             </div>
