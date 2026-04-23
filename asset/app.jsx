@@ -431,14 +431,6 @@ function Hero({ mob }) {
         </div>
       </div>
 
-      {!mob && (
-        <div style={{ position: 'absolute', bottom: 28, left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, animation: 'fadeUp .7s .9s ease both' }}>
-          <span style={{ color: 'var(--faint)', fontSize: 10, letterSpacing: '.12em', textTransform: 'uppercase', fontWeight: 600 }}>Scroll</span>
-          <div style={{ width: 22, height: 36, border: '2px solid var(--border)', borderRadius: 12, display: 'flex', justifyContent: 'center', paddingTop: 6 }}>
-            <div style={{ width: 3, height: 7, borderRadius: 2, background: 'var(--faint)', animation: 'scrollDot 1.8s ease-in-out infinite' }} />
-          </div>
-        </div>
-      )}
     </section>
   );
 }
@@ -717,7 +709,15 @@ function WhyUs({ mob }) {
           <span style={{ display: 'inline-block', background: 'rgba(13,76,143,.07)', color: 'var(--navy)', padding: '5px 14px', borderRadius: 100, fontSize: 11, fontWeight: 700, letterSpacing: '.07em', textTransform: 'uppercase', marginBottom: 16, border: '1px solid rgba(13,76,143,.1)' }}>Why Oklah Hub</span>
           <h2 style={{ fontSize: mob ? 26 : 'clamp(26px,3vw,42px)', fontWeight: 800, color: 'var(--text)', letterSpacing: '-.03em', lineHeight: 1.1, marginBottom: 18, maxWidth: 380 }}>Why businesses choose us.</h2>
           <p style={{ color: 'var(--muted)', fontSize: mob ? 15 : 16, lineHeight: 1.78, maxWidth: 380, marginBottom: 28 }}>We're not just a vendor — we're your dedicated tech team. Every service saves you time, makes you look better and grows your business.</p>
-          <WaBtn msg="Hi Oklah Hub! I want to learn more." label="Ask Us Anything" />
+          <a
+            href={waHref('Hi Oklah Hub! I want to learn more.')}
+            target="_blank"
+            rel="noopener"
+            className="btn btn-p"
+            style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '13px 22px', borderRadius: 12, fontWeight: 800, fontSize: 14, textDecoration: 'none', minHeight: 48 }}
+          >
+            Ask Us Anything
+          </a>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
           {pts.map((p, i) => (
