@@ -999,11 +999,6 @@ function Contact({ mob }) {
                 <MailIco s={16} />
               </a>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 24 }}>
-              <a href="mailto:info@oklahhub.com" className="btn btn-o" style={{ justifyContent: 'center', padding: '12px 24px', fontSize: 14, color: 'rgba(255,255,255,.75)', borderColor: 'rgba(255,255,255,.18)', background: 'rgba(255,255,255,.07)' }}>
-                <MailIco s={15} /> info@oklahhub.com
-              </a>
-            </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8, borderTop: '1px solid rgba(255,255,255,.1)', paddingTop: 20 }}>
               {[
                 { Icon: MailIco, t: 'info@oklahhub.com' },
