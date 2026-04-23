@@ -202,6 +202,15 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible,summary:focus
 .mq-track{display:flex;width:max-content;animation:mq 28s linear infinite}
 .mq-track:hover{animation-play-state:paused}
 
+/* ── SERVICES TICKER ── */
+.tk-wrap{overflow:hidden;width:100%;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.tk-track{display:flex;width:max-content;animation:tk-scroll 44s linear infinite}
+.tk-track:hover{animation-play-state:paused}
+.tk-item{display:inline-flex;align-items:center;gap:12px;padding:0 40px;white-space:nowrap;font-size:14px;font-weight:600;color:#fff;letter-spacing:.01em}
+.tk-price{display:inline-flex;align-items:center;background:#fff;border-radius:100px;padding:4px 13px;font-size:12px;font-weight:900;color:#C2410C;letter-spacing:.02em;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+.tk-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.6);flex-shrink:0}
+@keyframes tk-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
 /* ── INPUTS ── */
 .oh-input{width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:10px;background:var(--bg);font-size:15px;color:var(--text);transition:border-color .2s,box-shadow .2s}
 .oh-input:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 4px rgba(13,76,143,.12)}

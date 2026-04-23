@@ -402,7 +402,7 @@ function Hero({ mob }) {
             <p style={{ color: 'var(--muted)', fontSize: mob ? 16 : 18, lineHeight: 1.72, maxWidth: 520, marginBottom: 8, animation: 'fadeUp .6s .12s ease both', fontWeight: 400 }}>
               A Gmail address, no website, or outdated branding costs you deals every day. We fix that in <strong style={{ color: 'var(--navy)', fontWeight: 700 }}>48 hours</strong>.
             </p>
-            <p style={{ color: 'var(--faint)', fontSize: 13, fontStyle: 'italic', marginBottom: 32, animation: 'fadeUp .6s .16s ease both' }}>"More than a product — it's your security."</p>
+            <p style={{ color: 'var(--faint)', fontSize: 13, fontStyle: 'italic', marginBottom: 32, animation: 'fadeUp .6s .16s ease both' }}>"More than a product. It's your security."</p>
 
             <div style={{ display: 'flex', animation: 'fadeUp .6s .22s ease both', marginBottom: 14 }}>
               <a href="#services" className="btn btn-p hero-cta"
@@ -453,12 +453,12 @@ function TrustBar() {
     { Icon: MicrosoftIco, label: 'Microsoft 365' },
     { Icon: IcGlobe, label: 'Business Websites' },
     { Icon: IcPalette, label: 'Logo & Brand Design' },
-    { Icon: IcZap, label: '48-Hour Setup' },
+    { Icon: IcZap, label: '48hr Setup' },
     { Icon: IcLock, label: 'Enterprise Security' },
-    { Icon: IcUsers, label: '1-on-1 Support' },
+    { Icon: IcUsers, label: 'Personal Support' },
     { Icon: IcGlobe, label: 'Worldwide Service' },
     { Icon: IcCard, label: 'From ₦35,000/year' },
-    { Icon: IcPhone, label: 'Mobile-First' },
+    { Icon: IcPhone, label: 'Mobile First' },
     { Icon: IcCheck, label: 'No Contract' },
   ];
   return (
@@ -512,7 +512,7 @@ function WhoFor({ mob }) {
 /* ── HOW IT WORKS ── */
 function HowItWorks({ mob }) {
   const steps = [
-    { num: '01', Icon: IcMessage, title: 'Contact Us', desc: 'Tell us what your business needs. No forms, no calls — just a quick message. We respond within the hour.', contact: true },
+    { num: '01', Icon: IcMessage, title: 'Contact Us', desc: 'Tell us what your business needs. No forms, no calls. Just a quick message. We respond within the hour.', contact: true },
     { num: '02', Icon: IcCog, title: 'We set everything up', desc: 'Our team handles every technical detail. You get updates every step. Zero effort from you.' },
     { num: '03', Icon: IcRocket, title: 'You look professional', desc: 'Within 48 hours, your business has branded email, Microsoft 365, or a live website fully managed.' },
   ];
@@ -573,21 +573,41 @@ function HowItWorks({ mob }) {
 /* ── SERVICES ── */
 const SVCS = [
   { Icon: MicrosoftIco, tag: '₦35000/user/year', title: 'Microsoft 365', desc: 'Premium versions of Office Apps including Word, Excel, PowerPoint, Outlook to unlock your creativity and achieve more. Now enhanced with Microsoft Copilot, your AI assistant, and 1 TB of secure OneDrive cloud storage.', features: ['Word, Excel, PowerPoint, Outlook & OneNote', 'Microsoft Copilot AI built-in', '1 TB secure OneDrive cloud storage', 'Works on phone, tablet & PC'], msg: 'Hi Oklah Hub! I want Microsoft 365 for my business.', emailSubject: 'Microsoft 365 Inquiry', featured: true },
-  { Icon: MailIco, tag: 'Custom pricing', title: 'Professional Business Email', desc: "Stop losing deals because you're emailing from Gmail or Yahoo. A branded email like you@yourbusiness.com builds instant trust.", features: ['you@yourbusiness.com address', 'Full setup done for you', 'Spam protection & security', 'Fully managed — worry-free'], msg: 'Hi Oklah Hub! I want a professional business email.', emailSubject: 'Business Email Inquiry' },
-  { Icon: IcGlobe, tag: 'from ₦250,000', title: 'Website Design & Management', desc: 'A website that works while you sleep. We design, build, and fully manage your business website, e-commerce, or full web app. You focus on customers, we handle the tech.', features: ['Static business website — from ₦250,000', 'E-commerce store — custom pricing', 'Web application — contact us for pricing', 'We manage all updates & upkeep', 'Fast, secure & always-on'], msg: 'Hi Oklah Hub! I want a professional website.', emailSubject: 'Website Design Inquiry' },
-  { Icon: IcPalette, tag: 'Custom pricing', title: 'Graphics & Logo Design', desc: 'A strong brand starts with great visuals. We create custom logos, brand identities and social-media graphics that make your business stand out.', features: ['Custom logo design', 'Full brand identity kit', 'Social media graphics & assets', 'Consistent style across platforms'], msg: 'Hi Oklah Hub! I want graphics and logo design.', emailSubject: 'Graphics & Logo Design Inquiry' },
+  { Icon: MailIco, tag: 'Custom pricing', title: 'Professional Business Email', desc: "Stop losing deals because you're emailing from Gmail or Yahoo. A branded email like you@yourbusiness.com builds instant trust.", features: ['you@yourbusiness.com address', 'Full setup done for you', 'Spam protection & security', 'Fully managed. Worry free'], msg: 'Hi Oklah Hub! I want a professional business email.', emailSubject: 'Business Email Inquiry' },
+  { Icon: IcGlobe, tag: 'from ₦250,000', title: 'Website Design & Management', desc: 'A website that works while you sleep. We design, build, and fully manage your business website, ecommerce store, or full web app. You focus on customers, we handle the tech.', features: ['Static business website from ₦250,000', 'Ecommerce store, custom pricing', 'Web application, contact us for pricing', 'We manage all updates & upkeep', 'Fast, secure & always on'], msg: 'Hi Oklah Hub! I want a professional website.', emailSubject: 'Website Design Inquiry' },
+  { Icon: IcPalette, tag: 'Custom pricing', title: 'Graphics & Logo Design', desc: 'A strong brand starts with great visuals. We create custom logos, brand identities and social media graphics that make your business stand out.', features: ['Custom logo design', 'Full brand identity kit', 'Social media graphics & assets', 'Consistent style across platforms'], msg: 'Hi Oklah Hub! I want graphics and logo design.', emailSubject: 'Graphics & Logo Design Inquiry' },
 ];
 
 function Services({ mob }) {
+  const svcTicker = [
+    { price: '₦35,000/yr', text: 'A website that works while you sleep. We design, build, and fully manage your business website, ecommerce or full web app. You focus on customers, we handle the tech.' },
+    { price: '₦35,000/yr', text: 'Premium versions of Office Apps including Word, Excel, PowerPoint, Outlook to unlock your creativity and achieve more. Now enhanced with Microsoft Copilot, your AI assistant, and 1 TB of secure cloud storage.' },
+  ];
   return (
     <section id="services" className="cv-auto" style={{ background: 'var(--bg)', padding: mob ? '64px 20px' : '112px 32px' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-        <div className="rv" style={{ textAlign: 'center', marginBottom: mob ? 40 : 56 }}>
+        <div className="rv" style={{ textAlign: 'center', marginBottom: mob ? 32 : 44 }}>
           <span style={{ display: 'inline-block', background: 'rgba(13,76,143,.07)', color: 'var(--navy)', padding: '5px 14px', borderRadius: 100, fontSize: 11, fontWeight: 700, letterSpacing: '.07em', textTransform: 'uppercase', marginBottom: 14, border: '1px solid rgba(13,76,143,.1)' }}>Services</span>
           <h2 style={{ fontSize: mob ? 26 : 'clamp(28px,3.5vw,44px)', fontWeight: 800, color: 'var(--text)', letterSpacing: '-.03em', lineHeight: 1.1, marginBottom: 14, maxWidth: 560, margin: '0 auto 14px' }}>Everything your business needs to look professional.</h2>
           <p style={{ color: 'var(--muted)', fontSize: mob ? 15 : 17, maxWidth: 500, margin: '0 auto' }}>Everything you need. One trusted partner. No tech knowledge required.</p>
         </div>
+      </div>
 
+      <div style={{ margin: mob ? '0 -20px' : '0 -32px', marginBottom: mob ? 32 : 48, background: 'linear-gradient(90deg,#C2410C 0%,#F97316 40%,#FB923C 60%,#F97316 80%,#C2410C 100%)', borderTop: '2px solid rgba(255,255,255,.22)', borderBottom: '2px solid rgba(255,255,255,.22)', padding: '14px 0' }}>
+        <div className="tk-wrap">
+          <div className="tk-track">
+            {[...svcTicker, ...svcTicker, ...svcTicker].map((item, i) => (
+              <span key={i} className="tk-item">
+                <span className="tk-price">{item.price}</span>
+                <span>{item.text}</span>
+                <span className="tk-dot" aria-hidden="true" />
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div style={{ maxWidth: 1200, margin: '0 auto' }}>
         <div style={{ display: 'grid', gridTemplateColumns: mob ? '1fr' : 'repeat(2,1fr)', gap: mob ? 16 : 20 }}>
           {SVCS.map((s, i) => (
             <div key={i} className={`rv d${(i % 2) + 1} hov svc-card ${s.featured ? 'hov-featured' : ''}`}
@@ -664,7 +684,7 @@ function Pricing({ mob }) {
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                 <a href="https://paystack.shop/pay/oklahhubm365" target="_blank" rel="noopener" className="btn"
                   style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, background: 'linear-gradient(135deg,#F97316,#FB923C)', color: '#fff', padding: '15px', borderRadius: 12, fontWeight: 800, textDecoration: 'none', fontSize: 15, minHeight: 52, boxShadow: '0 6px 20px rgba(249,115,22,.4)' }}>
-                  <IcCard s={18} /> Pay Now — #35000 yearly
+                  <IcCard s={18} /> Pay Now · ₦35,000 yearly
                 </a>
                 <a href={waHref('Hi Oklah Hub! I want Microsoft 365.')} target="_blank" rel="noopener" className="btn"
                   style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, background: 'rgba(255,255,255,.08)', border: '1px solid rgba(255,255,255,.18)', color: '#fff', padding: '12px', borderRadius: 12, fontWeight: 700, textDecoration: 'none', fontSize: 14, minHeight: 46 }}>
@@ -708,7 +728,7 @@ function WhyUs({ mob }) {
   const pts = [
     { Icon: IcZap, title: 'Setup in 48 hours', desc: 'From sign-up to fully operational in under 2 business days.', c: '#F97316' },
     { Icon: IcLock, title: 'Enterprise security', desc: 'Industry-grade protection for your data and communications.', c: 'var(--navy)' },
-    { Icon: IcUsers, title: 'Human support', desc: 'Real people, fast responses — every time you reach out.', c: '#25D366' },
+    { Icon: IcUsers, title: 'Human support', desc: 'Real people, fast responses. Every time you reach out.', c: '#25D366' },
     { Icon: IcSmile, title: 'Zero tech stress', desc: 'We handle every technical detail so you never have to.', c: 'var(--sky)' },
     { Icon: IcGlobe, title: 'Built for entrepreneurs', desc: 'Enterprise-grade tools at prices made for growing businesses.', c: '#F97316' },
     { Icon: IcPhone, title: 'Mobile-first always', desc: 'Everything we build works beautifully on any device.', c: 'var(--sky)' },
@@ -783,7 +803,7 @@ function Testimonials({ mob }) {
         <div className="rv" style={{ textAlign: 'center', marginBottom: mob ? 40 : 56 }}>
           <span style={{ display: 'inline-block', background: 'rgba(13,76,143,.07)', color: 'var(--navy)', padding: '5px 14px', borderRadius: 100, fontSize: 11, fontWeight: 700, letterSpacing: '.07em', textTransform: 'uppercase', marginBottom: 14, border: '1px solid rgba(13,76,143,.1)' }}>Testimonials</span>
           <h2 style={{ fontSize: mob ? 26 : 'clamp(28px,3.5vw,42px)', fontWeight: 800, color: 'var(--text)', letterSpacing: '-.03em', lineHeight: 1.1, marginBottom: 8 }}>Real businesses. Real results.</h2>
-          <p style={{ color: 'var(--muted)', fontSize: mob ? 15 : 17 }}>Don't take our word for it — hear from our clients.</p>
+          <p style={{ color: 'var(--muted)', fontSize: mob ? 15 : 17 }}>Don't take our word for it. Hear from our clients.</p>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: mob ? '1fr' : 'repeat(3,1fr)', gap: mob ? 14 : 20 }}>
           {REVIEWS.map((r, i) => (
@@ -891,7 +911,7 @@ function About({ mob }) {
             <div className="quote-card" style={{ background: 'linear-gradient(135deg,var(--navy),var(--sky))', borderRadius: 16, padding: '22px 20px', position: 'relative', overflow: 'hidden' }}>
               <div style={{ position: 'absolute', top: -30, right: -30, width: 120, height: 120, borderRadius: '50%', background: 'rgba(255,255,255,.08)', filter: 'blur(20px)', pointerEvents: 'none' }} />
               <span style={{ display: 'inline-flex', background: '#fff', padding: '8px 12px', borderRadius: 10, boxShadow: '0 2px 10px rgba(0,0,0,.15)', position: 'relative' }}><Logo h={26} /></span>
-              <p style={{ fontSize: mob ? 14 : 15, fontStyle: 'italic', color: 'rgba(255,255,255,.9)', lineHeight: 1.65, margin: '12px 0 0', fontWeight: 500, position: 'relative' }}>"More than a product — it's your security."</p>
+              <p style={{ fontSize: mob ? 14 : 15, fontStyle: 'italic', color: 'rgba(255,255,255,.9)', lineHeight: 1.65, margin: '12px 0 0', fontWeight: 500, position: 'relative' }}>"More than a product. It's your security."</p>
             </div>
           </div>
         </div>
@@ -902,10 +922,10 @@ function About({ mob }) {
 
 /* ── FAQ ── */
 const FAQS = [
-  { q: 'How quickly can I get started?', a: 'Very fast. Send us a WhatsApp message, tell us what you need, and we can have most services set up within 24–48 hours. No long forms, no waiting weeks.' },
-  { q: "I'm not tech-savvy. Will this be complicated?", a: "Not at all — that's exactly why we exist. You don't touch any technical settings. We handle everything from A to Z. You just use the finished product." },
+  { q: 'How quickly can I get started?', a: 'Very fast. Send us a WhatsApp message, tell us what you need, and we can have most services set up within 24 to 48 hours. No long forms, no waiting weeks.' },
+  { q: "I'm not tech-savvy. Will this be complicated?", a: "Not at all. That's exactly why we exist. You don't touch any technical settings. We handle everything from A to Z. You just use the finished product." },
   { q: 'Is the Microsoft 365 ₦35,000 price per person?', a: "Yes, it's per user per year. For team pricing, message us on WhatsApp and we'll work out the best deal for you." },
-  { q: 'Do I need to sign a long-term contract?', a: 'No contracts, no lock-ins. We earn your business every month. You can cancel anytime — no questions asked.' },
+  { q: 'Do I need to sign a long-term contract?', a: 'No contracts, no lock-ins. We earn your business every month. You can cancel anytime. No questions asked.' },
   { q: 'How do I pay?', a: 'Pay directly online via our secure payment link for Microsoft 365, or via bank transfer. Message us on WhatsApp to get started with any service.' },
 ];
 
@@ -1004,7 +1024,7 @@ function Contact({ mob }) {
               {[
                 { Icon: MailIco, t: 'info@oklahhub.com' },
                 { Icon: IgIco, t: '@oklahhub_ng' },
-                { Icon: IcGlobe, t: 'Remote — serving businesses worldwide' },
+                { Icon: IcGlobe, t: 'Remote, serving businesses worldwide' },
               ].map(c => (
                 <span key={c.t} style={{ color: 'rgba(255,255,255,.72)', fontSize: 13, display: 'inline-flex', alignItems: 'center', gap: 8 }}><c.Icon s={14} />{c.t}</span>
               ))}
@@ -1016,14 +1036,14 @@ function Contact({ mob }) {
         <div className="rv-r" style={{ background: 'var(--card)', borderRadius: mob ? 20 : 28, padding: mob ? 24 : 36, border: '1px solid var(--border)', boxShadow: 'var(--sh-sm)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
           <div style={{ marginBottom: 22 }}>
             <h3 style={{ fontSize: mob ? 20 : 22, fontWeight: 800, color: 'var(--text)', letterSpacing: '-.02em', marginBottom: 6 }}>Tell us about your business.</h3>
-            <p style={{ color: 'var(--muted)', fontSize: 14, lineHeight: 1.6 }}>Fill in a few details — we'll reply within the hour.</p>
+            <p style={{ color: 'var(--muted)', fontSize: 14, lineHeight: 1.6 }}>Fill in a few details. We'll reply within the hour.</p>
           </div>
           <div aria-live="polite" aria-atomic="true">
             {sent && (
               <div role="status" style={{ textAlign: 'center', padding: '32px 16px', background: 'rgba(37,211,102,.06)', borderRadius: 16, border: '1px solid rgba(37,211,102,.25)' }}>
                 <div style={{ width: 56, height: 56, borderRadius: '50%', background: 'rgba(37,211,102,.15)', color: '#16A34A', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginBottom: 12 }} aria-hidden="true"><IcCheckCircle s={32} /></div>
                 <div style={{ fontSize: 16, fontWeight: 800, color: 'var(--text)', marginBottom: 6 }}>Message ready on WhatsApp</div>
-                <div style={{ fontSize: 13, color: 'var(--muted)', lineHeight: 1.6 }}>We opened WhatsApp with your details — just hit send.</div>
+                <div style={{ fontSize: 13, color: 'var(--muted)', lineHeight: 1.6 }}>We opened WhatsApp with your details. Just hit send.</div>
               </div>
             )}
           </div>
@@ -1038,11 +1058,11 @@ function Contact({ mob }) {
                 style={{ appearance: 'none', WebkitAppearance: 'none', backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%2364748B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\")", backgroundRepeat: 'no-repeat', backgroundPosition: 'right 16px center', paddingRight: 40 }}>
                 <option>Microsoft 365</option>
                 <option>Professional Business Email</option>
-                <option>Static Website — from ₦250,000</option>
+                <option>Static Website from ₦250,000</option>
                 <option>E-commerce Store</option>
                 <option>Web Application</option>
                 <option>Graphics & Logo Design</option>
-                <option>I'm not sure — help me choose</option>
+                <option>I'm not sure, help me choose</option>
               </select>
               <textarea className="oh-input" rows="4" placeholder="What do you need? (optional)" aria-label="Message" value={form.message} onChange={e => up('message', e.target.value)} />
               <button type="submit" className="btn btn-p" disabled={sending} aria-busy={sending}
@@ -1136,7 +1156,7 @@ function App() {
       <Footer mob={mob} />
 
       {/* WA FAB */}
-      <a href={waHref('Hi Oklah Hub! I want to get started.')} target="_blank" rel="noopener" className="wa-fab" aria-label="Chat on WhatsApp — replies in 1 hour">
+      <a href={waHref('Hi Oklah Hub! I want to get started.')} target="_blank" rel="noopener" className="wa-fab" aria-label="Chat on WhatsApp, replies in 1 hour">
         <WaIco s={28} />
         <span className="wa-tip" aria-hidden="true">Chat on WhatsApp — replies in 1 hr</span>
       </a>
