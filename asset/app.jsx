@@ -982,7 +982,7 @@ function Contact({ mob }) {
               Your competitors already<br />look more professional.<br />
               <span className="shimmer">Fix that today.</span>
             </h2>
-            <p style={{ color: 'rgba(255,255,255,.6)', fontSize: mob ? 15 : 16, marginBottom: 16, maxWidth: 420, lineHeight: 1.7 }}>Reach out today - we'll respond within the hour. Prefer details? Simply fill out the form to learn more.</p>
+            <p style={{ color: 'rgba(255,255,255,.6)', fontSize: mob ? 15 : 16, marginBottom: 16, maxWidth: 420, lineHeight: 1.7 }}>Reach out today, we will respond within the hour. For detailed inquiries, please complete the form.</p>
             <div style={{ display: 'flex', gap: 10, marginBottom: 24, flexWrap: 'wrap' }}>
               <a href={waHref('Hi Oklah Hub! I want to get started.')} target="_blank" rel="noopener"
                 aria-label="Contact us on WhatsApp"
