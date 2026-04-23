@@ -457,7 +457,7 @@ function TrustBar() {
     { Icon: IcLock, label: 'Enterprise Security' },
     { Icon: IcUsers, label: 'Personal Support' },
     { Icon: IcGlobe, label: 'Worldwide Service' },
-    { Icon: IcCard, label: 'From ₦35,000/year' },
+    { Icon: IcCard, label: 'From ₦35000/year' },
     { Icon: IcPhone, label: 'Mobile First' },
     { Icon: IcCheck, label: 'No Contract' },
   ];
@@ -581,8 +581,8 @@ const SVCS = [
 
 function Services({ mob }) {
   const svcTicker = [
-    { price: '₦35,000/yr', text: 'A website that works while you sleep. We design, build, and fully manage your business website, ecommerce or full web app. You focus on customers, we handle the tech.' },
-    { price: '₦35,000/yr', text: 'Premium versions of Office Apps including Word, Excel, PowerPoint, Outlook to unlock your creativity and achieve more. Now enhanced with Microsoft Copilot, your AI assistant, and 1 TB of secure cloud storage.' },
+    { price: '₦35000/yr', text: 'A website that works while you sleep. We design, build, and fully manage your business website, ecommerce or full web app. You focus on customers, we handle the tech.' },
+    { price: '₦35000/yr', text: 'Premium versions of Office Apps including Word, Excel, PowerPoint, Outlook to unlock your creativity and achieve more. Now enhanced with Microsoft Copilot, your AI assistant, and 1 TB of secure cloud storage.' },
   ];
   return (
     <section id="services" className="cv-auto" style={{ background: 'var(--bg)', padding: mob ? '64px 20px' : '112px 32px' }}>
@@ -668,7 +668,7 @@ function Pricing({ mob }) {
               </div>
               <h3 style={{ fontSize: 22, fontWeight: 800, color: '#fff', marginBottom: 8, letterSpacing: '-.02em' }}>Microsoft 365</h3>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 4, flexWrap: 'wrap' }}>
-                <span style={{ fontSize: mob ? 40 : 52, fontWeight: 900, color: '#fff', letterSpacing: '-.04em', lineHeight: 1 }}>₦35,000</span>
+                <span style={{ fontSize: mob ? 40 : 52, fontWeight: 900, color: '#fff', letterSpacing: '-.04em', lineHeight: 1 }}>₦35000</span>
                 <span style={{ color: 'rgba(255,255,255,.72)', fontSize: 14 }}>/year</span>
               </div>
               <p style={{ color: 'rgba(255,255,255,.72)', fontSize: 12, marginBottom: 28 }}>Billed annually</p>
@@ -792,7 +792,7 @@ function StatsBand({ mob }) {
 
 /* ── TESTIMONIALS ── */
 const REVIEWS = [
-  { name: 'Temi Bukola', role: 'Data Analyst', body: '₦35,000 a year for Microsoft 365 with Copilot AI? One of the best business decisions I\'ve made. The AI alone saves me hours every week.', stars: 5 },
+  { name: 'Temi Bukola', role: 'Data Analyst', body: '₦35000 a year for Microsoft 365 with Copilot AI? One of the best business decisions I\'ve made. The AI alone saves me hours every week.', stars: 5 },
   { name: 'Chinedu Ugo', role: 'Co-Founder, Martinez & Co.', body: 'I was embarrassed to share my Gmail with big clients. Within 48 hours, Oklah Hub gave me a proper branded email. The difference was immediate.', stars: 5 },
   { name: 'Amara Williams', role: 'Director, Bright Futures Academy', body: 'Our old website was embarrassing us. Oklah Hub redesigned it and now handles everything. We\'ve enrolled more students since the relaunch.', stars: 5 },
 ];
@@ -925,7 +925,7 @@ function About({ mob }) {
 const FAQS = [
   { q: 'How quickly can I get started?', a: 'Very fast. Send us a WhatsApp message, tell us what you need, and we can have most services set up within 24 to 48 hours. No long forms, no waiting weeks.' },
   { q: "I'm not tech-savvy. Will this be complicated?", a: "Not at all. That's exactly why we exist. You don't touch any technical settings. We handle everything from A to Z. You just use the finished product." },
-  { q: 'Is the Microsoft 365 ₦35,000 price per person?', a: "Yes, it's per user per year. For team pricing, message us on WhatsApp and we'll work out the best deal for you." },
+  { q: 'Is the Microsoft 365 ₦35000 price per person?', a: "Yes, it's per user per year. For team pricing, message us on WhatsApp and we'll work out the best deal for you." },
   { q: 'Do I need to sign a long-term contract?', a: 'No contracts, no lock-ins. We earn your business every month. You can cancel anytime. No questions asked.' },
   { q: 'How do I pay?', a: 'Pay directly online via our secure payment link for Microsoft 365, or via bank transfer. Message us on WhatsApp to get started with any service.' },
 ];

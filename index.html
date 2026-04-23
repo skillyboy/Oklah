@@ -249,8 +249,12 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible,summary:focus
 .link-f:hover,.link-f:focus-visible{color:#fff}
 
 /* ── SCROLLBAR ── */
-::-webkit-scrollbar{width:5px;height:5px}
-::-webkit-scrollbar-thumb{background:var(--border);border-radius:10px}
+::-webkit-scrollbar{width:14px;height:5px}
+::-webkit-scrollbar-track{background:rgba(0,0,0,.05)}
+::-webkit-scrollbar-thumb{background:var(--navy);border-radius:10px;border:3px solid transparent;background-clip:padding-box}
+::-webkit-scrollbar-thumb:hover{background:var(--sky);border:3px solid transparent;background-clip:padding-box}
+html{direction:rtl}
+body{direction:ltr}
 
 /* Skip offscreen rendering work until these sections approach the viewport */
 .cv-auto{content-visibility:auto;contain-intrinsic-size:900px}
