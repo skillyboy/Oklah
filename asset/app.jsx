@@ -514,7 +514,7 @@ function HowItWorks({ mob }) {
   const steps = [
     { num: '01', Icon: IcMessage, title: 'Contact Us', desc: 'Tell us what your business needs. No forms, no calls — just a quick message. We respond within the hour.', contact: true },
     { num: '02', Icon: IcCog, title: 'We set everything up', desc: 'Our team handles every technical detail. You get updates every step. Zero effort from you.' },
-    { num: '03', Icon: IcRocket, title: 'You look professional', desc: 'Within 48 hours, your business has branded email, Microsoft 365, or a live website — fully managed.' },
+    { num: '03', Icon: IcRocket, title: 'You look professional', desc: 'Within 48 hours, your business has branded email, Microsoft 365, or a live website fully managed.' },
   ];
   return (
     <section className="cv-auto" style={{ background: 'var(--bg-alt)', padding: mob ? '64px 20px' : '96px 32px', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
@@ -572,9 +572,9 @@ function HowItWorks({ mob }) {
 
 /* ── SERVICES ── */
 const SVCS = [
-  { Icon: MicrosoftIco, tag: '₦35,000/user/year', title: 'Microsoft 365', desc: 'Premium Office apps to unlock your creativity and achieve more. Word, Excel, PowerPoint, Outlook and OneNote — now enhanced with Microsoft Copilot and 1 TB secure OneDrive storage.', features: ['Word, Excel, PowerPoint, Outlook & OneNote', 'Microsoft Copilot AI built-in', '1 TB secure OneDrive cloud storage', 'Works on phone, tablet & PC'], msg: 'Hi Oklah Hub! I want Microsoft 365 for my business.', emailSubject: 'Microsoft 365 Inquiry', featured: true },
+  { Icon: MicrosoftIco, tag: '₦35000/user/year', title: 'Microsoft 365', desc: 'Premium versions of Office Apps including Word, Excel, PowerPoint, Outlook to unlock your creativity and achieve more. Now enhanced with Microsoft Copilot, your AI assistant, and 1 TB of secure OneDrive cloud storage.', features: ['Word, Excel, PowerPoint, Outlook & OneNote', 'Microsoft Copilot AI built-in', '1 TB secure OneDrive cloud storage', 'Works on phone, tablet & PC'], msg: 'Hi Oklah Hub! I want Microsoft 365 for my business.', emailSubject: 'Microsoft 365 Inquiry', featured: true },
   { Icon: MailIco, tag: 'Custom pricing', title: 'Professional Business Email', desc: "Stop losing deals because you're emailing from Gmail or Yahoo. A branded email like you@yourbusiness.com builds instant trust.", features: ['you@yourbusiness.com address', 'Full setup done for you', 'Spam protection & security', 'Fully managed — worry-free'], msg: 'Hi Oklah Hub! I want a professional business email.', emailSubject: 'Business Email Inquiry' },
-  { Icon: IcGlobe, tag: 'from ₦250,000', title: 'Website Design & Management', desc: 'A website that works while you sleep. We design, build and fully manage your business site — static, e-commerce or full web app — you focus on customers, we handle the tech.', features: ['Static business website — from ₦250,000', 'E-commerce store — custom pricing', 'Web application — contact us for pricing', 'We manage all updates & upkeep', 'Fast, secure & always-on'], msg: 'Hi Oklah Hub! I want a professional website.', emailSubject: 'Website Design Inquiry' },
+  { Icon: IcGlobe, tag: 'from ₦250,000', title: 'Website Design & Management', desc: 'A website that works while you sleep. We design, build, and fully manage your business website, e-commerce, or full web app. You focus on customers, we handle the tech.', features: ['Static business website — from ₦250,000', 'E-commerce store — custom pricing', 'Web application — contact us for pricing', 'We manage all updates & upkeep', 'Fast, secure & always-on'], msg: 'Hi Oklah Hub! I want a professional website.', emailSubject: 'Website Design Inquiry' },
   { Icon: IcPalette, tag: 'Custom pricing', title: 'Graphics & Logo Design', desc: 'A strong brand starts with great visuals. We create custom logos, brand identities and social-media graphics that make your business stand out.', features: ['Custom logo design', 'Full brand identity kit', 'Social media graphics & assets', 'Consistent style across platforms'], msg: 'Hi Oklah Hub! I want graphics and logo design.', emailSubject: 'Graphics & Logo Design Inquiry' },
 ];
 
@@ -719,7 +719,7 @@ function WhyUs({ mob }) {
         <div className="rv-l">
           <span style={{ display: 'inline-block', background: 'rgba(13,76,143,.07)', color: 'var(--navy)', padding: '5px 14px', borderRadius: 100, fontSize: 11, fontWeight: 700, letterSpacing: '.07em', textTransform: 'uppercase', marginBottom: 16, border: '1px solid rgba(13,76,143,.1)' }}>Why Oklah Hub</span>
           <h2 style={{ fontSize: mob ? 26 : 'clamp(26px,3vw,42px)', fontWeight: 800, color: 'var(--text)', letterSpacing: '-.03em', lineHeight: 1.1, marginBottom: 18, maxWidth: 380 }}>Why businesses choose us.</h2>
-          <p style={{ color: 'var(--muted)', fontSize: mob ? 15 : 16, lineHeight: 1.78, maxWidth: 380, marginBottom: 28 }}>We're your dedicated tech team. Every service saves you time, makes you look better and grows your business.</p>
+          <p style={{ color: 'var(--muted)', fontSize: mob ? 15 : 16, lineHeight: 1.78, maxWidth: 380, marginBottom: 28 }}>We are your dedicated tech team. Every service saves you time, makes you look better and grows your business.</p>
           <a
             href={waHref('Hi Oklah Hub! I want to learn more.')}
             target="_blank"
@@ -840,13 +840,13 @@ function About({ mob }) {
           {/* Left — story + contacts */}
           <div className="rv-l">
             <h3 style={{ fontSize: mob ? 20 : 24, fontWeight: 800, color: 'var(--text)', letterSpacing: '-.02em', marginBottom: 14, lineHeight: 1.25 }}>
-              Your dedicated tech team — without the overhead.
+              Your dedicated tech team without the overhead.
             </h3>
             <p style={{ color: 'var(--muted)', fontSize: mob ? 15 : 16, lineHeight: 1.85, marginBottom: 14 }}>
-              Oklah Hub is a "business-in-a-box" technical provider that helps businesses and startups look professional, stay secure, and maintain a modern online presence — without the stress of managing the technology themselves.
+              Oklah Hub is a "business-in-a-box" technical provider that helps businesses and startups look professional, stay secure, and maintain a modern online presence, without the stress of managing the technology themselves.
             </p>
             <p style={{ color: 'var(--muted)', fontSize: mob ? 15 : 16, lineHeight: 1.85, marginBottom: 28 }}>
-              We believe every business deserves enterprise-grade infrastructure — regardless of size or budget. Affordable, fully managed, and ready in 48 hours.
+              We believe every business deserves enterprise-grade infrastructure, regardless of size or budget. Affordable, fully managed, and ready in 48 hours.
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
               {[
