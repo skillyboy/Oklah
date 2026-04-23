@@ -991,8 +991,8 @@ function StatsBand({ mob }) {
 
 /* ── TESTIMONIALS ── */
 const REVIEWS = [
-  { name: 'Temi Bukola', role: 'Data Analyst', body: 'I was embarrassed to share my Gmail with big clients. Within 48 hours, Oklah Hub gave me a proper branded email. The difference was immediate.', stars: 5 },
   { name: 'Chinedu Ugo', role: 'Co-Founder, Martinez & Co.', body: '₦35,000 a year for Microsoft 365 with Copilot AI? One of the best business decisions I\'ve made. The AI alone saves me hours every week.', stars: 5 },
+  { name: 'Temi Bukola', role: 'Data Analyst', body: 'I was embarrassed to share my Gmail with big clients. Within 48 hours, Oklah Hub gave me a proper branded email. The difference was immediate.', stars: 5 },
   { name: 'Amara Williams', role: 'Director, Bright Futures Academy', body: 'Our old website was embarrassing us. Oklah Hub redesigned it and now handles everything. We\'ve enrolled more students since the relaunch.', stars: 5 },
 ];
 
@@ -1203,7 +1203,7 @@ function Contact({ mob }) {
             </h2>
             <p style={{ color: 'rgba(255,255,255,.6)', fontSize: mob ? 15 : 16, marginBottom: 28, maxWidth: 420, lineHeight: 1.7 }}>WhatsApp is fastest — we reply within the hour. Prefer the form? It also sends straight to WhatsApp.</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 24 }}>
-              <a href={waHref('Hi Oklah Hub! I want to get started.')} target="_blank" rel="noopener" className="btn btn-g" style={{ justifyContent: 'center', padding: '15px 28px', fontSize: mob ? 15 : 16, minHeight: 52, borderRadius: 12 }}>
+              <a href={waHref('Hi Oklah Hub! I want to get started.')} target="_blank" rel="noopener" className="btn btn-p" style={{ justifyContent: 'center', padding: '15px 28px', fontSize: mob ? 15 : 16, minHeight: 52, borderRadius: 12 }}>
                 <WaIco s={18} /> Chat on WhatsApp Now
               </a>
               <a href="mailto:info@oklahhub.com" className="btn btn-o" style={{ justifyContent: 'center', padding: '12px 24px', fontSize: 14, color: 'rgba(255,255,255,.75)', borderColor: 'rgba(255,255,255,.18)', background: 'rgba(255,255,255,.07)' }}>
@@ -1255,7 +1255,7 @@ function Contact({ mob }) {
                 <option>I'm not sure — help me choose</option>
               </select>
               <textarea className="oh-input" rows="4" placeholder="What do you need? (optional)" aria-label="Message" value={form.message} onChange={e => up('message', e.target.value)} />
-              <button type="submit" className="btn btn-g" disabled={sending} aria-busy={sending}
+              <button type="submit" className="btn btn-p" disabled={sending} aria-busy={sending}
                 style={{ padding: '15px', fontSize: 15, minHeight: 52, borderRadius: 12, width: '100%', opacity: sending ? .7 : 1, cursor: sending ? 'wait' : 'pointer' }}>
                 {sending ? <><span className="ld-ring" style={{ width: 16, height: 16, borderWidth: 2 }} aria-hidden="true"/> Opening WhatsApp…</> : <><WaIco s={16} /> Send </>}
               </button>
