@@ -149,23 +149,23 @@ const _s = { width: 24, height: 24, viewBox: '0 0 24 24', fill: 'none', stroke: 
 const Icon = ({ s = 20, c, children }) => (
   <svg {..._s} width={s} height={s} stroke={c || 'currentColor'} aria-hidden="true">{children}</svg>
 );
-const IcBriefcase = p => <Icon {...p}><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></Icon>;
-const IcGlobe = p => <Icon {...p}><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18"/><path d="M12 3a14 14 0 0 0 0 18"/></Icon>;
-const IcPalette = p => <Icon {...p}><path d="M12 3a9 9 0 1 0 0 18c1.5 0 2-1 2-2a2 2 0 0 1 2-2h2a3 3 0 0 0 3-3 9 9 0 0 0-9-9z"/><circle cx="7.5" cy="10.5" r="1.2"/><circle cx="12" cy="7.5" r="1.2"/><circle cx="16.5" cy="10.5" r="1.2"/></Icon>;
-const IcBuilding = p => <Icon {...p}><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M8 7h2M14 7h2M8 11h2M14 11h2M8 15h2M14 15h2"/><path d="M10 21v-3h4v3"/></Icon>;
-const IcRocket = p => <Icon {...p}><path d="M13.5 3.5c3 0 6 1 7 7-.5 2-2 3-4.5 4l-5.5-5.5c1-2.5 2-4 3-5.5z"/><path d="M9.5 14.5L7 17l-1 4 4-1 2.5-2.5"/><path d="M5 14a3 3 0 0 0-2 4c1 1 4-1 5-2"/><circle cx="15" cy="9" r="1.2"/></Icon>;
-const IcBadgeCheck = p => <Icon {...p}><path d="M12 3l2 2 3-.5 1 3 3 1-.5 3 2 2-2 2 .5 3-3 1-1 3-3-.5-2 2-2-2-3 .5-1-3-3-1 .5-3-2-2 2-2-.5-3 3-1 1-3 3 .5z"/><path d="M9 12l2 2 4-4"/></Icon>;
-const IcBag = p => <Icon {...p}><path d="M5 8h14l-1 12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></Icon>;
-const IcMessage = p => <Icon {...p}><path d="M4 5h16a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/></Icon>;
-const IcCog = p => <Icon {...p}><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3h0a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8v0a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></Icon>;
-const IcZap = p => <Icon {...p}><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></Icon>;
-const IcLock = p => <Icon {...p}><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></Icon>;
-const IcShield = p => <Icon {...p}><path d="M12 3l8 3v6c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></Icon>;
-const IcUsers = p => <Icon {...p}><path d="M17 20v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 20v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></Icon>;
-const IcSmile = p => <Icon {...p}><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01M15 9h.01"/></Icon>;
-const IcFrown = p => <Icon {...p}><circle cx="12" cy="12" r="9"/><path d="M8 16s1.5-2 4-2 4 2 4 2"/><path d="M9 9h.01M15 9h.01"/></Icon>;
-const IcPhone = p => <Icon {...p}><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></Icon>;
-const IcCard = p => <Icon {...p}><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 10h19"/><path d="M6 15h3"/></Icon>;
+const IcBriefcase = p => <Icon {...p}><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></Icon>;
+const IcGlobe = p => <Icon {...p}><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></Icon>;
+const IcPalette = p => <Icon {...p}><path d="M12 22c5.52 0 10-4.48 10-10S17.52 2 12 2 2 6.48 2 12c0 1.1.9 2 2 2h2a2 2 0 0 1 2 2c0 .52.09 1.03.26 1.49A2 2 0 0 0 11 19a2 2 0 0 1 2.6 1.5A2 2 0 0 0 12 22z"/><circle cx="13.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/><circle cx="17.5" cy="10.5" r=".8" fill="currentColor" stroke="none"/><circle cx="8.5" cy="7.5" r=".8" fill="currentColor" stroke="none"/><circle cx="6.5" cy="12.5" r=".8" fill="currentColor" stroke="none"/></Icon>;
+const IcBuilding = p => <Icon {...p}><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01"/></Icon>;
+const IcRocket = p => <Icon {...p}><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></Icon>;
+const IcBadgeCheck = p => <Icon {...p}><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76z"/><path d="m9 12 2 2 4-4"/></Icon>;
+const IcBag = p => <Icon {...p}><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></Icon>;
+const IcMessage = p => <Icon {...p}><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/></Icon>;
+const IcCog = p => <Icon {...p}><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></Icon>;
+const IcZap = p => <Icon {...p}><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></Icon>;
+const IcLock = p => <Icon {...p}><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></Icon>;
+const IcShield = p => <Icon {...p}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></Icon>;
+const IcUsers = p => <Icon {...p}><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></Icon>;
+const IcSmile = p => <Icon {...p}><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><circle cx="9" cy="9.5" r=".8" fill="currentColor" stroke="none"/><circle cx="15" cy="9.5" r=".8" fill="currentColor" stroke="none"/></Icon>;
+const IcFrown = p => <Icon {...p}><circle cx="12" cy="12" r="10"/><path d="M16 16s-1.5-2-4-2-4 2-4 2"/><circle cx="9" cy="9.5" r=".8" fill="currentColor" stroke="none"/><circle cx="15" cy="9.5" r=".8" fill="currentColor" stroke="none"/></Icon>;
+const IcPhone = p => <Icon {...p}><rect x="5" y="2" width="14" height="20" rx="2.5" ry="2.5"/><path d="M12 18h.01"/></Icon>;
+const IcCard = p => <Icon {...p}><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></Icon>;
 const IcCheck = p => <Icon {...p}><path d="M5 12l4 4 10-10"/></Icon>;
 const IcCheckCircle = p => <Icon {...p}><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-5"/></Icon>;
 const IcX = p => <Icon {...p}><path d="M6 6l12 12M18 6L6 18"/></Icon>;
@@ -177,7 +177,7 @@ const IcArrowDown = p => <Icon {...p}><path d="M12 5v14M5 12l7 7 7-7"/></Icon>;
 
 /* ── LOGO ── always renders the brand's original navy + orange colours */
 const Logo = ({ h = 32 }) => (
-  <img src="asset/logo.png" alt="Oklah Hub"
+  <img src="asset/logo.png" alt="Oklah Hub" decoding="async" fetchpriority="high"
     style={{ height: h, objectFit: 'contain', display: 'block' }}
     onError={e => { e.currentTarget.style.display = 'none' }}
   />
@@ -792,8 +792,8 @@ function StatsBand({ mob }) {
 
 /* ── TESTIMONIALS ── */
 const REVIEWS = [
-  { name: 'Temi Bukola', role: 'Data Analyst', body: '₦35000 a year for Microsoft 365 with Copilot AI? One of the best business decisions I\'ve made. The AI alone saves me hours every week.', stars: 5 },
-  { name: 'Chinedu Ugo', role: 'Co-Founder, Martinez & Co.', body: 'I was embarrassed to share my Gmail with big clients. Within 48 hours, Oklah Hub gave me a proper branded email. The difference was immediate.', stars: 5 },
+  { name: 'Temi Bukola', role: 'Data Analyst', body: 'I was embarrassed to share my Gmail with big clients. Within 48 hours, Oklah Hub gave me a proper branded email. The difference was immediate.', stars: 5 },
+  { name: 'Chinedu Ugo', role: 'Co-Founder, Martinez & Co.', body: '₦35,000 a year for Microsoft 365 with Copilot AI? One of the best business decisions I\'ve made. The AI alone saves me hours every week.', stars: 5 },
   { name: 'Amara Williams', role: 'Director, Bright Futures Academy', body: 'Our old website was embarrassing us. Oklah Hub redesigned it and now handles everything. We\'ve enrolled more students since the relaunch.', stars: 5 },
 ];
 
@@ -950,7 +950,7 @@ function FAQ({ mob }) {
                   aria-expanded={isOpen} aria-controls={panelId}
                   style={{ width: '100%', padding: mob ? '17px 20px' : '19px 26px', background: 'none', border: 'none', display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer', textAlign: 'left', gap: 16, color: 'var(--text)' }}>
                   <span style={{ fontWeight: 700, color: 'var(--text)', fontSize: mob ? 14 : 15, letterSpacing: '-.01em', lineHeight: 1.4 }}>{f.q}</span>
-                  <span aria-hidden="true" style={{ width: 30, height: 30, borderRadius: '50%', background: isOpen ? 'linear-gradient(135deg,var(--navy),var(--sky))' : 'var(--bg-subtle)', color: isOpen ? '#fff' : 'var(--muted)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, flexShrink: 0, transition: 'all .25s', transform: isOpen ? 'rotate(45deg)' : 'none', fontWeight: 300 }}>+</span>
+                  <span aria-hidden="true" style={{ width: 30, height: 30, borderRadius: '50%', background: isOpen ? 'linear-gradient(135deg,var(--navy),var(--sky))' : 'var(--bg-subtle)', color: isOpen ? '#fff' : 'var(--muted)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, transition: 'all .25s', transform: isOpen ? 'rotate(45deg)' : 'none' }}><IcPlus s={16} /></span>
                 </button>
                 <div id={panelId} role="region" aria-labelledby={btnId} aria-hidden={!isOpen}
                   style={{ maxHeight: isOpen ? 640 : 0, overflow: 'hidden', transition: 'max-height .35s var(--ease)' }}>
@@ -1051,10 +1051,10 @@ function Contact({ mob }) {
           {!sent && (
             <form onSubmit={submit} noValidate={false} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               <div style={{ display: 'grid', gridTemplateColumns: mob ? '1fr' : '1fr 1fr', gap: 12 }}>
-                <input className="oh-input" required placeholder="Your name" aria-label="Your name" value={form.name} onChange={e => up('name', e.target.value)} />
-                <input className="oh-input" required type="email" placeholder="Email address" aria-label="Email address" value={form.email} onChange={e => up('email', e.target.value)} />
+                <input className="oh-input" required placeholder="Your name" aria-label="Your name" autoComplete="name" value={form.name} onChange={e => up('name', e.target.value)} />
+                <input className="oh-input" required type="email" placeholder="Email address" aria-label="Email address" autoComplete="email" inputMode="email" value={form.email} onChange={e => up('email', e.target.value)} />
               </div>
-              <input className="oh-input" placeholder="Business name" aria-label="Business name" value={form.business} onChange={e => up('business', e.target.value)} />
+              <input className="oh-input" placeholder="Business name" aria-label="Business name" autoComplete="organization" value={form.business} onChange={e => up('business', e.target.value)} />
               <select className="oh-input" value={form.service} aria-label="Service" onChange={e => up('service', e.target.value)}
                 style={{ appearance: 'none', WebkitAppearance: 'none', backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%2364748B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\")", backgroundRepeat: 'no-repeat', backgroundPosition: 'right 16px center', paddingRight: 40 }}>
                 <option>Microsoft 365</option>
@@ -1156,15 +1156,6 @@ function App() {
       </main>
       <Footer mob={mob} />
 
-      {/* WA FAB */}
-      <a href={waHref('Hi Oklah Hub! I want to get started.')} target="_blank" rel="noopener" className="wa-fab" aria-label="Chat on WhatsApp, replies in 1 hour">
-        <WaIco s={28} />
-        <span className="wa-tip" aria-hidden="true">Chat on WhatsApp, replies in 1 hr</span>
-      </a>
-
-
-
-      
       <button id="bt" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} aria-label="Back to top">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
       </button>

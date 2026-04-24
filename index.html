@@ -32,6 +32,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="preconnect" href="https://unpkg.com" crossorigin />
 <link rel="preload" as="image" href="asset/hero-background.jpeg" fetchpriority="high" />
+<link rel="preload" as="image" href="asset/logo.png" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 <script>
 (() => {
@@ -104,6 +105,10 @@
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden;transition:background .3s,color .3s}
 input,textarea,button,select{font-family:inherit}
+img,svg{max-width:100%}
+/* Anchor links land below the fixed header instead of under it */
+section[id]{scroll-margin-top:84px}
+@media(max-width:767px){section[id]{scroll-margin-top:72px}}
 
 /* ── A11Y ── */
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -151,7 +156,6 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible,summary:focus
 .btn{transition:transform .15s var(--spring),box-shadow .2s!important}
 .btn:active{transform:scale(.96)!important}
 .btn-g{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 26px;border-radius:12px;font-weight:800;font-size:15px;text-decoration:none;border:none;cursor:pointer;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;box-shadow:0 4px 20px rgba(37,211,102,.32)}
-.btn-g.glow{animation:glow-g 3s ease-in-out infinite}
 .btn-g:hover{transform:translateY(-2px)!important;box-shadow:0 8px 32px rgba(37,211,102,.48)!important}
 .btn-p{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 24px;border-radius:12px;font-weight:700;font-size:14px;text-decoration:none;border:none;cursor:pointer;background:linear-gradient(135deg,var(--navy),var(--sky));color:#fff;box-shadow:0 4px 16px rgba(13,76,143,.28)}
 .btn-p:hover{transform:translateY(-1px)!important;box-shadow:0 8px 28px rgba(13,76,143,.38)!important}
@@ -230,15 +234,6 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible,summary:focus
 #bt:focus-visible{box-shadow:0 4px 18px rgba(13,76,143,.3),var(--ring)}
 @media(max-width:767px){#bt{display:none}}
 
-/* ── WA FAB ── */
-.wa-fab{position:fixed;bottom:28px;right:28px;z-index:200;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#25D366,#128C7E);display:flex;align-items:center;justify-content:center;text-decoration:none;animation:pulse-g 3s ease-in-out infinite;transition:transform .2s var(--spring);box-shadow:0 6px 24px rgba(37,211,102,.4)}
-.wa-fab:hover{transform:scale(1.12) translateY(-2px)}
-.wa-tip{position:absolute;right:70px;top:50%;transform:translateY(-50%) translateX(8px);background:var(--text);color:var(--bg);padding:8px 14px;border-radius:10px;font-size:12px;font-weight:600;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;box-shadow:var(--sh-md)}
-.wa-tip::after{content:'';position:absolute;right:-5px;top:50%;transform:translateY(-50%);border-left:6px solid var(--text);border-top:5px solid transparent;border-bottom:5px solid transparent}
-.wa-fab:hover .wa-tip{opacity:1;transform:translateY(-50%) translateX(0)}
-.wa-sticky{display:none;position:fixed;bottom:0;left:0;right:0;z-index:300;background:linear-gradient(90deg,#25D366,#128C7E);padding:14px 20px;padding-bottom:calc(14px + env(safe-area-inset-bottom,0));align-items:center;justify-content:center;gap:10px;text-decoration:none;color:#fff;font-weight:800;font-size:15px;box-shadow:0 -4px 24px rgba(37,211,102,.28)}
-@media(max-width:767px){.wa-sticky{display:flex}.wa-fab{display:none!important}}
-
 /* ── COUNTER ── */
 .num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
 
@@ -267,8 +262,6 @@ body{direction:ltr}
 @keyframes cf{0%,100%{transform:translateY(0) rotate(0)}33%{transform:translateY(-7px) rotate(.3deg)}66%{transform:translateY(-3px) rotate(-.15deg)}}
 @keyframes slideIn{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:none}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
-@keyframes pulse-g{0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,.45),0 6px 24px rgba(37,211,102,.35)}60%{box-shadow:0 0 0 14px rgba(37,211,102,0),0 6px 24px rgba(37,211,102,.35)}}
-@keyframes glow-g{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.32)}50%{box-shadow:0 6px 36px rgba(37,211,102,.55)}}
 @keyframes cta-sheen{0%,68%,100%{transform:translateX(-180%) skewX(-18deg)}18%,34%{transform:translateX(420%) skewX(-18deg)}}
 @keyframes float-soft{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 @keyframes chip-pulse{0%,100%{transform:scale(1);opacity:1}55%{transform:scale(1.45);opacity:.72}}
@@ -290,6 +283,13 @@ body{direction:ltr}
   <span class="sr-only">Loading…</span>
 </div>
 <div id="root"></div>
+<noscript>
+  <div style="max-width:640px;margin:80px auto;padding:32px;border:1px solid #E2E8F0;border-radius:16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#0F172A;text-align:center">
+    <h1 style="font-size:22px;font-weight:800;margin-bottom:12px">Oklah Hub needs JavaScript</h1>
+    <p style="font-size:15px;line-height:1.6;color:#475569;margin-bottom:16px">This site is interactive and won't render without JavaScript. Please enable it, or reach us directly:</p>
+    <p style="font-size:15px;line-height:1.8"><a href="mailto:info@oklahhub.com" style="color:#0D4C8F">info@oklahhub.com</a> · <a href="https://wa.me/2349115581148" style="color:#0D4C8F">WhatsApp +234 911 558 1148</a></p>
+  </div>
+</noscript>
 <div id="progress-bar" aria-hidden="true"></div>
 
 
