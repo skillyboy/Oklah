@@ -283,7 +283,7 @@ function Nav({ mob, dark, setDark, scrolled }) {
                 >{l}</a>
               ))}
               <Toggle dark={dark} set={setDark} />
-              <a href={waHref('Hi Oklah Hub! I want to get started.')} target="_blank" rel="noopener" className="btn btn-g"
+              <a href={waHref('Hi Oklah Hub! I want to get started.')} target="_blank" rel="noopener" className="btn btn-p"
                 style={{ padding: '10px 18px', fontSize: 13, borderRadius: 10 }}>
                 <WaIco s={13} /> Get Started
               </a>
