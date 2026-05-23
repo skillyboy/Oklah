@@ -174,6 +174,9 @@ const IcPlus = p => <Icon {...p}><path d="M12 5v14M5 12h14"/></Icon>;
 const IcSun = p => <Icon {...p}><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"/></Icon>;
 const IcMoon = p => <Icon {...p}><path d="M21 13a8 8 0 1 1-10-10 7 7 0 0 0 10 10z"/></Icon>;
 const IcArrowDown = p => <Icon {...p}><path d="M12 5v14M5 12l7 7 7-7"/></Icon>;
+const IcFilm = p => <Icon {...p}><rect x="2" y="3" width="20" height="18" rx="2"/><path d="M7 3v18M17 3v18M2 8h5M17 8h5M2 12h20M2 16h5M17 16h5"/></Icon>;
+const IcGrid = p => <Icon {...p}><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></Icon>;
+const IcLayers = p => <Icon {...p}><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></Icon>;
 
 /* ── LOGO ── always renders the brand's original navy + orange colours */
 const Logo = ({ h = 32 }) => (
@@ -555,6 +558,10 @@ const SVCS = [
   { Icon: MailIco, tag: 'Custom pricing', title: 'Professional Business Email', desc: "Stop losing deals because you're emailing from Gmail or Yahoo. A branded email like you@yourbusiness.com builds instant trust.", features: ['you@yourbusiness.com address', 'Full setup done for you', 'Spam protection & security', 'Fully managed. Worry free'], msg: 'Hi Oklah Hub! I want a professional business email.', emailSubject: 'Business Email Inquiry' },
   { Icon: IcGlobe, tag: 'from ₦250,000', title: 'Website Design & Management', desc: 'A website that works while you sleep. We design, build, and fully manage your business website, ecommerce store, or full web app. You focus on customers, we handle the tech.', features: ['Static business website from ₦250,000', 'Ecommerce store, custom pricing', 'Web application, contact us for pricing', 'We manage all updates & upkeep', 'Fast, secure & always on'], msg: 'Hi Oklah Hub! I want a professional website.', emailSubject: 'Website Design Inquiry' },
   { Icon: IcPalette, tag: 'Custom pricing', title: 'Graphics & Logo Design', desc: 'A strong brand starts with great visuals. We create custom logos, brand identities and social media graphics that make your business stand out.', features: ['Custom logo design', 'Full brand identity kit', 'Social media graphics & assets', 'Consistent style across platforms'], msg: 'Hi Oklah Hub! I want graphics and logo design.', emailSubject: 'Graphics & Logo Design Inquiry' },
+  { Icon: IcFilm, tag: 'Custom pricing', title: 'Animation Graphics Design', desc: "Bring your ideas to life with stunning visuals. We create engaging animations and graphic designs that capture attention, communicate your message clearly, and elevate your brand's identity.", features: ['Custom 2D motion graphics', 'Social media animations & reels', 'Explainer & promo videos', 'Brand-consistent visual style'], msg: 'Hi Oklah Hub! I want animation & graphics design.', emailSubject: 'Animation Graphics Design Inquiry' },
+  { Icon: IcGrid, tag: 'Custom pricing', title: 'Google Workspace Setup', desc: 'Streamline collaboration with a professional Google Workspace environment. From email and cloud storage to productivity tools, we handle the full setup so your team can work smarter and stay connected.', features: ['Branded Gmail business email', 'Drive cloud storage & sharing', 'Docs, Sheets, Meet & Calendar', 'Full setup & user onboarding'], msg: 'Hi Oklah Hub! I want a Google Workspace setup.', emailSubject: 'Google Workspace Setup Inquiry' },
+  { Icon: MicrosoftIco, tag: 'Custom pricing', title: 'Microsoft Tenant Setup', desc: 'Empower your business with Microsoft 365. We configure your tenant to ensure secure access, seamless communication, and optimized productivity across Outlook, Teams, SharePoint, and more.', features: ['Microsoft 365 tenant configuration', 'Secure access & user management', 'Outlook, Teams & SharePoint', 'Optimized for productivity'], msg: 'Hi Oklah Hub! I want a Microsoft tenant setup.', emailSubject: 'Microsoft Tenant Setup Inquiry' },
+  { Icon: IcLayers, tag: 'Custom pricing', title: 'Zoho Workplace Setup', desc: 'Simplify your workflow with Zoho Workplace. We set up and customize your suite of apps and collaboration tools so your organization runs efficiently.', features: ['Zoho Mail business email', 'Full Zoho Workplace app suite', 'Team collaboration tools', 'Custom setup & onboarding'], msg: 'Hi Oklah Hub! I want a Zoho Workplace setup.', emailSubject: 'Zoho Workplace Setup Inquiry' },
 ];
 
 
@@ -1039,6 +1046,10 @@ function Contact({ mob }) {
                 <option>E-commerce Store</option>
                 <option>Web Application</option>
                 <option>Graphics & Logo Design</option>
+                <option>Animation Graphics Design</option>
+                <option>Google Workspace Setup</option>
+                <option>Microsoft Tenant Setup</option>
+                <option>Zoho Workplace Setup</option>
                 <option>I'm not sure, help me choose</option>
               </select>
               <textarea className="oh-input" rows="4" placeholder="What do you need? (optional)" aria-label="Message" value={form.message} onChange={e => up('message', e.target.value)} />
